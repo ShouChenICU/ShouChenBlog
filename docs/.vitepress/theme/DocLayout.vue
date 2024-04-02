@@ -1,20 +1,30 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+import NavBar from './NavBar.vue'
 import { useData } from 'vitepress'
 import { timeAgo } from '/utils.js'
+// import { navElm } from './public.mjs'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
 
 const siteData = useData()
 const updateTimeAgo = ref('')
+// const imgHeight = ref('unset')
 
 onMounted(() => {
   updateTimeAgo.value = timeAgo(siteData.frontmatter.value.updateTime)
+  // if (siteData.frontmatter.value?.cover) {
+  // navElm.value.style.position = 'fixed'
+  // }
+  // if (navElm.value?.clientHeight && window.innerWidth >= 768) {
+  //   imgHeight.value = window.innerHeight - navElm.value?.clientHeight - 32 + 'px'
+  // }
 })
 </script>
 
 <template>
-  <div :class="$style['doc-page']">
+  <NavBar />
+  <div :class="$style['doc-page']" :style="'backdround: url(' + $frontmatter.cover + ')'">
     <div v-show="$frontmatter.cover" :class="$style['doc-cover']">
       <img :src="$frontmatter.cover" />
     </div>
@@ -38,7 +48,7 @@ onMounted(() => {
 }
 
 .doc-container {
-  width: 70%;
+  width: 61%;
   margin: auto;
   padding: 1rem;
 }
@@ -62,14 +72,17 @@ onMounted(() => {
 
 .doc-cover > img {
   display: inline-block;
-  min-width: 70vw;
-  max-width: 90vw;
+  /* min-width: 60vw; */
+  /* max-width: 90vw; */
+  width: 61%;
   min-height: 50vh;
   max-height: 100vh;
   object-fit: cover;
   object-position: center;
   box-shadow: 0 0 7px hsla(0, 0%, 0%, 0.6);
-  border-radius: 0 0 0.5rem 0.5rem;
+  /* border-radius: 0 0 0.5rem 0.5rem; */
+  border-radius: 0.75rem;
+  margin-top: 1rem;
 }
 
 .doc-info {
@@ -88,9 +101,11 @@ onMounted(() => {
   }
 
   .doc-cover > img {
-    width: 100vw;
+    width: 100%;
     min-height: 30vh;
     max-height: 60vh;
+    border-radius: unset;
+    margin-top: 0;
   }
 }
 </style>

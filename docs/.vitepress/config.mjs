@@ -11,10 +11,7 @@ export default defineConfig({
 
     logo: '/favicon.webp',
 
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
-    ],
+    nav: [{ text: '主页', link: '/' }],
 
     sidebar: [
       {
@@ -43,7 +40,16 @@ export default defineConfig({
     lineNumbers: true
   },
 
-  head: [['link', { rel: 'icon', href: '/favicon.webp' }]],
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.webp' }],
+    [
+      'meta',
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
+      }
+    ]
+  ],
 
   outDir: '../dist'
 })

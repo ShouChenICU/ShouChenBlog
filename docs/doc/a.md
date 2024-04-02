@@ -1,8 +1,13 @@
 ---
-title: asd
+title: Runtime API Examples
+tags: Linux Java
+description: asds
+author: ShouChen
+updateTime: 2024-03-31T16:48:00+08:00
+isHide: true
 ---
 
-# Runtime API Examples
+## abab
 
 This page demonstrates usage of some of the runtime APIs provided by VitePress.
 
@@ -14,20 +19,26 @@ import { useData } from 'vitepress'
 
 const { theme, page, frontmatter } = useData()
 </script>
+```
 
 ## Results
 
 ### Theme Data
 
-<pre>{{ theme }}</pre>
+```json
+{{ theme }}
+```
 
 ### Page Data
 
-<pre>{{ page }}</pre>
+```json
+{{ page }}
+```
 
 ### Page Frontmatter
 
-<pre>{{ frontmatter }}</pre>
+```json
+{{ frontmatter }}
 ```
 
 <script setup>
@@ -40,15 +51,21 @@ const { site, theme, page, frontmatter } = useData()
 
 ### Theme Data
 
-<pre>{{ theme }}</pre>
+```json
+{{ theme }}
+```
 
 ### Page Data
 
-<pre>{{ page }}</pre>
+```json
+{{ page }}
+```
 
 ### Page Frontmatter
 
-<pre>{{ frontmatter }}</pre>
+```json
+{{ frontmatter }}
+```
 
 ## More
 

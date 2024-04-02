@@ -131,6 +131,10 @@
 
 .vp-doc div[class*='language-'] {
   margin: 0;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.32),
+    0 3px 6px rgba(0, 0, 0, 0.16);
 }
 
 .vp-doc h2:first-child {
@@ -138,6 +142,8 @@
 }
 
 body {
+  background-color: var(--color-background-soft);
+  width: 100%;
   font-family:
     ui-sans-serif,
     Inter,
@@ -154,9 +160,14 @@ body {
     sans-serif;
 }
 
+#app {
+  position: relative;
+  min-height: 100vh;
+}
+
 :root {
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
+  --vt-c-white-soft: #fafaf8;
   --vt-c-white-mute: #f2f2f2;
 
   --vt-c-black: #181818;
@@ -199,7 +210,8 @@ body {
   --color-background-mute: var(--vt-c-white-mute);
   --color-bg-selection: #f7c24289;
   --color-bg-line-item: rgba(0, 0, 0, 0.6);
-  --color-bg-navbar: rgba(255, 255, 255, 0.6);
+  --color-bg-navbar: rgba(255, 255, 255, 0.39);
+  --color-bg-card: white;
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
@@ -223,7 +235,8 @@ html.dark {
   --color-background-mute: var(--vt-c-black-mute);
   --color-bg-selection: #caad5f89;
   --color-bg-line-item: rgba(255, 255, 255, 0.6);
-  --color-bg-navbar: rgba(22, 22, 32, 0.6);
+  --color-bg-navbar: rgba(22, 22, 32, 0.39);
+  --color-bg-card: hsl(0, 0%, 10%);
 
   --color-border: var(--vt-c-divider-dark-2);
   --color-border-hover: var(--vt-c-divider-dark-1);
