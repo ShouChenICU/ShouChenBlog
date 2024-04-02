@@ -44,9 +44,9 @@
   top: 0;
   /* max-width: 25%; */
   background-color: var(--color-bg-card);
-  height: 100vh;
+  /* height: 100vh; */
   /* padding: 1rem; */
-  /* border-radius: 0.5rem; */
+  border-radius: 0.5rem;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.23),
     0 1px 6px rgba(0, 0, 0, 0.16);
@@ -89,7 +89,7 @@
 
 .profile-box .bio {
   /* border-radius: 0 0 0.5rem 0.5rem; */
-  border-bottom: 1px solid var(--vp-c-divider);
+  /* border-bottom: 1px solid var(--vp-c-divider); */
   /* border-top: none; */
   /* margin-top: 2rem; */
   font-size: 0.85em;
@@ -131,12 +131,14 @@
     height: unset;
     border-radius: 0;
     max-width: unset;
+    box-shadow: none;
   }
 
   .profile-box .bio {
     /* border-radius: 0; */
     /* border: none; */
     /* border-bottom: 1px rgba(128, 128, 128, 0.25) solid; */
+    border-bottom: 1px solid var(--vp-c-divider);
   }
 }
 </style>

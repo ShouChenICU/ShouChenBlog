@@ -6,7 +6,7 @@ import DarkSwitcher from './DarkSwitcher.vue'
 import MenuRightIcon from './icons/MenuRightIcon.vue'
 import CloseIcon from './icons/CloseIcon.vue'
 
-const { theme } = useData()
+const { theme, frontmatter } = useData()
 const showExtra = ref(false)
 const showExtraBtn = ref(null)
 const navExtraElm = ref(null)
@@ -40,6 +40,15 @@ watch(showExtra, (isShow) => {
 
 const autoHideFun = () => {
   const sY = window.scrollY
+  if (sY <= navElm.value?.clientHeight) {
+    navElm.value.style.backgroundColor = 'transparent'
+    navElm.value.style.backdropFilter = 'none'
+    navElm.value.style.boxShadow = 'none'
+  } else {
+    navElm.value.style.backgroundColor = 'var(--color-bg-navbar)'
+    navElm.value.style.backdropFilter = 'blur(12px)'
+    navElm.value.style.boxShadow = '0 0 3px rgba(0, 0, 0, 0.4), 0 0 6px rgba(0, 0, 0, 0.2);'
+  }
   if (sY > curY) {
     if (sY > switchY + 64 && sY > navElm.value?.clientHeight) {
       if (!isHide) {
@@ -80,7 +89,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <nav :class="$style['nav-bar']" ref="navElm">
+  <!-- :style="{ position: frontmatter?.layout === 'home' ? 'fixed' : 'sticky' }" -->
+  <nav
+    :class="$style['nav-bar']"
+    :style="{ position: frontmatter?.layout === 'home' ? 'fixed' : 'sticky' }"
+    ref="navElm"
+  >
     <!-- main -->
     <div :class="$style['nav-main']">
       <a :class="$style['main-logo']" href="/">
@@ -96,8 +110,9 @@ onUnmounted(() => {
           :href="item.link"
           >{{ item.text }}</a
         >
+        <div class="divider-v" style="--h: 2em; margin: 0 8px"></div>
+        <DarkSwitcher />
       </div>
-      <DarkSwitcher />
       <div :class="$style['show-extra-btn']" @click="showExtra = !showExtra" ref="showExtraBtn">
         <MenuRightIcon v-show="!showExtra" /><CloseIcon v-show="showExtra" />
       </div>
@@ -133,6 +148,14 @@ onUnmounted(() => {
     top 0.5s ease-out,
     backdrop-filter 0.5s ease-in-out,
     background-color 0.5s ease-in-out;
+}
+
+.nav-bar:hover {
+  background-color: var(--color-bg-navbar) !important;
+  backdrop-filter: blur(12px) !important;
+  box-shadow:
+    0 0 3px rgba(0, 0, 0, 0.4),
+    0 0 6px rgba(0, 0, 0, 0.2) !important;
 }
 
 .nav-main {

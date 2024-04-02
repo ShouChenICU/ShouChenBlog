@@ -1,12 +1,12 @@
 <script setup>
 import { data as contentData } from '../../posts.data.mjs'
-import PostCard from './PostCard.vue'
+import PostItem from './PostItem.vue'
 </script>
 
 <template>
   <div :class="$style['posts-box']">
     <div :class="$style['doc-list']">
-      <PostCard v-for="(doc, idx) in contentData" :key="idx" :doc="doc" />
+      <PostItem v-for="(doc, idx) in contentData" :key="idx" :doc="doc" />
     </div>
   </div>
 </template>
@@ -14,13 +14,15 @@ import PostCard from './PostCard.vue'
 <style module>
 .posts-box {
   position: relative;
-  min-width: 0;
+  top: 50vh;
   padding: 1rem;
+  width: 80%;
+  margin: auto;
 }
 
 .doc-list {
-  column-count: 3;
-  column-gap: 1rem;
+  /* column-count: 4; */
+  /* column-gap: 1rem; */
 }
 
 @media screen and (max-width: 768px) {

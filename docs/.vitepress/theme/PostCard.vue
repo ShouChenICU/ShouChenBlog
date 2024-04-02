@@ -88,10 +88,10 @@ onMounted(() => {
 .post-card .post-desc {
   font-size: 0.9em;
   white-space: pre-wrap;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  /* -webkit-line-clamp: 2; */
+  /* -webkit-box-orient: vertical; */
   overflow: hidden;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
 }
 
 .post-card .post-info {

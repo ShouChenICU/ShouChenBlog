@@ -1,35 +1,105 @@
 <script setup>
+import { onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
+import { navElm } from './public.mjs'
 import NavBar from './NavBar.vue'
 import ProfileBox from './ProfileBox.vue'
+import NoticeBox from './NoticeBox.vue'
 import PostsBox from './PostsBox.vue'
 
 const siteData = useData()
+const navElmHeight = ref(0)
+
+onMounted(() => {
+  navElmHeight.value = navElm.value.clientHeight
+  // if (window.innerWidth >= 768) {
+  //   navElmHeight.value += 32
+  // }
+})
 </script>
 
 <template>
   <div :class="$style['home-page']">
-    <ProfileBox />
-    <div>
-      <NavBar />
-      <PostsBox />
+    <NavBar />
+    <!-- <div :class="$style['banner-wrap']">
+      <img src="/imgs/banner.webp" />
+    </div> -->
+    <!-- <div :class="$style['bg']"></div> -->
+    <div :class="$style['main-box-wrapper']">
+      <div :class="$style['main-box']" :style="{ paddingTop: navElmHeight + 'px' }">
+        <ProfileBox style="grid-area: a" />
+        <NoticeBox style="grid-area: b" />
+        <div style="grid-area: c">c</div>
+      </div>
     </div>
+    <PostsBox />
   </div>
 </template>
 
 <style module>
 .home-page {
   position: relative;
-  margin: auto;
+  margin: 0;
   width: 100%;
-  /* padding: 2rem 1rem; */
+}
+
+.main-box-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: url('/imgs/banner.webp') repeat-y;
+  background-attachment: fixed;
+  background-position: 0 -300px;
+  background-size: cover;
+}
+
+.main-box {
+  background-color: var(--color-bg-navbar);
+  backdrop-filter: blur(12px);
   display: grid;
-  grid-template-columns: 24% 76%;
-  grid-auto-rows: auto;
-  align-items: start;
-  /* display: flex;
-  flex-direction: row-reverse; */
-  /* gap: 3rem; */
+  grid-template-areas:
+    'a b'
+    'a c';
+  grid-template-columns: 1fr 1fr;
+  padding: 2rem;
+  gap: 2rem;
+  position: relative;
+  width: 70%;
+  /* margin: 0 auto; */
+  z-index: 10;
+}
+
+.banner-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.banner-wrap::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(12px);
+  z-index: -900;
+}
+
+.banner-wrap img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1000;
+  /* filter: blur(24px); */
 }
 
 .side-div {
@@ -39,11 +109,25 @@ const siteData = useData()
 
 @media screen and (max-width: 768px) {
   .home-page {
-    width: 100%;
-    grid-template-columns: 1fr;
+    /* width: 100%; */
+    /* grid-template-columns: 1fr; */
     /* flex-direction: column; */
     padding: 0;
     gap: 0;
+  }
+
+  .main-box {
+    grid-template-areas:
+      'a'
+      'b'
+      'c';
+    grid-template-columns: 1fr;
+    padding: 0;
+    gap: 1rem;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
   }
 
   .side-div {
