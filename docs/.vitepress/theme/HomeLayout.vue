@@ -48,14 +48,14 @@ onMounted(() => {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background: url('/imgs/banner.webp') repeat-y;
+  background: url('/imgs/banner.webp');
   background-attachment: fixed;
-  background-position: 0 -300px;
+  /* background-position: 0 -300px; */
   background-size: cover;
 }
 
 .main-box {
-  background-color: var(--color-bg-navbar);
+  background-color: var(--color-bg-content);
   backdrop-filter: blur(12px);
   display: grid;
   grid-template-areas:

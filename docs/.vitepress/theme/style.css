@@ -211,6 +211,7 @@ body {
   --color-bg-selection: #f7c24289;
   --color-bg-line-item: rgba(0, 0, 0, 0.6);
   --color-bg-navbar: rgba(255, 255, 255, 0.39);
+  --color-bg-content: rgba(255, 255, 255, 0.48);
   --color-bg-card: white;
 
   --color-border: var(--vt-c-divider-light-2);
@@ -236,6 +237,7 @@ html.dark {
   --color-bg-selection: #caad5f89;
   --color-bg-line-item: rgba(255, 255, 255, 0.6);
   --color-bg-navbar: rgba(22, 22, 32, 0.39);
+  --color-bg-content: rgba(22, 22, 32, 0.48);
   --color-bg-card: hsl(0, 0%, 10%);
 
   --color-border: var(--vt-c-divider-dark-2);

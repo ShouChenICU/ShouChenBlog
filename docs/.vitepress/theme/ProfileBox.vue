@@ -10,7 +10,7 @@
     <p :class="$style['bio']">
       💻不想上班的程序员 🍥Debian忠实粉 / INFP-A /
       MC，幻想郷，ACG爱好者，🎧音乐发烧友，🌸AI绘画小白，🐱想养猫 (或猫娘) /
-      🍀日常推，热爱分享，做自己喜欢的事。<a
+      🍀日常，热爱分享，做自己喜欢的事。<a
         style="color: #51a8dd"
         href="https://miaobox.cc"
         target="_blank"

@@ -40,15 +40,15 @@ watch(showExtra, (isShow) => {
 
 const autoHideFun = () => {
   const sY = window.scrollY
-  if (sY <= navElm.value?.clientHeight) {
-    navElm.value.style.backgroundColor = 'transparent'
-    navElm.value.style.backdropFilter = 'none'
-    navElm.value.style.boxShadow = 'none'
-  } else {
-    navElm.value.style.backgroundColor = 'var(--color-bg-navbar)'
-    navElm.value.style.backdropFilter = 'blur(12px)'
-    navElm.value.style.boxShadow = '0 0 3px rgba(0, 0, 0, 0.4), 0 0 6px rgba(0, 0, 0, 0.2);'
-  }
+  // if (sY <= navElm.value?.clientHeight) {
+  //   navElm.value.style.backgroundColor = 'transparent'
+  //   navElm.value.style.backdropFilter = 'none'
+  //   navElm.value.style.boxShadow = 'none'
+  // } else {
+  //   navElm.value.style.backgroundColor = 'var(--color-bg-navbar)'
+  //   navElm.value.style.backdropFilter = 'blur(12px)'
+  //   navElm.value.style.boxShadow = '0 0 3px rgba(0, 0, 0, 0.4), 0 0 6px rgba(0, 0, 0, 0.2);'
+  // }
   if (sY > curY) {
     if (sY > switchY + 64 && sY > navElm.value?.clientHeight) {
       if (!isHide) {

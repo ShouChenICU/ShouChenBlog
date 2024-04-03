@@ -1,4 +1,5 @@
 ---
+cover: /imgs/chatbot.webp
 title: Runtime API Examples
 tags: Linux Java
 description: asds
