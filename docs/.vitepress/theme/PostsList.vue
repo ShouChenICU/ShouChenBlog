@@ -12,7 +12,6 @@ import PostItem from './PostItem.vue'
 <style module>
 .posts-list {
   position: relative;
-  padding-right: 10vw;
 }
 
 /* @media screen and (max-width: 768px) {

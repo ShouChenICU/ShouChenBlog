@@ -16,8 +16,14 @@ onMounted(() => {
 <template>
   <div :class="$style['post-item']">
     <img :class="$style['cover']" :src="doc.frontmatter?.cover" />
-    <a :class="$style['title']">{{ doc.frontmatter?.title }}</a>
-    <div :class="$style['description']">{{ doc.frontmatter?.description }}</div>
+    <a :class="$style['title']" :href="doc.url">
+      <span>{{ doc.frontmatter?.title }}</span>
+    </a>
+    <div :class="$style['description']">
+      <span>
+        {{ doc.frontmatter?.description }}
+      </span>
+    </div>
     <div :class="$style['post-info']">
       <TagIcon />
       <span style="margin-left: 2px">{{ doc.frontmatter?.tags }}</span>
@@ -36,10 +42,10 @@ onMounted(() => {
     'a b'
     'a c'
     'a d';
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 24% 74%;
   grid-template-rows: max-content;
   grid-auto-rows: 1fr;
-  column-gap: 1rem;
+  column-gap: 2%;
   margin: 0.75rem 2rem;
   padding: 1rem 0 1.75rem 0;
   border-bottom: 1px var(--color-divider-soft) solid;
@@ -59,10 +65,26 @@ onMounted(() => {
 
 .post-item .title {
   text-decoration: none;
-  padding: 0.5rem 0;
-  font-weight: bold;
   grid-area: b;
   cursor: pointer;
+  padding: 0.5rem 0;
+  background: linear-gradient(135deg, hsla(203, 67%, 69%, 0.8), hsla(203, 67%, 49%, 0.8)) no-repeat;
+  background-size: 0 2px;
+  background-position: bottom right;
+  will-change: background-size, background-position;
+  transition: background-size 0.4s ease;
+}
+
+.post-item .title span {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.post-item .title:hover {
+  background-size: 100% 2px;
+  background-position: bottom left;
 }
 
 .post-item .description {
@@ -71,10 +93,13 @@ onMounted(() => {
   display: flex;
   flex-direction: row;
   align-items: center;
+  font-size: 0.9em;
+}
+
+.post-item .description span {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: 0.9em;
 }
 
 .post-item .post-info {

@@ -67,14 +67,14 @@ onMounted(() => {
   /* min-width: 60vw; */
   /* max-width: 90vw; */
   /* width: 61%; */
-  min-height: 50vh;
-  max-height: 100vh;
+  /* min-height: 50vh; */
+  /* max-height: 100vh; */
   object-fit: cover;
   object-position: center;
   box-shadow: 0 0 7px hsla(0, 0%, 0%, 0.6);
   /* border-radius: 0 0 0.5rem 0.5rem; */
   border-radius: 0.75rem;
-  margin-top: 1rem;
+  /* margin-top: 1rem; */
 }
 
 .post-info {

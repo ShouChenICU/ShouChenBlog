@@ -12,9 +12,14 @@ export default defineConfig({
     logo: '/favicon.webp',
 
     nav: [
-      { text: '主页', link: '/' },
-      { text: '归档', link: '/archived' },
-      { text: '关于', link: '/about' }
+      { id: 'home', text: '主页', link: '/' },
+      { id: 'archived', text: '归档', link: '/archived' },
+      { id: 'about', text: '关于', link: '/about' }
+    ],
+
+    categories: [
+      { id: 'tech', text: '技术' },
+      { id: 'daily', text: '日常' }
     ],
 
     sidebar: [
