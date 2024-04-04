@@ -11,7 +11,11 @@ export default defineConfig({
 
     logo: '/favicon.webp',
 
-    nav: [{ text: '主页', link: '/' }],
+    nav: [
+      { text: '主页', link: '/' },
+      { text: '归档', link: '/archived' },
+      { text: '关于', link: '/about' }
+    ],
 
     sidebar: [
       {

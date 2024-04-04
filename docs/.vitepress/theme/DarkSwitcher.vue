@@ -70,7 +70,6 @@ onMounted(() => switchDark(isDark.value))
   justify-content: center;
   align-items: center;
   will-change: left;
-  transition: left 0.2s ease;
 }
 
 .left-silder {
@@ -80,6 +79,7 @@ onMounted(() => switchDark(isDark.value))
   top: 0;
   left: -3em;
   background-color: transparent;
+  transition: left 0.4s ease;
   z-index: 90;
 }
 
@@ -91,6 +91,7 @@ onMounted(() => switchDark(isDark.value))
   left: 0.2em;
   top: 0.2em;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+  transition: left 0.2s ease;
   z-index: 100;
 }
 
@@ -101,6 +102,7 @@ onMounted(() => switchDark(isDark.value))
   top: 0;
   left: 0;
   background-color: transparent;
+  transition: left 0.4s ease;
   z-index: 90;
 }
 </style>

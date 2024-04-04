@@ -14,55 +14,36 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- :style="{ backgroundImage: 'url(' + doc.frontmatter?.cover + ')' }" -->
-  <div :class="$style['post-item-wrapper']">
-    <a :class="$style['post-item']">
-      <img :class="$style['cover']" :src="doc.frontmatter?.cover" />
-      <div :class="$style['title']">{{ doc.frontmatter?.title }}</div>
-      <div :class="$style['description']">{{ doc.frontmatter?.description }}</div>
-    </a>
+  <div :class="$style['post-item']">
+    <img :class="$style['cover']" :src="doc.frontmatter?.cover" />
+    <a :class="$style['title']">{{ doc.frontmatter?.title }}</a>
+    <div :class="$style['description']">{{ doc.frontmatter?.description }}</div>
+    <div :class="$style['post-info']">
+      <TagIcon />
+      <span style="margin-left: 2px">{{ doc.frontmatter?.tags }}</span>
+      <div style="flex-grow: 1"></div>
+      <ClockIcon style="font-size: 1.1em" />
+      <span style="margin-left: 2px">{{ updateTimeAgo }}</span>
+    </div>
   </div>
 </template>
 
 <style module>
-.post-item-wrapper {
-  position: relative;
-  width: 100%;
-  /* padding: 1rem 0; */
-  /* background: url('/imgs/banner.webp'); */
-  /* background-position: center; */
-  /* background-size: cover; */
-  /* background-attachment: fixed; */
-}
-
-/* .post-item-wrapper::before {
-  content: '';
-  position: absolute;
-  left: 15%;
-  width: 70%;
-  height: 100%;
-  backdrop-filter: blur(12px);
-  z-index: 1;
-} */
-
 .post-item {
+  /* width: 100%; */
   display: grid;
   grid-template-areas:
     'a b'
-    'a c';
+    'a c'
+    'a d';
   grid-template-columns: 1fr 3fr;
-  grid-template-rows: 1fr;
+  grid-template-rows: max-content;
   grid-auto-rows: 1fr;
   column-gap: 1rem;
-  text-decoration: none;
-  width: 70%;
-  margin: 1rem auto;
-  /* padding: 1rem; */
-  /* backdrop-filter: blur(12px); */
-  /* background-color: var(--color-bg-content); */
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
-  cursor: pointer;
+  margin: 0.75rem 2rem;
+  padding: 1rem 0 1.75rem 0;
+  border-bottom: 1px var(--color-divider-soft) solid;
+  /* cursor: pointer; */
   overflow: hidden;
   z-index: 10;
 }
@@ -72,19 +53,37 @@ onMounted(() => {
   aspect-ratio: 3/2;
   object-fit: cover;
   object-position: center;
-  /* border-radius: 0.5rem 0 0 0.5rem; */
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .post-item .title {
+  text-decoration: none;
+  padding: 0.5rem 0;
+  font-weight: bold;
   grid-area: b;
+  cursor: pointer;
 }
 
 .post-item .description {
+  width: 100%;
   grid-area: c;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.9em;
+}
+
+.post-item .post-info {
+  grid-area: d;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.85em;
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {

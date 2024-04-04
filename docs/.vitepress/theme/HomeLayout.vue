@@ -5,7 +5,7 @@ import { navElm } from './public.mjs'
 import NavBar from './NavBar.vue'
 import ProfileBox from './ProfileBox.vue'
 import NoticeBox from './NoticeBox.vue'
-import PostsBox from './PostsBox.vue'
+// import PostsBox from './PostsBox.vue'
 
 const siteData = useData()
 const navElmHeight = ref(0)
@@ -20,19 +20,7 @@ onMounted(() => {
 
 <template>
   <div :class="$style['home-page']">
-    <NavBar />
-    <!-- <div :class="$style['banner-wrap']">
-      <img src="/imgs/banner.webp" />
-    </div> -->
-    <!-- <div :class="$style['bg']"></div> -->
-    <div :class="$style['main-box-wrapper']">
-      <div :class="$style['main-box']" :style="{ paddingTop: navElmHeight + 'px' }">
-        <ProfileBox style="grid-area: a" />
-        <NoticeBox style="grid-area: b" />
-        <div style="grid-area: c">c</div>
-      </div>
-    </div>
-    <PostsBox />
+    1
   </div>
 </template>
 
