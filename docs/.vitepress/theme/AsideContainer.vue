@@ -47,9 +47,18 @@ watch(isOpenAside, (val) => {
       <span>文章分类</span>
     </div>
     <div :class="$style['categories']">
-      <a v-for="(item, idx) in theme.categories" :key="idx" :class="$style['category']">{{
-        item.text
-      }}</a>
+      <a
+        v-for="(item, idx) in theme.categories"
+        :key="idx"
+        :class="$style['category']"
+        :style="
+          $frontmatter.layout === 'category' && $frontmatter.category === item.id
+            ? 'color: #f596aa;'
+            : ''
+        "
+        :href="item.link"
+        >{{ item.text }}</a
+      >
     </div>
     <div :class="$style['aside-footer']">shouchen.blog</div>
   </aside>

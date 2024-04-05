@@ -18,9 +18,9 @@ export default defineConfig({
     ],
 
     categories: [
-      { id: 'tech', text: '技术' },
-      { id: 'tutorial', text: '教程' },
-      { id: 'daily', text: '日常' }
+      { id: 'tech', text: '技术', link: '/category/tech' },
+      { id: 'tutorial', text: '教程', link: '/category/tutorial' },
+      { id: 'daily', text: '日常', link: '/category/daily' }
     ],
 
     sidebar: [

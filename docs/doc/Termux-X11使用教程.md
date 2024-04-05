@@ -4,7 +4,7 @@ title: Termux-X11使用教程
 tags: Termux X11 Android
 description: Termux-X11使用教程
 author: ShouChen
-category: tech
+category: tutorial
 updateTime: 2024-04-05T12:00:00+08:00
 isHide: false
 ---

@@ -1,6 +1,16 @@
 <script setup>
-import { data as postList } from './posts.data.mjs'
+import { copyObj } from '../../utils.js'
+import { data } from './posts.data.mjs'
 import PostItem from './PostItem.vue'
+
+let postList = copyObj(data)
+const { filter } = defineProps(['filter'])
+
+postList = postList.filter((doc) => !doc.frontmatter?.isHide)
+
+if (filter) {
+  postList = postList.filter(filter)
+}
 
 postList.sort((a, b) => {
   const aT = a.frontmatter?.updateTime || ''

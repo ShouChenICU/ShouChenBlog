@@ -152,7 +152,7 @@ onUnmounted(() => {
 
 <style scoped>
 .doc-outline-container {
-  color: var(--color-text-quaternary);
+  /* color: var(--color-text-title); */
   /* background-color: var(--color-bg-navbar); */
   position: sticky;
   padding: 1rem 0.5rem;
@@ -225,12 +225,14 @@ onUnmounted(() => {
 }
 
 .doc-outline-item {
+  font-size: 0.9em;
   position: relative;
   padding: 0.3rem 0.5rem;
   border-radius: 0.25rem;
   will-change: background-color;
   transition: background-color 0.2s ease;
   z-index: 10;
+  cursor: pointer;
 }
 
 .doc-outline-item:hover {
@@ -257,6 +259,7 @@ onUnmounted(() => {
   right: 1rem;
   bottom: 2rem;
   z-index: 510;
+  -webkit-tap-highlight-color: transparent !important;
   cursor: pointer;
 }
 
