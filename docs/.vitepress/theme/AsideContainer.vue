@@ -1,40 +1,83 @@
 <script setup>
 import { useData } from 'vitepress'
+import { ref, watch } from 'vue'
+import { isOpenAside } from './public.mjs'
 
 const { site, theme } = useData()
+const asideElm = ref(null)
+const asideTemp = ref(null)
+
+defineExpose({ isOpenAside })
+
+watch(isOpenAside, (val) => {
+  // console.log(val)
+  if (val) {
+    asideElm.value.style.left = '0'
+    asideTemp.value.style.height = '100vh'
+    asideTemp.value.style.opacity = '1'
+    window.document.body.style.overflowY = 'hidden'
+  } else {
+    asideElm.value.style.left = '-61vw'
+    asideTemp.value.style.opacity = '0'
+    window.document.body.style.overflowY = 'scroll'
+    setTimeout(() => {
+      asideTemp.value.style.height = '0'
+    }, 210)
+  }
+})
 </script>
 
 <template>
-  <aside :class="$style['aside-container']">
+  <aside :class="$style['aside-container']" ref="asideElm">
     <div :class="$style['main-logo']">{{ site.title }}</div>
     <div :class="$style['menu-container']">
       <a
         v-for="(item, idx) in theme.nav"
         :key="idx"
         :href="item.link"
-        :class="$style['menu-item']"
-        :style="{ color: item.id === $frontmatter.layout ? '#51A8DD' : 'unset' }"
+        :class="
+          $style['menu-item'] +
+          ' ' +
+          (item.id === $frontmatter.layout ? $style['menu-item-active'] : '')
+        "
         >{{ item.text }}</a
       >
     </div>
     <div :class="$style['text-divider']">
       <span>文章分类</span>
     </div>
-    <div>
-      
+    <div :class="$style['categories']">
+      <a v-for="(item, idx) in theme.categories" :key="idx" :class="$style['category']">{{
+        item.text
+      }}</a>
     </div>
     <div :class="$style['aside-footer']">shouchen.blog</div>
   </aside>
+  <div ref="asideTemp" :class="$style['aside-temp']" @click="isOpenAside = false"></div>
 </template>
 
 <style module>
+.aside-temp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  z-index: 1060;
+  transition: opacity 0.2s ease;
+}
+
 .aside-container {
   position: sticky;
   top: 0;
   height: 100vh;
   background-color: var(--color-bg-aside);
   padding-left: 10vw;
+  overflow-y: auto;
   z-index: 1100;
+  transition: left 0.2s ease;
 }
 
 .main-logo {
@@ -54,6 +97,8 @@ const { site, theme } = useData()
   display: block;
   text-decoration: none;
   padding: 0.5rem 1rem;
+  border-radius: 100px 0 0 100px;
+  overflow: hidden;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
@@ -62,10 +107,14 @@ const { site, theme } = useData()
   background-color: var(--color-background-soft);
 }
 
+.menu-item-active {
+  color: #51a8dd;
+  /* background-color: var(--color-background-soft); */
+}
+
 .text-divider {
   position: relative;
   font-size: 0.9em;
-  /* text-align: center; */
 }
 
 .text-divider::before {
@@ -88,11 +137,39 @@ const { site, theme } = useData()
   z-index: 10;
 }
 
+.categories {
+  padding: 1rem 0;
+}
+
+.category {
+  display: block;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 100px 0 0 100px;
+  overflow: hidden;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.category:hover {
+  color: #f596aa;
+}
+
 .aside-footer {
   font-size: 0.8em;
   margin-top: 3rem;
   padding-top: 0.5rem;
   border-top: 1px var(--color-divider-soft) solid;
   color: var(--color-text-quaternary);
+}
+
+@media screen and (max-width: 768px) {
+  .aside-container {
+    position: fixed;
+    width: 61vw;
+    left: -61vw;
+    padding-left: 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  }
 }
 </style>

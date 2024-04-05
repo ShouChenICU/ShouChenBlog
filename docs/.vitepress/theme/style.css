@@ -166,6 +166,11 @@ body {
   min-height: 100vh;
 }
 
+a {
+  outline: none;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #fafaf8;

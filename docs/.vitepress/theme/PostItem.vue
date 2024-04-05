@@ -15,7 +15,9 @@ onMounted(() => {
 
 <template>
   <div :class="$style['post-item']">
-    <img :class="$style['cover']" :src="doc.frontmatter?.cover" />
+    <div :class="$style['cover']">
+      <img :src="doc.frontmatter?.cover" :alt="doc.frontmatter?.title" />
+    </div>
     <a :class="$style['title']" :href="doc.url">
       <span>{{ doc.frontmatter?.title }}</span>
     </a>
@@ -36,7 +38,6 @@ onMounted(() => {
 
 <style module>
 .post-item {
-  /* width: 100%; */
   display: grid;
   grid-template-areas:
     'a b'
@@ -46,21 +47,36 @@ onMounted(() => {
   grid-template-rows: max-content;
   grid-auto-rows: 1fr;
   column-gap: 2%;
-  margin: 0.75rem 2rem;
+  margin: 0.75rem 1.5rem;
   padding: 1rem 0 1.75rem 0;
   border-bottom: 1px var(--color-divider-soft) solid;
-  /* cursor: pointer; */
   overflow: hidden;
   z-index: 10;
 }
 
 .post-item .cover {
   grid-area: a;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.post-item .cover img {
   aspect-ratio: 3/2;
   object-fit: cover;
   object-position: center;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  will-change: scale;
+  transform: translateZ(0);
+  transition: scale 0.6s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+.post-item .cover:hover img {
+  scale: 116%;
 }
 
 .post-item .title {
@@ -72,11 +88,12 @@ onMounted(() => {
   background-size: 0 2px;
   background-position: bottom right;
   will-change: background-size, background-position;
-  transition: background-size 0.4s ease;
+  transition: background-size 0.5s ease;
 }
 
 .post-item .title span {
   font-weight: bold;
+  font-size: 1.1em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -88,7 +105,7 @@ onMounted(() => {
 }
 
 .post-item .description {
-  width: 100%;
+  /* width: 100%; */
   grid-area: c;
   display: flex;
   flex-direction: row;
@@ -112,9 +129,20 @@ onMounted(() => {
 }
 
 @media screen and (max-width: 768px) {
-  .doc-list {
-    column-count: 1;
-    column-gap: 0;
+  .post-item {
+    display: block;
+    margin: 0.5rem;
+    padding: 1rem 0 1.5rem 0;
+    box-sizing: content-box;
+  }
+
+  .post-item .title {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .post-item .description {
+    padding-bottom: 0.5rem;
   }
 }
 </style>

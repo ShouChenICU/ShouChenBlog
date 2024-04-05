@@ -40,18 +40,13 @@
 
 <style module>
 .profile-box {
-  position: sticky;
-  top: 0;
-  /* max-width: 25%; */
+  position: relative;
   background-color: var(--color-bg-card);
-  /* height: 100vh; */
-  /* padding: 1rem; */
   border-radius: 0.5rem;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.23),
     0 1px 6px rgba(0, 0, 0, 0.16);
   overflow: hidden;
-  z-index: 1100;
 }
 
 .profile-box .banner {
@@ -130,7 +125,6 @@
     position: relative;
     height: unset;
     border-radius: 0;
-    max-width: unset;
     box-shadow: none;
   }
 

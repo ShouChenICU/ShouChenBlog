@@ -19,6 +19,7 @@ export default defineConfig({
 
     categories: [
       { id: 'tech', text: '技术' },
+      { id: 'tutorial', text: '教程' },
       { id: 'daily', text: '日常' }
     ],
 
@@ -30,12 +31,23 @@ export default defineConfig({
           { text: 'Runtime API Examples', link: '/api-examples' }
         ]
       }
-    ]
+    ],
 
+    outline: {
+      label: '目录',
+      level: [2, 3]
+    }
     // socialLinks: [
     //   { icon: "github", link: "https://github.com/vuejs/vitepress" },
     // ],
   },
+
+  // sitemap: {
+  //   hostname: 'https://shouchen.blog',
+  //   transformItems: (items) => {
+  //     return items
+  //   }
+  // },
 
   markdown: {
     container: {

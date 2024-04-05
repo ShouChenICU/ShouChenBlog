@@ -2,19 +2,42 @@
 import { onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { timeAgo } from '/utils.js'
+import { data as postList } from './posts.data.mjs'
+// import VPDocAsideOutline from 'vitepress/dist/client/theme-default/components/VPDocAsideOutline.vue'
+import DocOutline from './DocOutline.vue'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
 
-const siteData = useData()
+const { frontmatter } = useData()
 const updateTimeAgo = ref('')
+const titleListRef = ref([])
+const priv = ref(null)
+const next = ref(null)
 
 onMounted(() => {
-  updateTimeAgo.value = timeAgo(siteData.frontmatter.value.updateTime)
+  updateTimeAgo.value = timeAgo(frontmatter.value.updateTime)
+  titleListRef.value = [
+    // docTitleRef.value,
+    ...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)')
+  ]
+  for (let i = 0; i < postList.length; i++) {
+    if (postList[i].url === decodeURI(location.pathname)) {
+      if (i > 0) {
+        priv.value = postList[i - 1]
+      }
+      if (i < postList.length - 1) {
+        next.value = postList[i + 1]
+      }
+      break
+    }
+  }
 })
 </script>
 
 <template>
   <div :class="$style['post-container']" :style="'backdround: url(' + $frontmatter.cover + ')'">
+    <!-- <VPDocAsideOutline :class="$style['post-outline']" /> -->
+    <DocOutline :class="$style['post-outline']" :titleList="titleListRef" />
     <div v-show="$frontmatter.cover" :class="$style['post-cover']">
       <img :src="$frontmatter.cover" />
     </div>
@@ -27,8 +50,19 @@ onMounted(() => {
         <ClockIcon style="font-size: 1.1em" />
         <span style="margin-left: 2px">{{ updateTimeAgo }}</span>
       </div>
-      <Content class="vp-doc" />
+      <Content class="vp-doc VPDoc" />
     </main>
+
+    <div :class="$style['next-priv']">
+      <a :class="$style['priv']" :href="priv?.url" v-show="priv" target="_self">
+        <p style="font-size: 1.1em; opacity: 0.6">PRIV</p>
+        <p style="font-size: 0.9em">{{ priv?.frontmatter?.title }}</p>
+      </a>
+      <a :class="$style['next']" :href="next?.url" v-show="next" target="_self">
+        <p style="font-size: 1.1em; opacity: 0.6">NEXT</p>
+        <p style="font-size: 0.9em">{{ next?.frontmatter?.title }}</p>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -36,12 +70,20 @@ onMounted(() => {
 .post-container {
   position: relative;
   padding: 2rem;
-  padding-right: 12vw;
+  display: grid;
+  grid-template-columns: 74% 24%;
+  column-gap: 2%;
+  grid-template-areas:
+    'b a'
+    'c a'
+    'd a';
+}
+
+.post-outline {
+  grid-area: a;
 }
 
 .post-context {
-  /* width: 61%; */
-  margin: auto;
   padding: 1rem;
 }
 
@@ -55,26 +97,21 @@ onMounted(() => {
   overflow-wrap: break-word;
   margin: 0;
   box-sizing: border-box;
+  grid-area: c;
 }
 
 .post-cover {
   position: relative;
   text-align: center;
+  grid-area: b;
 }
 
 .post-cover > img {
   display: inline-block;
-  /* min-width: 60vw; */
-  /* max-width: 90vw; */
-  /* width: 61%; */
-  /* min-height: 50vh; */
-  /* max-height: 100vh; */
   object-fit: cover;
   object-position: center;
   box-shadow: 0 0 7px hsla(0, 0%, 0%, 0.6);
-  /* border-radius: 0 0 0.5rem 0.5rem; */
   border-radius: 0.75rem;
-  /* margin-top: 1rem; */
 }
 
 .post-info {
@@ -87,17 +124,69 @@ onMounted(() => {
   /* border-top: 1px solid var(--vp-c-divider); */
 }
 
+.next-priv {
+  grid-area: d;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-top: 1px var(--color-divider) solid;
+}
+
+.next-priv > a {
+  will-change: box-shadow, border;
+  transition:
+    box-shadow 0.2s ease,
+    border 0.2s ease;
+}
+
+.next-priv > a:hover {
+  border: 1px transparent solid;
+  box-shadow:
+    0 0 3px rgba(0, 0, 0, 0.32),
+    0 2px 6px rgba(0, 0, 0, 0.16);
+}
+
+.priv {
+  display: block;
+  text-decoration: none;
+  border: 1px var(--color-divider-soft) solid;
+  background-color: var(--color-bg-card);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.next {
+  display: block;
+  text-decoration: none;
+  border: 1px var(--color-divider-soft) solid;
+  background-color: var(--color-bg-card);
+  text-align: end;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 768px) {
   .post-container {
-    width: unset;
+    width: 100vw;
+    padding-right: 0;
+    padding: 0.75rem;
+    display: block;
   }
 
   .post-cover > img {
-    width: 100%;
-    min-height: 30vh;
-    max-height: 60vh;
-    border-radius: unset;
-    margin-top: 0;
+    border-radius: 0.5rem;
+  }
+
+  .next-priv {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 1rem;
+    margin: 1rem 0;
   }
 }
 </style>
