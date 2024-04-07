@@ -1,11 +1,22 @@
 <script setup>
 import { useData } from 'vitepress'
-import { ref, watch } from 'vue'
+import { ref, shallowRef, watch } from 'vue'
 import { isOpenAside } from './public.mjs'
+import HomeIcon from './icons/HomeIcon.vue'
+import ArchivedIcon from './icons/ArchivedIcon.vue'
+import LinkIcon from './icons/LinkIcon.vue'
+import CupIcon from './icons/CupIcon.vue'
 
 const { site, theme } = useData()
 const asideElm = ref(null)
 const asideTemp = ref(null)
+
+const nav = ref([
+  { id: 'home', text: '主页', icon: shallowRef(HomeIcon), link: '/' },
+  { id: 'archived', text: '归档', icon: shallowRef(ArchivedIcon), link: '/archived' },
+  { id: 'friendlyLink', text: '友链', icon: shallowRef(LinkIcon), link: '/friendlyLink' },
+  { id: 'about', text: '关于', icon: shallowRef(CupIcon), link: '/about' }
+])
 
 defineExpose({ isOpenAside })
 
@@ -32,7 +43,7 @@ watch(isOpenAside, (val) => {
     <div :class="$style['main-logo']">{{ site.title }}</div>
     <div :class="$style['menu-container']">
       <a
-        v-for="(item, idx) in theme.nav"
+        v-for="(item, idx) in nav"
         :key="idx"
         :href="item.link"
         :class="
@@ -40,7 +51,9 @@ watch(isOpenAside, (val) => {
           ' ' +
           (item.id === $frontmatter.layout ? $style['menu-item-active'] : '')
         "
-        >{{ item.text }}</a
+        ><component :is="item?.icon" style="margin-right: 0.75rem; font-size: 1.1em" />{{
+          item.text
+        }}</a
       >
     </div>
     <div :class="$style['text-divider']">
@@ -103,7 +116,9 @@ watch(isOpenAside, (val) => {
 }
 
 .menu-item {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   text-decoration: none;
   padding: 0.5rem 1rem;
   border-radius: 100px 0 0 100px;

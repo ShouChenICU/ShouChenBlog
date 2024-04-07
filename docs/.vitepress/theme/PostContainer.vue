@@ -2,13 +2,16 @@
 import { onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import { timeAgo } from '/utils.js'
-import { data as postList } from './posts.data.mjs'
+import { data } from './posts.data.mjs'
 // import VPDocAsideOutline from 'vitepress/dist/client/theme-default/components/VPDocAsideOutline.vue'
 import DocOutline from './DocOutline.vue'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
+import { copyObj } from '../../utils'
 
-const { frontmatter } = useData()
+const { frontmatter, theme } = useData()
+const cateText = ref('')
+const cateColor = ref('')
 const updateTimeAgo = ref('')
 const titleListRef = ref([])
 const priv = ref(null)
@@ -16,10 +19,27 @@ const next = ref(null)
 
 onMounted(() => {
   updateTimeAgo.value = timeAgo(frontmatter.value.updateTime)
+  for (let cate of theme.value.categories) {
+    if (frontmatter.value?.category === cate.id) {
+      cateText.value = cate.text
+      cateColor.value = cate.color
+      break
+    }
+  }
   titleListRef.value = [
     // docTitleRef.value,
     ...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)')
   ]
+
+  let postList = copyObj(data)
+  postList = postList.filter((p) => {
+    if (p.frontmatter?.isHide) {
+      return false
+    }
+    return !(frontmatter.value?.isArchived ^ p.frontmatter?.isArchived)
+  })
+
+  // console.log(postList)
   for (let i = 0; i < postList.length; i++) {
     if (postList[i].url === decodeURI(location.pathname)) {
       if (i > 0) {
@@ -42,7 +62,15 @@ onMounted(() => {
       <img :src="$frontmatter.cover" />
     </div>
     <main :class="$style['post-context']">
-      <h1>{{ $frontmatter.title }}</h1>
+      <h1>
+        <span>{{ $frontmatter.title }}</span>
+        <span
+          :class="$style['category']"
+          :style="'--color: ' + cateColor"
+          v-show="$frontmatter?.category"
+          >{{ cateText }}</span
+        >
+      </h1>
       <div :class="$style['post-info']">
         <TagIcon style="font-size: 1.1em; margin-right: 4px" />
         <span>{{ $frontmatter.tags }}</span>
@@ -88,6 +116,10 @@ onMounted(() => {
 }
 
 .post-context > h1 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   letter-spacing: -0.02em;
   line-height: 40px;
   font-size: 32px;
@@ -98,6 +130,19 @@ onMounted(() => {
   margin: 0;
   box-sizing: border-box;
   grid-area: c;
+}
+
+.category {
+  display: inline;
+  line-height: normal;
+  font-size: 1rem;
+  padding: 2px 4px;
+  margin-left: 8px;
+  border-radius: 4px;
+  border: 1px rgb(var(--color)) solid;
+  /* color: white; */
+  background-color: rgba(var(--color), 0.2);
+  white-space: nowrap;
 }
 
 .post-cover {

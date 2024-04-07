@@ -3,13 +3,24 @@ import { onMounted, ref } from 'vue'
 import { timeAgo } from '/utils.js'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
+import { useData } from 'vitepress'
 
 const { doc } = defineProps(['doc'])
+const { theme } = useData()
+const cateText = ref('')
+const cateColor = ref('')
 
 const updateTimeAgo = ref('')
 
 onMounted(() => {
   updateTimeAgo.value = timeAgo(doc.frontmatter.updateTime)
+  for (let cate of theme.value.categories) {
+    if (doc.frontmatter?.category === cate.id) {
+      cateText.value = cate.text
+      cateColor.value = cate.color
+      break
+    }
+  }
 })
 </script>
 
@@ -19,6 +30,12 @@ onMounted(() => {
       <img :src="doc.frontmatter?.cover" :alt="doc.frontmatter?.title" />
     </div>
     <a :class="$style['title']" :href="doc.url">
+      <span
+        :class="$style['category']"
+        :style="'--color: ' + cateColor"
+        v-show="doc.frontmatter?.category"
+        >{{ cateText }}</span
+      >
       <span>{{ doc.frontmatter?.title }}</span>
     </a>
     <div :class="$style['description']">
@@ -77,6 +94,16 @@ onMounted(() => {
 
 .post-item .cover:hover img {
   scale: 116%;
+}
+
+.post-item .category {
+  font-size: 1rem !important;
+  padding: 2px 4px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px rgb(var(--color)) solid;
+  /* color: white; */
+  background-color: rgba(var(--color), 0.2);
 }
 
 .post-item .title {

@@ -4,7 +4,7 @@ title: Markdown 测试
 tags: Markdown Test
 description: 测试Markdown
 author: ShouChen
-category: tutorial
+category: daily
 updateTime: 2024-03-31T16:48:00+08:00
 isHide: false
 isArchived: true

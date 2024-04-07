@@ -12,15 +12,16 @@ export default defineConfig({
     logo: '/favicon.webp',
 
     nav: [
-      { id: 'home', text: '主页', link: '/' },
-      { id: 'archived', text: '归档', link: '/archived' },
-      { id: 'about', text: '关于', link: '/about' }
+      // { id: 'home', text: '主页', link: '/' },
+      // { id: 'archived', text: '归档', link: '/archived' },
+      // { id: 'friendlyLink', text: '友链', link: '/friendlyLink' },
+      // { id: 'about', text: '关于', link: '/about' }
     ],
 
     categories: [
-      { id: 'tech', text: '技术', link: '/category/tech' },
-      { id: 'tutorial', text: '教程', link: '/category/tutorial' },
-      { id: 'daily', text: '日常', link: '/category/daily' }
+      { id: 'tech', text: '技术', link: '/category/tech', color: '178, 143, 206' },
+      { id: 'tutorial', text: '教程', link: '/category/tutorial', color: '88, 178, 220' },
+      { id: 'daily', text: '日常', link: '/category/daily', color: '93, 172, 129' }
     ],
 
     sidebar: [

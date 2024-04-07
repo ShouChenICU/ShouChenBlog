@@ -4,6 +4,7 @@ import PostsList from './PostsList.vue'
 
 <template>
   <div :class="$style['archived-container']">
+    <div>已归档文章</div>
     <PostsList :filter="(doc) => doc.frontmatter.isArchived" />
   </div>
 </template>

@@ -25,7 +25,7 @@ import MenuLeftIcon from './icons/MenuLeftIcon.vue'
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.16);
   z-index: 1000;
 }
 
