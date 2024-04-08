@@ -1,7 +1,7 @@
 <script setup>
 import { useData } from 'vitepress'
 import { ref, shallowRef, watch } from 'vue'
-import { isOpenAside } from './public.mjs'
+import { isOpenAside, curCate } from './public.mjs'
 import HomeIcon from './icons/HomeIcon.vue'
 import ArchivedIcon from './icons/ArchivedIcon.vue'
 import LinkIcon from './icons/LinkIcon.vue'
@@ -70,6 +70,7 @@ watch(isOpenAside, (val) => {
             : ''
         "
         :href="item.link"
+        @click="curCate = item.id"
         >{{ item.text }}</a
       >
     </div>

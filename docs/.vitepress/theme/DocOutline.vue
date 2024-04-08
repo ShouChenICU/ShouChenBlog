@@ -1,9 +1,10 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from 'vue'
-import { navElm, remToPx } from './public.mjs'
+import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from 'vue'
+import { navElm, remToPx, curPostUrl } from './public.mjs'
 import UpIcon from './icons/UpIcon.vue'
 import MenuRightIcon from './icons/MenuRightIcon.vue'
 
+const curInst = getCurrentInstance()
 const docOutlineContainerDom = ref(null)
 const navHeight = ref(0)
 const itemsDom = ref(null)
@@ -12,11 +13,14 @@ const itemLine = ref(null)
 const itemThumb = ref(null)
 let isSideOpen = false
 
-const props = defineProps({
-  titleList: {
-    default: () => []
-  }
-})
+const titleList = ref([])
+
+// watch(curPostUrl, () => {
+//   // setTimeout(() => {
+//   curInst.proxy.$forceUpdate
+//   console.log(1)
+//   // }, 500)
+// })
 
 function getIndent(nodeName) {
   return 0.5 * Number(nodeName.replace('H', '')) + 'rem'
@@ -77,8 +81,8 @@ function resizeHeight() {
 
 function syncPoint() {
   let current = 0
-  for (let i = 0; i < props.titleList.length; i++) {
-    if (props.titleList[i].getBoundingClientRect().top - 5 >= navElm.value.clientHeight) {
+  for (let i = 0; i < titleList.value.length; i++) {
+    if (titleList.value[i].getBoundingClientRect().top - 5 >= navElm.value.clientHeight) {
       break
     } else {
       current = i
@@ -87,9 +91,17 @@ function syncPoint() {
   movePoint(current)
 }
 
-onMounted(() => {
+async function init() {
+  window.removeEventListener('resize', resizeHeight)
+  window.removeEventListener('scroll', syncPoint)
+
+  titleList.value = [
+    // docTitleRef.value,
+    ...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)')
+  ]
   setTimeout(() => {
-    if (props.titleList.length > 0) {
+    itemLine.value = []
+    if (titleList.value.length > 0) {
       window.addEventListener('resize', resizeHeight)
       window.addEventListener('scroll', syncPoint)
       resizeHeight()
@@ -103,13 +115,19 @@ onMounted(() => {
           item: elm
         })
       })
-      syncPoint()
+      setTimeout(() => {
+        syncPoint()
+      }, 100)
     } else {
       itemLine.value.style.display = 'none'
       itemThumb.value.style.display = 'none'
     }
     navHeight.value = navElm.value.clientHeight
-  }, 500)
+  }, 200)
+}
+
+onMounted(() => {
+  init()
 })
 
 onUnmounted(() => {

@@ -1,22 +1,21 @@
 <script setup>
+import { curCate } from './public.mjs'
+import { data } from './posts.data.mjs'
 import PostsList from './PostsList.vue'
+import { computed, onMounted } from 'vue'
+import { useData } from 'vitepress'
+
+const { frontmatter } = useData()
+const postList = computed(() => data.filter((doc) => curCate.value === doc.frontmatter?.category))
+
+onMounted(() => {
+  curCate.value = frontmatter.value?.category
+})
 </script>
 
 <template>
-  <div :class="$style['category-container']">
-    <!-- <PostsList :filter="(doc) => $frontmatter.category === doc.frontmatter?.category" /> -->
-    <PostsList
-      v-if="$frontmatter?.category === 'tech'"
-      :filter="(doc) => doc.frontmatter?.category === 'tech'"
-    />
-    <PostsList
-      v-else-if="$frontmatter?.category === 'tutorial'"
-      :filter="(doc) => doc.frontmatter?.category === 'tutorial'"
-    />
-    <PostsList
-      v-else-if="$frontmatter?.category === 'daily'"
-      :filter="(doc) => doc.frontmatter?.category === 'daily'"
-    />
+  <div :class="$style['category-container']" :key="curCate">
+    <PostsList :posts="postList" />
   </div>
 </template>
 

@@ -6,8 +6,7 @@ description: 测试Markdown
 author: ShouChen
 category: daily
 updateTime: 2024-03-31T16:48:00+08:00
-isHide: false
-isArchived: true
+draft: false
 ---
 
 ## Syntax Highlighting

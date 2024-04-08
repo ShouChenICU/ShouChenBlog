@@ -1,5 +1,6 @@
 <script setup>
 import { useData } from 'vitepress'
+import { curPostUrl } from './public.mjs'
 import NavBar from './NavBar.vue'
 import NotFound from './NotFound.vue'
 import HomeContainer from './HomeContainer.vue'

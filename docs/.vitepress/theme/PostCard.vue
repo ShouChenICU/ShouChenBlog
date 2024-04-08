@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { timeAgo } from '/utils.js'
+import { timeAgo } from './utils.js'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
 

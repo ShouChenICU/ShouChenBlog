@@ -6,7 +6,7 @@ description: Termux-X11使用教程
 author: ShouChen
 category: tutorial
 updateTime: 2024-04-05T12:00:00+08:00
-isHide: false
+draft: false
 ---
 
 ## 一、Termux-X11介绍

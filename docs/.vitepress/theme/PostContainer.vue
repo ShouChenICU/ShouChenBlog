@@ -1,23 +1,31 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useData } from 'vitepress'
-import { timeAgo } from '/utils.js'
+import { curPostUrl } from './public.mjs'
+import { timeAgo, copyObj } from './utils.js'
 import { data } from './posts.data.mjs'
 // import VPDocAsideOutline from 'vitepress/dist/client/theme-default/components/VPDocAsideOutline.vue'
 import DocOutline from './DocOutline.vue'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
-import { copyObj } from '../../utils'
 
 const { frontmatter, theme } = useData()
 const cateText = ref('')
 const cateColor = ref('')
 const updateTimeAgo = ref('')
-const titleListRef = ref([])
 const priv = ref(null)
 const next = ref(null)
+const hasOutline = ref(true)
 
-onMounted(() => {
+watch(curPostUrl, () => {
+  init()
+  hasOutline.value = false
+  setTimeout(() => {
+    hasOutline.value = true
+  }, 200)
+})
+
+function init() {
   updateTimeAgo.value = timeAgo(frontmatter.value.updateTime)
   for (let cate of theme.value.categories) {
     if (frontmatter.value?.category === cate.id) {
@@ -26,20 +34,22 @@ onMounted(() => {
       break
     }
   }
-  titleListRef.value = [
-    // docTitleRef.value,
-    ...document.querySelectorAll('.VPDoc :where(h1,h2,h3,h4,h5,h6)')
-  ]
 
   let postList = copyObj(data)
-  postList = postList.filter((p) => {
-    if (p.frontmatter?.isHide) {
-      return false
+  postList = postList.filter((p) => !p.frontmatter?.draft)
+
+  postList.sort((a, b) => {
+    const aT = a.frontmatter?.updateTime || ''
+    const bT = b.frontmatter?.updateTime || ''
+    if (aT === bT) {
+      return 0
     }
-    return !(frontmatter.value?.isArchived ^ p.frontmatter?.isArchived)
+    return aT > bT ? -1 : 1
   })
 
   // console.log(postList)
+  priv.value = null
+  next.value = null
   for (let i = 0; i < postList.length; i++) {
     if (postList[i].url === decodeURI(location.pathname)) {
       if (i > 0) {
@@ -51,15 +61,20 @@ onMounted(() => {
       break
     }
   }
+}
+
+onMounted(() => {
+  init()
 })
 </script>
 
 <template>
   <div :class="$style['post-container']" :style="'backdround: url(' + $frontmatter.cover + ')'">
     <!-- <VPDocAsideOutline :class="$style['post-outline']" /> -->
-    <DocOutline :class="$style['post-outline']" :titleList="titleListRef" />
+    <DocOutline :class="$style['post-outline']" ref="outlineElm" v-if="hasOutline" />
+    <div :class="$style['post-outline']" v-else></div>
     <div v-show="$frontmatter.cover" :class="$style['post-cover']">
-      <img :src="$frontmatter.cover" />
+      <img :src="$frontmatter.cover" :alt="$frontmatter.title" loading="lazy" />
     </div>
     <main :class="$style['post-context']">
       <h1>
@@ -82,11 +97,11 @@ onMounted(() => {
     </main>
 
     <div :class="$style['next-priv']">
-      <a :class="$style['priv']" :href="priv?.url" v-show="priv" target="_self">
+      <a :class="$style['priv']" :href="priv?.url" v-show="priv" @click="curPostUrl = priv.url">
         <p style="font-size: 1.1em; opacity: 0.6">PRIV</p>
         <p style="font-size: 0.9em">{{ priv?.frontmatter?.title }}</p>
       </a>
-      <a :class="$style['next']" :href="next?.url" v-show="next" target="_self">
+      <a :class="$style['next']" :href="next?.url" v-show="next" @click="curPostUrl = next.url">
         <p style="font-size: 1.1em; opacity: 0.6">NEXT</p>
         <p style="font-size: 0.9em">{{ next?.frontmatter?.title }}</p>
       </a>
@@ -174,8 +189,8 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin: 1rem 0;
-  padding: 1rem;
+  margin: 2rem 0;
+  padding: 2rem 1rem;
   border-top: 1px var(--color-divider) solid;
 }
 

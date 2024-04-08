@@ -1,25 +1,18 @@
 <script setup>
-// import { navElm } from './public.mjs'
+import { copyObj } from './utils.js'
+import { data } from './posts.data.mjs'
 import PostsList from './PostsList.vue'
-// import { onMounted, ref } from 'vue'
 
-// const navHeight = ref(0)
-
-// onMounted(() => {
-//   navHeight.value = navElm.value?.clientHeight
-// })
+let postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
 </script>
 
 <template>
   <div :class="$style['home-container']">
-    <!-- <div :class="$style['home-banner']">
-      <img src="/imgs/banner.webp" />
-      <div>11</div>
-    </div> -->
-    <!-- :style="{ marginTop: 'calc(35vh - ' + navHeight + 'px + 1rem )' }" -->
-    <div>文章列表</div>
+    <div :class="$style['post-count']">
+      <span>{{ postList.length }} Posts</span>
+    </div>
     <!-- todo tag list -->
-    <PostsList :filter="(doc) => !doc.frontmatter?.isArchived" />
+    <PostsList :posts="postList" />
   </div>
 </template>
 
@@ -29,43 +22,20 @@ import PostsList from './PostsList.vue'
   padding-right: 10vw;
 }
 
-.home-banner {
-  position: absolute;
-  top: 0;
-  left: 25%;
-  width: 75%;
-  height: 40vh;
-  overflow: hidden;
-  z-index: 800;
+.post-count {
+  text-align: end;
+  font-size: 0.9em;
 }
 
-.home-banner > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.home-banner > div {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 10%;
-  background: linear-gradient(transparent, var(--color-background-soft));
+.post-count > span {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background-color: var(--color-background-mute);
 }
 
 @media screen and (max-width: 768px) {
   .home-container {
     padding: 1rem;
-  }
-
-  .home-banner {
-    left: 0;
-    width: 100%;
   }
 }
 </style>

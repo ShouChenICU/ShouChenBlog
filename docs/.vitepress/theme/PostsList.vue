@@ -1,18 +1,19 @@
 <script setup>
-import { copyObj } from '../../utils.js'
-import { data } from './posts.data.mjs'
+import { ref } from 'vue'
+import { copyObj } from './utils.js'
 import PostItem from './PostItem.vue'
 
-let postList = copyObj(data)
-const { filter } = defineProps(['filter'])
+const { posts } = defineProps({
+  posts: {
+    default: []
+  }
+})
 
-postList = postList.filter((doc) => !doc.frontmatter?.isHide)
+const postList = ref([])
 
-if (filter) {
-  postList = postList.filter(filter)
-}
+postList.value = copyObj(posts)
 
-postList.sort((a, b) => {
+postList.value.sort((a, b) => {
   const aT = a.frontmatter?.updateTime || ''
   const bT = b.frontmatter?.updateTime || ''
   if (aT === bT) {

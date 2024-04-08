@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue'
-import { timeAgo } from '/utils.js'
+import { timeAgo } from './utils.js'
 import TagIcon from './icons/TagIcon.vue'
 import ClockIcon from './icons/ClockIcon.vue'
 import { useData } from 'vitepress'
@@ -27,7 +27,7 @@ onMounted(() => {
 <template>
   <div :class="$style['post-item']">
     <div :class="$style['cover']">
-      <img :src="doc.frontmatter?.cover" :alt="doc.frontmatter?.title" />
+      <img :src="doc.frontmatter?.cover" :alt="doc.frontmatter?.title" loading="lazy" />
     </div>
     <a :class="$style['title']" :href="doc.url">
       <span
@@ -79,12 +79,12 @@ onMounted(() => {
   justify-content: center;
   align-items: center;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
 
 .post-item .cover img {
-  aspect-ratio: 3/2;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
   object-position: center;
   will-change: scale;
@@ -161,6 +161,10 @@ onMounted(() => {
     margin: 0.5rem;
     padding: 1rem 0 1.5rem 0;
     box-sizing: content-box;
+  }
+
+  .post-item .cover img {
+    aspect-ratio: 16 / 9;
   }
 
   .post-item .title {

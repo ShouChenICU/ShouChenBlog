@@ -4,6 +4,10 @@ export const isOpenAside = ref(false)
 
 export const navElm = ref(null)
 
+export const curCate = ref('')
+
+export const curPostUrl = ref('')
+
 /**
  * REM转换为PX
  * @param {*} remValue
