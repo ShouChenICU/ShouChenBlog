@@ -130,7 +130,7 @@
 }
 
 .vp-doc div[class*='language-'] {
-  margin: 0;
+  margin: 0 !important;
   border-radius: 0.5rem;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.32),
@@ -173,7 +173,7 @@ a {
 
 :root {
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #fafafa;
+  --vt-c-white-soft: #fefefe;
   --vt-c-white-mute: #e8e8e8;
 
   --vt-c-black: #181818;

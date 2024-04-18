@@ -51,6 +51,7 @@ watch(isOpenAside, (val) => {
           ' ' +
           (item.id === $frontmatter.layout ? $style['menu-item-active'] : '')
         "
+        @click="isOpenAside = false"
         ><component :is="item?.icon" style="margin-right: 0.75rem; font-size: 1.1em" />{{
           item.text
         }}</a
@@ -70,7 +71,12 @@ watch(isOpenAside, (val) => {
             : ''
         "
         :href="item.link"
-        @click="curCate = item.id"
+        @click="
+          () => {
+            curCate = item.id
+            isOpenAside = false
+          }
+        "
         >{{ item.text }}</a
       >
     </div>
@@ -125,11 +131,12 @@ watch(isOpenAside, (val) => {
   border-radius: 100px 0 0 100px;
   overflow: hidden;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.25s cubic-bezier(0.2, 0.8, 0.8, 1);
 }
 
 .menu-item:hover {
   background-color: var(--color-background-soft);
+  transition: background-color 0.25s cubic-bezier(0.2, 0.8, 0, 1);
 }
 
 .menu-item-active {
@@ -172,12 +179,13 @@ watch(isOpenAside, (val) => {
   padding: 0.5rem 1rem;
   border-radius: 100px 0 0 100px;
   overflow: hidden;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
   cursor: pointer;
 }
 
 .category:hover {
   color: #f596aa;
+  transition: color 0.25s cubic-bezier(0.2, 0.8, 0, 1);
 }
 
 .aside-footer {

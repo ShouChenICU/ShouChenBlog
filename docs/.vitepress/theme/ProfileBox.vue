@@ -1,23 +1,22 @@
 <template>
   <div :class="$style['profile-box']">
     <div :class="$style['banner']">
-      <img src="/imgs/banner.webp" />
+      <img src="/banner.webp" />
       <div :class="$style['title']">
         <img :class="$style['avatar']" style="grid-area: a" src="/favicon.webp" alt="banner" />
-        <p style="margin-left: 0.5rem; grid-area: b; font-weight: bold">守晨</p>
       </div>
     </div>
-    <p :class="$style['bio']">
-      💻不想上班的程序员 🍥Debian忠实粉 / INFP-A /
-      MC，幻想郷，ACG爱好者，🎧音乐发烧友，🌸AI绘画小白，🐱想养猫 (或猫娘) /
-      🍀日常，热爱分享，做自己喜欢的事。<a
-        style="color: #51a8dd"
-        href="https://miaobox.cc"
-        target="_blank"
-        >miaobox.cc</a
-      >
-      一个本地优先的实用工具箱
-    </p>
+    <div :class="$style['bio']">
+      <p style="font-weight: bold; font-size: 1.15em; margin-bottom: 0.25rem">守晨</p>
+      <p>Hi 欢迎访问我的博客</p>
+      <p>💻不想上班的程序员 / 🍥Debian忠实粉</p>
+      <p>🎧音乐发烧友 / 🌸AI绘画小白</p>
+      <p>🐱想养猫 (或猫娘) / 🍀做自己喜欢的事</p>
+      <p>
+        <a style="color: #51a8dd" href="https://miaobox.cc" target="_blank">miaobox.cc</a
+        >一个本地优先的实用工具箱
+      </p>
+    </div>
     <div :class="$style['link-bar']">
       <!-- todo -->
     </div>
@@ -46,6 +45,7 @@
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.23),
     0 1px 6px rgba(0, 0, 0, 0.16);
+  margin-bottom: 5rem;
   overflow: hidden;
 }
 
@@ -55,31 +55,28 @@
 
 .profile-box .banner > img {
   object-fit: cover;
-  object-position: bottom;
+  /* object-position: bottom; */
   width: 100%;
   height: 100%;
-  aspect-ratio: 18/9;
+  aspect-ratio: 3;
 }
 
 .profile-box .title {
   position: absolute;
+  left: 0;
   bottom: 0;
-  display: grid;
-  grid-template-columns: max-content auto;
-  grid-template-rows: 1fr 1fr;
-  grid-template-areas:
-    'a c'
-    'a b';
-  margin-left: 1rem;
-  transform: translateY(2rem);
+  width: 100%;
+  translate: 0 2rem;
+  /* transform: translateY(2rem); */
 }
 
 .profile-box .avatar {
-  display: inline-block;
-  width: 4rem;
-  height: 4rem;
+  display: block;
+  width: 5rem;
+  height: 5rem;
   border-radius: 100px;
   border: 3px var(--color-bg-card) solid;
+  margin: 0 auto;
 }
 
 .profile-box .bio {
@@ -87,9 +84,11 @@
   /* border-bottom: 1px solid var(--vp-c-divider); */
   /* border-top: none; */
   /* margin-top: 2rem; */
-  font-size: 0.85em;
+  text-align: center;
+  font-size: 0.9em;
   padding: 0.5rem;
   padding-top: 2rem;
+  line-height: 2.25;
 }
 
 .link-bar {
@@ -128,11 +127,15 @@
     box-shadow: none;
   }
 
+  .profile-box .banner > img {
+    aspect-ratio: 16/9;
+  }
+
   .profile-box .bio {
     /* border-radius: 0; */
     /* border: none; */
     /* border-bottom: 1px rgba(128, 128, 128, 0.25) solid; */
-    border-bottom: 1px solid var(--vp-c-divider);
+    /* border-bottom: 1px solid var(--vp-c-divider); */
   }
 }
 </style>

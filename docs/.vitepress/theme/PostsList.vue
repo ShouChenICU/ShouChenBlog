@@ -25,7 +25,7 @@ postList.value.sort((a, b) => {
 
 <template>
   <div :class="$style['posts-list']">
-    <PostItem v-for="(doc, idx) in postList" :key="idx" :doc="doc" />
+    <PostItem v-for="(doc, idx) in postList" :key="idx" :doc="doc" v-load-animate />
   </div>
 </template>
 

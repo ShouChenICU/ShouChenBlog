@@ -1,10 +1,9 @@
 <script setup>
-import { getCurrentInstance, onMounted, onUnmounted, ref, watch } from 'vue'
+import { onMounted, onUnmounted, ref, watch } from 'vue'
 import { navElm, remToPx, curPostUrl } from './public.mjs'
 import UpIcon from './icons/UpIcon.vue'
 import MenuRightIcon from './icons/MenuRightIcon.vue'
 
-const curInst = getCurrentInstance()
 const docOutlineContainerDom = ref(null)
 const navHeight = ref(0)
 const itemsDom = ref(null)

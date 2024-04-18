@@ -1,8 +1,9 @@
 // https://vitepress.dev/guide/custom-theme
+import './style.css'
 import { h } from 'vue'
 import DefaultTheme from 'vitepress/theme'
 import Theme from './Theme.vue'
-import './style.css'
+import { domLoadAnimate } from './DomLoadAnimate'
 
 // /** @type {import('vitepress').Theme} */
 // export default {
@@ -20,6 +21,7 @@ import './style.css'
 export default {
   Layout: Theme,
   enhanceApp({ app, router, siteData }) {
+    domLoadAnimate(app)
     // ...
   }
 }

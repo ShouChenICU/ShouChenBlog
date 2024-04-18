@@ -15,15 +15,10 @@ const cateColor = ref('')
 const updateTimeAgo = ref('')
 const priv = ref(null)
 const next = ref(null)
-const hasOutline = ref(true)
 
-watch(curPostUrl, () => {
-  init()
-  hasOutline.value = false
-  setTimeout(() => {
-    hasOutline.value = true
-  }, 200)
-})
+// watch(curPostUrl, () => {
+//   init()
+// })
 
 function init() {
   updateTimeAgo.value = timeAgo(frontmatter.value.updateTime)
@@ -71,8 +66,7 @@ onMounted(() => {
 <template>
   <div :class="$style['post-container']" :style="'backdround: url(' + $frontmatter.cover + ')'">
     <!-- <VPDocAsideOutline :class="$style['post-outline']" /> -->
-    <DocOutline :class="$style['post-outline']" ref="outlineElm" v-if="hasOutline" />
-    <div :class="$style['post-outline']" v-else></div>
+    <DocOutline :class="$style['post-outline']" />
     <div v-show="$frontmatter.cover" :class="$style['post-cover']">
       <img :src="$frontmatter.cover" :alt="$frontmatter.title" loading="lazy" />
     </div>
@@ -93,15 +87,27 @@ onMounted(() => {
         <ClockIcon style="font-size: 1.1em" />
         <span style="margin-left: 2px">{{ updateTimeAgo }}</span>
       </div>
-      <Content class="vp-doc VPDoc" />
+      <Content class="vp-doc VPDoc" v-load-animate />
     </main>
 
     <div :class="$style['next-priv']">
-      <a :class="$style['priv']" :href="priv?.url" v-show="priv" @click="curPostUrl = priv.url">
+      <a
+        :class="$style['priv']"
+        :href="priv?.url"
+        v-show="priv"
+        @click="curPostUrl = priv.url"
+        target="_self"
+      >
         <p style="font-size: 1.1em; opacity: 0.6">PRIV</p>
         <p style="font-size: 0.9em">{{ priv?.frontmatter?.title }}</p>
       </a>
-      <a :class="$style['next']" :href="next?.url" v-show="next" @click="curPostUrl = next.url">
+      <a
+        :class="$style['next']"
+        :href="next?.url"
+        v-show="next"
+        @click="curPostUrl = next.url"
+        target="_self"
+      >
         <p style="font-size: 1.1em; opacity: 0.6">NEXT</p>
         <p style="font-size: 0.9em">{{ next?.frontmatter?.title }}</p>
       </a>
