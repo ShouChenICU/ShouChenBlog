@@ -126,7 +126,9 @@ async function init() {
 }
 
 onMounted(() => {
-  init()
+  setTimeout(() => {
+    init()
+  }, 500)
 })
 
 onUnmounted(() => {

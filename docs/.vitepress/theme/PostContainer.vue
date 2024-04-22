@@ -91,23 +91,11 @@ onMounted(() => {
     </main>
 
     <div :class="$style['next-priv']">
-      <a
-        :class="$style['priv']"
-        :href="priv?.url"
-        v-show="priv"
-        @click="curPostUrl = priv.url"
-        target="_self"
-      >
+      <a :class="$style['priv']" :href="priv?.url" v-show="priv" @click="curPostUrl = priv.url">
         <p style="font-size: 1.1em; opacity: 0.6">PRIV</p>
         <p style="font-size: 0.9em">{{ priv?.frontmatter?.title }}</p>
       </a>
-      <a
-        :class="$style['next']"
-        :href="next?.url"
-        v-show="next"
-        @click="curPostUrl = next.url"
-        target="_self"
-      >
+      <a :class="$style['next']" :href="next?.url" v-show="next" @click="curPostUrl = next.url">
         <p style="font-size: 1.1em; opacity: 0.6">NEXT</p>
         <p style="font-size: 0.9em">{{ next?.frontmatter?.title }}</p>
       </a>

@@ -7,9 +7,9 @@
       </div>
     </div>
     <div :class="$style['bio']">
-      <p style="font-weight: bold; font-size: 1.15em; margin-bottom: 0.25rem">守晨</p>
+      <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 0.25rem">守晨</p>
       <p>Hi 欢迎访问我的博客</p>
-      <p>💻不想上班的程序员 / 🍥Debian忠实粉</p>
+      <p>💻全沾工程师 / 🍥Debian忠实粉</p>
       <p>🎧音乐发烧友 / 🌸AI绘画小白</p>
       <p>🐱想养猫 (或猫娘) / 🍀做自己喜欢的事</p>
       <p>
@@ -66,14 +66,14 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  translate: 0 2rem;
+  translate: 0 3rem;
   /* transform: translateY(2rem); */
 }
 
 .profile-box .avatar {
   display: block;
-  width: 5rem;
-  height: 5rem;
+  width: 6rem;
+  height: 6rem;
   border-radius: 100px;
   border: 3px var(--color-bg-card) solid;
   margin: 0 auto;
@@ -87,7 +87,7 @@
   text-align: center;
   font-size: 0.9em;
   padding: 0.5rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
   line-height: 2.25;
 }
 

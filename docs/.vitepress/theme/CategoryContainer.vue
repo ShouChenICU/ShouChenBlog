@@ -14,9 +14,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div :class="$style['category-container']" :key="curCate">
-    <PostsList :posts="postList" />
-  </div>
+  <Transition name="inout">
+    <div :class="$style['category-container']" :key="curCate">
+      <PostsList :posts="postList" />
+    </div>
+  </Transition>
 </template>
 
 <style module>

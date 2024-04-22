@@ -11,12 +11,22 @@ import CategoryContainer from './CategoryContainer.vue'
 import PostContainer from './PostContainer.vue'
 
 const { page, frontmatter } = useData()
+
+let sY = 0
+
+function onBeforeEnter() {
+  // document.body.style.overflowY = 'scroll'
+}
+
+function onAfterLeave() {
+  // document.body.style.overflowY = 'hidden'
+}
 </script>
 
 <template>
   <div>
     <NavBar />
-    <TransitionGroup>
+    <TransitionGroup name="inout" @before-enter="onBeforeEnter" @after-leave="onAfterLeave">
       <NotFound v-if="page.isNotFound" key="404" />
       <HomeContainer v-else-if="frontmatter.layout === 'home'" key="home" />
       <ArchivedContainer v-else-if="frontmatter.layout === 'archived'" key="archived" />
@@ -27,25 +37,3 @@ const { page, frontmatter } = useData()
     </TransitionGroup>
   </div>
 </template>
-
-<style>
-.v-leave-active,
-.v-enter-active {
-  transition:
-    translate 0.3s cubic-bezier(0, 0.8, 0.55, 1),
-    opacity 0.3s cubic-bezier(0, 0.8, 0.55, 1);
-  /* transition:
-    translate 0.39s ease-in-out,
-    opacity 0.39s ease-in-out; */
-}
-
-.v-enter-active {
-  transition-delay: 0.3s;
-}
-
-.v-enter-from,
-.v-leave-to {
-  opacity: 0;
-  translate: 0 2rem;
-}
-</style>
