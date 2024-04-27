@@ -19,9 +19,9 @@ export default defineConfig({
     ],
 
     categories: [
-      { id: 'tech', text: '技术', link: '/category/tech', color: '178, 143, 206' },
-      { id: 'tutorial', text: '教程', link: '/category/tutorial', color: '88, 178, 220' },
-      { id: 'daily', text: '日常', link: '/category/daily', color: '93, 172, 129' }
+      { id: 'tech', text: '技术', link: '/doc/tech/', color: '178, 143, 206' },
+      { id: 'tutorial', text: '教程', link: '/doc/tutorial/', color: '88, 178, 220' },
+      { id: 'daily', text: '日常', link: '/doc/daily/', color: '93, 172, 129' }
     ],
 
     sidebar: [

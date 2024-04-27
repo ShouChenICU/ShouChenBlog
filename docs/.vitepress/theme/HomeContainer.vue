@@ -20,6 +20,7 @@ let postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
 .home-container {
   padding: 1rem;
   padding-right: 10vw;
+  margin-bottom: 4rem;
 }
 
 .post-count {

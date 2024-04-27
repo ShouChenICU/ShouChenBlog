@@ -6,7 +6,9 @@ import { computed, onMounted } from 'vue'
 import { useData } from 'vitepress'
 
 const { frontmatter } = useData()
-const postList = computed(() => data.filter((doc) => curCate.value === doc.frontmatter?.category))
+const postList = computed(() =>
+  data.filter((doc) => curCate.value === doc.frontmatter?.category && !doc.frontmatter?.draft)
+)
 
 onMounted(() => {
   curCate.value = frontmatter.value?.category

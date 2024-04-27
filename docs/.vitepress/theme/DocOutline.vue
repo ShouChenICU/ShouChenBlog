@@ -276,7 +276,7 @@ onUnmounted(() => {
   row-gap: 0.5rem;
   position: fixed;
   right: 1rem;
-  bottom: 2rem;
+  bottom: 6rem;
   z-index: 510;
   -webkit-tap-highlight-color: transparent !important;
   cursor: pointer;

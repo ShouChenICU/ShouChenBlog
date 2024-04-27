@@ -138,7 +138,7 @@ years.sort((a, b) => b - a)
   border-radius: 0.5rem;
   padding-right: 1rem;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  transition: background-color 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .timeline-item:hover {
@@ -178,9 +178,9 @@ years.sort((a, b) => b - a)
   z-index: 100;
   will-change: height, outline, background-color;
   transition:
-    height 0.2s ease,
-    outline 0.2s ease,
-    background-color 0.2s ease;
+    height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+    outline 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+    background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .timeline-item:hover > :nth-child(2) > div {
@@ -197,7 +197,7 @@ years.sort((a, b) => b - a)
   overflow: hidden;
   text-overflow: ellipsis;
   will-change: padding-left;
-  transition: padding-left 0.2s ease;
+  transition: padding-left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .timeline-item:hover > :nth-child(3) {

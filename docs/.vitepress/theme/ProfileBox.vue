@@ -7,11 +7,14 @@
       </div>
     </div>
     <div :class="$style['bio']">
-      <p style="font-weight: bold; font-size: 1.2em; margin-bottom: 0.25rem">守晨</p>
-      <p>Hi 欢迎访问我的博客</p>
-      <p>💻全沾工程师 / 🍥Debian忠实粉</p>
+      <p style="font-weight: bold; font-size: 1.5em">守晨</p>
+      <p style="font-size: 1.5em">Hi 欢迎访问我的博客</p>
+      <p :class="$style['option-title']">🏷️ 随机掉落标签</p>
+      <p>💻全栈工程师 / 🍥Debian忠实粉</p>
       <p>🎧音乐发烧友 / 🌸AI绘画小白</p>
+      <p>📱爱搞机 / 🎯爱折腾</p>
       <p>🐱想养猫 (或猫娘) / 🍀做自己喜欢的事</p>
+      <p :class="$style['option-title']">🗃️ 我的作品</p>
       <p>
         <a style="color: #51a8dd" href="https://miaobox.cc" target="_blank">miaobox.cc</a
         >一个本地优先的实用工具箱
@@ -75,7 +78,7 @@
   width: 6rem;
   height: 6rem;
   border-radius: 100px;
-  border: 3px var(--color-bg-card) solid;
+  border: 4px var(--color-bg-card) solid;
   margin: 0 auto;
 }
 
@@ -89,6 +92,13 @@
   padding: 0.5rem;
   padding-top: 3rem;
   line-height: 2.25;
+}
+
+.option-title {
+  font-size: 0.9em;
+  opacity: 0.9;
+  border-top: 1px rgba(128, 128, 128, 0.25) solid;
+  margin: 1rem 0 0.5rem 0;
 }
 
 .link-bar {

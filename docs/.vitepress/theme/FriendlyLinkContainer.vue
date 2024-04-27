@@ -9,4 +9,10 @@
   padding: 1rem;
   padding-right: 10vw;
 }
+
+@media screen and (max-width: 768px) {
+  .fl-container {
+    padding: 0;
+  }
+}
 </style>
