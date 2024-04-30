@@ -2,8 +2,16 @@
 import { copyObj } from './utils.js'
 import { data } from './posts.data.mjs'
 import PostsList from './PostsList.vue'
+import PaginationBar from './PaginationBar.vue'
+import { onMounted, ref } from 'vue'
 
-let postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
+const curPage = ref(1)
+
+const postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
+
+onMounted(() => {
+  document.head.innerHTML += '<meta>'
+})
 </script>
 
 <template>
@@ -12,7 +20,12 @@ let postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
       <span>{{ postList.length }} Posts</span>
     </div>
     <!-- todo tag list -->
-    <PostsList :posts="postList" />
+    <Transition name="inout">
+      <PostsList :posts="postList.slice((curPage - 1) * 10, curPage * 10)" :key="curPage" />
+    </Transition>
+    <div style="display: flex; flex-direction: row; justify-content: center">
+      <PaginationBar :total-row="postList.length" v-model:curPage="curPage" :page-size="10" />
+    </div>
   </div>
 </template>
 

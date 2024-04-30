@@ -35,7 +35,9 @@ function switchSideOutline() {
 }
 
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  if (typeof window != 'undefined') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 }
 
 let currentIdx = null
@@ -91,6 +93,9 @@ function syncPoint() {
 }
 
 async function init() {
+  if (typeof window === 'undefined') {
+    return
+  }
   window.removeEventListener('resize', resizeHeight)
   window.removeEventListener('scroll', syncPoint)
 
@@ -132,6 +137,9 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (typeof window === 'undefined') {
+    return
+  }
   window.removeEventListener('resize', resizeHeight)
   window.removeEventListener('scroll', syncPoint)
   resizeHeight()

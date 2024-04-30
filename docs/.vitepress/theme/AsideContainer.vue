@@ -21,6 +21,9 @@ const nav = ref([
 defineExpose({ isOpenAside })
 
 watch(isOpenAside, (val) => {
+  if (typeof window === 'undefined') {
+    return
+  }
   // console.log(val)
   if (val) {
     asideElm.value.style.left = '0'

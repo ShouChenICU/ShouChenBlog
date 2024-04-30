@@ -14,7 +14,7 @@ export const curPostUrl = ref('')
  * @returns 返回结果
  */
 export function remToPx(remValue) {
-  if (typeof getComputedStyle !== 'undefined') {
+  if (typeof getComputedStyle !== 'undefined' && typeof document != 'undefined') {
     return remValue * parseFloat(getComputedStyle(document.documentElement).fontSize)
   } else {
     return remValue * 16

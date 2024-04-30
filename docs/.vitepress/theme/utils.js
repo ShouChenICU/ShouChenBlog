@@ -5,6 +5,9 @@
  * @returns 如果在浏览器中，返回true，否则返回flase
  */
 export function isBrowser() {
+  if (typeof window === 'undefined') {
+    return false
+  }
   return window.matchMedia('(display-mode: browser)').matches
 }
 

@@ -7,14 +7,23 @@
       </div>
     </div>
     <div :class="$style['bio']">
-      <p style="font-weight: bold; font-size: 1.5em">守晨</p>
+      <p
+        style="
+          font-weight: bold;
+          font-size: 1.5em;
+          background: linear-gradient(90deg, #f596aa, #51a8dd) no-repeat center;
+          background-size: 100% 1px;
+        "
+      >
+        <span style="background-color: var(--color-bg-card); padding: 0 1rem">守晨</span>
+      </p>
       <p style="font-size: 1.5em">Hi 欢迎访问我的博客</p>
-      <p :class="$style['option-title']">🏷️ 随机掉落标签</p>
+      <p :class="$style['option-title']"><span>🏷️ 随机掉落标签</span></p>
       <p>💻全栈工程师 / 🍥Debian忠实粉</p>
       <p>🎧音乐发烧友 / 🌸AI绘画小白</p>
       <p>📱爱搞机 / 🎯爱折腾</p>
       <p>🐱想养猫 (或猫娘) / 🍀做自己喜欢的事</p>
-      <p :class="$style['option-title']">🗃️ 我的作品</p>
+      <p :class="$style['option-title']"><span>🗃️ 我的作品</span></p>
       <p>
         <a style="color: #51a8dd" href="https://miaobox.cc" target="_blank">miaobox.cc</a
         >一个本地优先的实用工具箱
@@ -89,7 +98,7 @@
   /* margin-top: 2rem; */
   text-align: center;
   font-size: 0.9em;
-  padding: 0.5rem;
+  padding: 1rem;
   padding-top: 3rem;
   line-height: 2.25;
 }
@@ -97,8 +106,16 @@
 .option-title {
   font-size: 0.9em;
   opacity: 0.9;
-  border-top: 1px rgba(128, 128, 128, 0.25) solid;
+  /* border-top: 1px rgba(128, 128, 128, 0.25) solid; */
+  background: linear-gradient(90deg, rgba(128, 128, 128, 0.3), rgba(128, 128, 128, 0.3)) no-repeat
+    center;
+  background-size: 100% 1px;
   margin: 1rem 0 0.5rem 0;
+}
+
+.option-title span {
+  background-color: var(--color-bg-card);
+  padding: 0 1rem;
 }
 
 .link-bar {
