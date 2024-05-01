@@ -73,5 +73,42 @@ export default defineConfig({
     ]
   ],
 
+  transformHead: ({ pageData }) => {
+    if (pageData.frontmatter.layout) {
+      return [
+        ['meta', { property: 'og:title', content: "ShouChen's Blog" }],
+        ['meta', { property: 'og:description', content: "ShouChen's Blog" }],
+        ['meta', { property: 'og:image', content: '/banner.webp' }],
+        ['meta', { property: 'og:url', content: pageData.relativePath }],
+        ['meta', { name: 'twitter:card', content: 'summary' }],
+        ['meta', { name: 'twitter:site', content: '@ShouChen_' }],
+        ['meta', { name: 'twitter:title', content: "ShouChen's Blog" }],
+        ['meta', { name: 'twitter:description', content: "ShouChen's Blog" }],
+        ['meta', { name: 'twitter:image', content: '/banner.webp' }]
+      ]
+    } else {
+      return [
+        ['meta', { property: 'og:title', content: pageData.frontmatter.title }],
+        ['meta', { property: 'og:description', content: pageData.frontmatter.description }],
+        ['meta', { property: 'og:image', content: pageData.frontmatter.cover || '/banner.webp' }],
+        ['meta', { property: 'og:url', content: pageData.relativePath }],
+        ['meta', { name: 'twitter:card', content: 'summary' }],
+        ['meta', { name: 'twitter:site', content: '@ShouChen_' }],
+        [
+          'meta',
+          { name: 'twitter:title', content: pageData.frontmatter.title || "ShouChen's Blog" }
+        ],
+        [
+          'meta',
+          {
+            name: 'twitter:description',
+            content: pageData.frontmatter.description || "ShouChen's Blog"
+          }
+        ],
+        ['meta', { name: 'twitter:image', content: pageData.frontmatter.cover || '/banner.webp' }]
+      ]
+    }
+  },
+
   outDir: '../dist'
 })

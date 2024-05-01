@@ -3,15 +3,11 @@ import { copyObj } from './utils.js'
 import { data } from './posts.data.mjs'
 import PostsList from './PostsList.vue'
 import PaginationBar from './PaginationBar.vue'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 
 const curPage = ref(1)
 
 const postList = copyObj(data).filter((doc) => !doc.frontmatter?.draft)
-
-onMounted(() => {
-  document.head.innerHTML += '<meta>'
-})
 </script>
 
 <template>
