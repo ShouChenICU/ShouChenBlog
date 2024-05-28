@@ -1,7 +1,7 @@
 ---
 cover: /imgs/banner.webp
 title: Zram简明教程（Debian系）
-tags: Linux Zram
+tags: Linux Debian Zram
 description: 大幅提升你的Linux可用内存
 author: ShouChen
 category: tutorial

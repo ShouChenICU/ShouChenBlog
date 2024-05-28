@@ -28,6 +28,15 @@
         <a style="color: #51a8dd" href="https://miaobox.cc" target="_blank">miaobox.cc</a
         >一个本地优先的实用工具箱
       </p>
+      <p>
+        <a style="color: #51a8dd" href="https://awesome-code.top" target="_blank"
+          >awesome-code.top</a
+        >一个收录分享各种Awesome代码(片段)的网站
+      </p>
+      <p>
+        <a style="color: #51a8dd" href="https://aifreee.cc" target="_blank">aifreee.cc</a
+        >免登录即可使用的免费AI工具站，由Cloudflare的Workers AI驱动
+      </p>
     </div>
     <div :class="$style['link-bar']">
       <!-- todo -->
