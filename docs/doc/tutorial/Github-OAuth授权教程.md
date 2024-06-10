@@ -1,5 +1,5 @@
 ---
-cover: /imgs/banner.webp
+cover: /imgs/githubOauthCover.webp
 title: Github-OAuth授权教程
 tags: Github OAuth
 description: 使用Github授权登陆你的网站
