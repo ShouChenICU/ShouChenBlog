@@ -25,6 +25,10 @@
       <p>🐱想养猫 (或猫娘) / 🍀做自己喜欢的事</p>
       <p :class="$style['option-title']"><span>🗃️ 我的作品</span></p>
       <p>
+        <a style="color: #51a8dd" href="https://fastsend.ing" target="_blank">fastsend.ing</a
+        >浏览器点对点加密文件传输
+      </p>
+      <p>
         <a style="color: #51a8dd" href="https://miaobox.cc" target="_blank">miaobox.cc</a
         >一个本地优先的实用工具箱
       </p>
