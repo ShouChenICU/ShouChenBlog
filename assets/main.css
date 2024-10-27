@@ -2,7 +2,46 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --glass-border-radius: 1rem;
+  --glass-highlight-angle: -30deg;
+}
+
 body {
   @apply bg-neutral-50 dark:bg-black;
   @apply text-black dark:text-neutral-50;
+}
+
+.text-shadow {
+  text-shadow: 0 1px 3px rgba(0 0 0 / 0.3);
+}
+
+.frosted-glass {
+  @apply bg-neutral-900/35 backdrop-blur-xl shadow-lg shadow-black/30;
+  transform: translateZ(0);
+}
+
+.glass-high-light {
+}
+
+.glass-high-light::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.36) inset;
+  border-radius: var(--glass-border-radius);
+  mask-image: conic-gradient(
+    from var(--glass-highlight-angle),
+    transparent 0deg,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.5) 40deg,
+    rgba(255, 255, 255, 1) 80deg,
+    rgba(255, 255, 255, 1) 100deg,
+    rgba(255, 255, 255, 0.5) 140deg,
+    rgba(255, 255, 255, 0) 180deg,
+    transparent 180deg,
+    transparent 360deg
+  );
+  z-index: -10;
+  transform: translateZ(0);
 }
