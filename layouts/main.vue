@@ -5,10 +5,10 @@ const navHeight = useNavHeight()
 <template>
   <div>
     <NavBar />
-    <div class="flex flex-row gap-4 px-[10vw]">
+    <div class="flex flex-row gap-4 px-[10vw] py-4">
       <NuxtPage class="w-[70%]" />
       <div class="flex-1">
-        <div class="sticky py-4" :style="{ top: navHeight + 'px' }">
+        <div class="sticky" :style="{ top: `calc(${navHeight}px + 1rem)` }">
           <Profile />
         </div>
       </div>

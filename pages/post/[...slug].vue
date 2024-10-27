@@ -16,9 +16,9 @@ const data = await queryContent(docPath).findOne()
 </script>
 
 <template>
-  <div>
+  <main>
     <p>{{ $router.getRoutes().map((r) => r.path) }}</p>
     <p>{{ data }}</p>
-    <ContentRenderer :value="data" />
-  </div>
+    <ContentRenderer :value="data" tag="article" />
+  </main>
 </template>

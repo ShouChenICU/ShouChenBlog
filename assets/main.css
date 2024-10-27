@@ -17,8 +17,9 @@ body {
 }
 
 .frosted-glass {
-  @apply bg-neutral-900/35 backdrop-blur-xl shadow-lg shadow-black/30;
+  @apply bg-neutral-900/45 backdrop-blur-xl shadow-lg shadow-black/30;
   transform: translateZ(0);
+  /* box-shadow: rgba(255, 255, 255, 0.25) 0 0 1px inset; */
 }
 
 .glass-high-light {
@@ -28,7 +29,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.36) inset;
+  box-shadow: 0 0 1px 0.6px rgba(255, 255, 255, 0.36) inset;
   border-radius: var(--glass-border-radius);
   mask-image: conic-gradient(
     from var(--glass-highlight-angle),
@@ -44,4 +45,8 @@ body {
   );
   z-index: -10;
   transform: translateZ(0);
+}
+
+*::selection {
+  @apply bg-yellow-600/80;
 }

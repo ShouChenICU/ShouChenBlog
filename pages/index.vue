@@ -6,14 +6,16 @@ useSeoMeta({
   title: '主页'
 })
 
-const posts = await queryContent('/').only(['_path', 'title']).find()
+const posts = await queryContent('/')
+  .only(['_path', 'title', 'cover', 'description', 'createAt'])
+  .find()
 </script>
 
 <template>
   <div>
     <p>posts</p>
-    <p v-for="post in posts">
-      <NuxtLink :to="`/post${post._path}`">{{ post.title }}</NuxtLink>
-    </p>
+    <div class="space-y-3">
+      <PostItem v-for="post in posts" :post-info="post as Post" />
+    </div>
   </div>
 </template>
