@@ -3,4 +3,6 @@
 @import 'tailwindcss/utilities';
 
 body {
+  @apply bg-neutral-50 dark:bg-black;
+  @apply text-black dark:text-neutral-50;
 }

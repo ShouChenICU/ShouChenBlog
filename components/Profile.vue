@@ -1,8 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div class="">
-    hello
-    <NuxtPage />
-  </div>
+  <div>Profile</div>
 </template>

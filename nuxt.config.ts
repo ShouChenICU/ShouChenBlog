@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@vueuse/nuxt',
     '@nuxtjs/color-mode',
-    '@nuxt/fonts'
+    '@nuxt/fonts',
+    '@nuxt/content'
   ],
 
   css: ['@/assets/main.css'],
@@ -31,5 +32,11 @@ export default defineNuxtConfig({
 
   ogImage: {
     enabled: false
+  },
+
+  content: {
+    highlight: {
+      theme: 'github-light'
+    }
   }
 })
