@@ -8,6 +8,12 @@ useSeoMeta({
 
 const posts = await queryContent('/')
   .only(['_path', 'title', 'cover', 'description', 'createAt'])
+  .where({
+    draft: false
+  })
+  .sort({
+    createAt: -1
+  })
   .find()
 </script>
 

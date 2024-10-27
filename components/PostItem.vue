@@ -31,7 +31,14 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
       </div>
     </div>
     <div v-if="postInfo.cover" class="relative w-[30%] aspect-[3/2] m-2 rounded-lg overflow-hidden">
-      <img src="/mosh.webp" class="size-full object-cover object-center" />
+      <img
+        :src="postInfo.cover"
+        :alt="postInfo.title"
+        class="size-full object-cover object-center"
+      />
+    </div>
+    <div v-else class="w-16 flex flex-row items-center justify-center">
+      <Icon name="solar:alt-arrow-right-outline" class="size-8" />
     </div>
   </NuxtLink>
 </template>
