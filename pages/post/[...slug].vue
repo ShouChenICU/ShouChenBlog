@@ -8,17 +8,40 @@ useSeoMeta({
   title: 'post'
 })
 
+const navHeight = useNavHeight()
 const route = useRoute()
 const docPath = route.path.replace('/post', '') || '/'
 
-const data = await queryContent(docPath).findOne()
+const data = (await queryContent(docPath).findOne()) as unknown as Post
 // console.log(data)
 </script>
 
 <template>
-  <main>
-    <p>{{ $router.getRoutes().map((r) => r.path) }}</p>
-    <p>{{ data }}</p>
-    <ContentRenderer :value="data" tag="article" />
+  <main
+    class="frosted-glass rounded-3xl overflow-hidden glass-high-light p-4"
+    style="--glass-border-radius: 1.5rem; --glass-highlight-angle: -90deg"
+  >
+    <div v-if="data.cover" class="relative aspect-[3/2] rounded-lg overflow-hidden">
+      <img :src="data.cover" :alt="data.title" class="size-full object-cover object-center" />
+      <div
+        class="absolute left-0 bottom-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent"
+      >
+        <h1 class="text-3xl font-bold tracking-wide break-words">{{ data.title }}</h1>
+      </div>
+    </div>
+    <h1 v-else class="text-3xl font-bold tracking-wide break-words">
+      {{ data.title }}
+    </h1>
+    <ContentRenderer
+      :value="data"
+      tag="article"
+      class="prose dark:prose-invert prose-neutral prose-a:no-underline p-4 mt-4 brightness-105 max-w-none"
+    />
   </main>
 </template>
+
+<style>
+html {
+  scroll-margin-top: 3rem;
+}
+</style>

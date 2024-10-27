@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/color-mode',
     '@nuxt/fonts',
-    '@nuxt/content'
+    '@nuxt/content',
+    '@formkit/auto-animate'
   ],
 
   css: ['@/assets/main.css'],
@@ -20,8 +21,8 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0',
       link: [{ rel: 'icon', href: '/favicon.webp' }]
     },
-    pageTransition: { name: 'visionpro', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' }
+    pageTransition: { name: 'inout', mode: 'out-in' },
+    layoutTransition: { name: 'inout', mode: 'out-in' }
   },
 
   site: {
@@ -35,8 +36,15 @@ export default defineNuxtConfig({
   },
 
   content: {
+    markdown: {
+      anchorLinks: true,
+      toc: {
+        depth: 3,
+        searchDepth: 3
+      }
+    },
     highlight: {
-      theme: 'github-light'
+      theme: 'github-dark'
     }
   }
 })

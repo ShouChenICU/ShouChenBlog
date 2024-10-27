@@ -15,7 +15,7 @@ const posts = await queryContent('/')
   <div>
     <p>posts</p>
     <div class="space-y-3">
-      <PostItem v-for="post in posts" :post-info="post as Post" />
+      <PostItem v-for="post in posts" :key="post._path" :post-info="post as Post" />
     </div>
   </div>
 </template>

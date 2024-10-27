@@ -1,0 +1,356 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+::root {
+  --vt-c-dark: #141414;
+  --vt-c-indigo: #2c3e50;
+  --vt-c-keshizumi: #434343;
+  --vt-c-gray: #767676;
+  --vt-c-lightgray: #979797;
+  --vt-c-hanaba: #f7c242;
+  --vt-c-vue: #42b883;
+  --vt-c-nae: #86c166;
+  --vt-c-ayame: #6f3381;
+  --vt-c-momo: #f687a3;
+  --vt-c-kohbai: #e16b8c;
+  --vt-c-imayoh: #d05a6e;
+  --vt-c-gunjyo: #51a8dd;
+  --vt-c-sora: #58b2dc;
+}
+
+.md-content {
+  position: relative;
+  font-family:
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
+}
+
+/* H1 - H6 */
+
+.md-content h1,
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5,
+.md-content h6 {
+  @apply text-white;
+}
+
+.md-content h1 {
+  @apply text-4xl;
+}
+
+.md-content h1::before {
+  font-size: 1rem;
+  content: '　';
+}
+
+.md-content h2 {
+  @apply text-3xl;
+}
+
+.md-content h3 {
+  @apply text-2xl;
+}
+
+.md-content h4 {
+  @apply text-xl;
+}
+
+.md-content h5 {
+  @apply text-lg;
+}
+
+.md-content h6 {
+  @apply text-base;
+}
+
+.md-content hr {
+  @apply border-t border-neutral-100 border-dashed;
+}
+
+.md-content p {
+  @apply text-base;
+}
+
+.md-content strong {
+  @apply font-bold;
+}
+
+/* quote */
+
+.md-content blockquote {
+  @apply text-neutral-200 border border-dashed border-neutral-200;
+  position: relative;
+  background-color: rgba(222, 222, 222, 0.1);
+  padding: 0.25rem 1rem;
+  margin: 1rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.md-content blockquote::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 0.25rem;
+  width: 4px;
+  height: 80%;
+  border-radius: 100px;
+  background-color: gray;
+}
+
+/* img */
+
+.md-content img {
+  position: relative;
+  width: 90%;
+  left: 5%;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 7px hsla(0, 0%, 0%, 0.6);
+  cursor: zoom-in;
+}
+
+/* a */
+
+.md-content a {
+  color: var(--vt-c-gunjyo);
+  /* text-decoration: underline; */
+  transition: color 0.2s ease;
+}
+
+.md-content a:hover {
+  color: var(--vt-c-momo);
+}
+
+/* ul & ol */
+
+.md-content > ul,
+ol {
+  font-size: 1.1em;
+}
+
+.md-content ul,
+ol {
+  padding-inline-start: 1.5rem;
+  word-wrap: break-word;
+}
+
+.md-content li {
+  margin: 0.5rem 0;
+}
+
+/* Table wrapper */
+.md-content .table-wrapper {
+  overflow-x: auto;
+}
+
+.md-content .table-wrapper::-webkit-scrollbar {
+  height: 3px;
+  background: transparent;
+}
+
+.md-content .table-wrapper::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  -webkit-box-shadow: inset 0 0 3px rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.md-content .table-wrapper::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+/* Table */
+.md-content table {
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border: 1px rgba(127, 127, 127, 0.6) solid;
+  border-radius: 0.5rem;
+  text-align: center;
+  word-wrap: break-word;
+  margin: 0 auto;
+}
+
+.md-content table thead {
+  position: relative;
+}
+
+.md-content table thead::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(127, 127, 127, 0.6);
+}
+
+.md-content table th,
+.md-content table td {
+  padding: 0.5rem 0.75rem;
+}
+
+.md-content table tbody tr:nth-child(odd) {
+  background-color: rgba(160, 160, 160, 0.15);
+}
+
+/* .md-container table tbody tr:nth-child(even) {
+  background-color: #ffffff;
+} */
+
+/* Code */
+
+.md-content code {
+  font-family:
+    ui-monospace,
+    SFMono-Regular,
+    SF Mono,
+    Menlo,
+    Consolas,
+    Liberation Mono,
+    monospace !important;
+}
+
+.md-content p > code,
+.md-content li > code {
+  background-color: rgba(175, 184, 193, 0.3);
+  border-radius: 6px;
+  padding: 0.3em 0.4em 0.2em 0.4em;
+  font-size: 85%;
+}
+
+.md-content .line-numbers {
+  overflow-x: auto;
+}
+
+.md-content .line-numbers::-webkit-scrollbar {
+  height: 3px;
+  background: transparent;
+}
+
+.md-content .line-numbers::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  -webkit-box-shadow: inset 0 0 3px rgba(128, 128, 128, 0.2);
+  background-color: rgba(128, 128, 128, 0.2);
+}
+
+.md-content .line-numbers::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.md-content pre {
+  position: relative;
+  border-radius: 1rem;
+  /* padding-top: 1.5rem !important; */
+  box-shadow: 0 2px 11px var(--color-shadow-card);
+
+  /* &::before {
+    content: '';
+    position: absolute;
+    background: rgba(89, 89, 89, 0.89);
+    width: 60%;
+    height: 1rem;
+    border-radius: 100px;
+    top: -0.5rem;
+    left: 20%;
+  } */
+}
+
+.md-content pre .vditor-copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 20px;
+  height: 20px;
+  padding: 0.25rem;
+  border-radius: 5px;
+}
+
+.md-content pre .vditor-copy:hover {
+  background-color: var(--color-q-border);
+}
+
+.md-content pre .vditor-copy textarea {
+  display: none;
+}
+
+.md-content pre > code {
+  overflow-x: auto;
+  position: relative;
+  line-height: 1.65;
+  padding-top: 3px;
+}
+
+.md-content .code-toolbar > .toolbar {
+  top: 0.25rem;
+  right: 0.5rem;
+
+  & .toolbar-item {
+    margin-left: 0.5rem;
+  }
+}
+
+.md-content pre span.inserted {
+  color: var(--vt-c-nae) !important;
+}
+
+.md-content pre span.deleted {
+  color: var(--vt-c-imayoh) !important;
+}
+
+/* 脚注 */
+
+.md-content a.footnote-ref {
+  &::before {
+    content: '[';
+  }
+
+  &::after {
+    content: ']';
+  }
+}
+
+.md-content .footnotes p {
+  display: inline;
+}
+
+/* 任务 */
+
+/* .md-container ul li input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.1em;
+  height: 1.1em;
+  background-image: url('../assets/Unchecked.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transform: translateY(0.2em);
+}
+
+.md-container ul li input[type='checkbox']:checked {
+  background-image: url('../assets/Checked.svg');
+} */
+
+@media screen and (max-width: 768px) {
+  .md-content img {
+    width: 95%;
+    left: 2.5%;
+  }
+}

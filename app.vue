@@ -10,6 +10,7 @@ onMounted(() => {
   <div>
     <NuxtRouteAnnouncer />
     <Background />
+    <NavBar />
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

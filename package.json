@@ -17,10 +17,12 @@
     "vue-router": "latest"
   },
   "devDependencies": {
+    "@formkit/auto-animate": "^0.8.2",
     "@nuxt/fonts": "^0.10.2",
     "@nuxt/icon": "^1.5.8",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "@tailwindcss/typography": "^0.5.15",
     "@vueuse/nuxt": "^11.1.0",
     "prettier": "^3.3.3"
   }

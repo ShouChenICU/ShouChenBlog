@@ -9,10 +9,10 @@ onMounted(() => {
 <template>
   <nav
     ref="navElm"
-    class="sticky top-0 z-50 flex flex-row items-center py-4 px-4 rounded-b-2xl mx-[10vw] frosted-glass glass-high-light"
-    style="--glass-border-radius: 0 0 1rem 1rem; --glass-highlight-angle: 90deg"
+    class="sticky top-0 z-50 flex flex-row items-center py-4 px-4 rounded-b-3xl md:mx-[8vw] frosted-glass glass-high-light"
+    style="--glass-border-radius: 0 0 1.5rem 1.5rem; --glass-highlight-angle: 90deg"
   >
-    <div class="flex flex-row items-center gap-2 select-none">
+    <div class="md:flex flex-row items-center gap-2 select-none hidden">
       <NuxtLink
         v-for="link in links"
         :to="link.path"
@@ -29,9 +29,9 @@ onMounted(() => {
 
     <div class="flex-1"></div>
 
-    <h1 class="text-white/90 text-xl font-bold text-shadow tracking-wider select-none">
+    <span class="text-neutral-100 text-xl font-bold text-shadow tracking-wider select-none">
       ShouChen's Blog
-    </h1>
+    </span>
   </nav>
 </template>
 

@@ -7,9 +7,15 @@
   --glass-highlight-angle: -30deg;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-neutral-50 dark:bg-black;
   @apply text-black dark:text-neutral-50;
+  @apply overflow-y-auto overflow-x-hidden;
+  scroll-behavior: smooth;
 }
 
 .text-shadow {
@@ -17,7 +23,7 @@ body {
 }
 
 .frosted-glass {
-  @apply bg-neutral-900/45 backdrop-blur-xl shadow-lg shadow-black/30;
+  @apply bg-neutral-900/60 backdrop-blur-2xl shadow-lg shadow-black/30;
   transform: translateZ(0);
   /* box-shadow: rgba(255, 255, 255, 0.25) 0 0 1px inset; */
 }
@@ -49,4 +55,29 @@ body {
 
 *::selection {
   @apply bg-yellow-600/80;
+}
+
+/* Transition */
+
+.inout-leave-active,
+.inout-enter-active {
+  transition:
+    translate 0.25s cubic-bezier(0.3, 1, 0.35, 1),
+    opacity 0.25s cubic-bezier(0, 0.8, 0.55, 1);
+}
+
+.inout-enter-active {
+  transition-delay: 0.3s;
+}
+
+.inout-enter-from,
+.inout-leave-to {
+  opacity: 0;
+  translate: 0 2rem;
+}
+
+.inout-enter-to,
+.inout-leave-from {
+  opacity: 1;
+  translate: 0;
 }
