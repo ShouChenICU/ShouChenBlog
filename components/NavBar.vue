@@ -25,7 +25,7 @@ onMounted(() => {
       <NuxtLink
         v-for="link in links"
         :to="link.path"
-        class="flex flex-row items-center gap-2 rounded-lg px-2 py-1 border border-transparent"
+        class="flex flex-row items-center gap-2 rounded-lg px-2 py-1 border border-transparent active:scale-95 transition-transform"
         :class="{
           'bg-neutral-100 text-black/90 pointer-events-none': $route.path === link.path,
           'hover:border-neutral-400/90': $route.path !== link.path

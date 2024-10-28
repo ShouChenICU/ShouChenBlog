@@ -22,13 +22,13 @@ export function domLoadAnimate(app: App) {
     observer = new IntersectionObserver(callback, options)
     app.directive('load-animate', {
       mounted(el, binding) {
-        if (el.style.transition) {
-          el.style.transition +=
-            ', translate 0.39s cubic-bezier(0, 0.8, 0.55, 1), opacity 0.39s cubic-bezier(0, 0.8, 0.55, 1)'
-        } else {
-          el.style.transition =
-            'translate 0.39s cubic-bezier(0, 0.8, 0.55, 1), opacity 0.39s cubic-bezier(0, 0.8, 0.55, 1)'
-        }
+        // if (el.style.transition) {
+        //   el.style.transition +=
+        //     ', translate 0.39s cubic-bezier(0, 0.8, 0.55, 1), opacity 0.39s cubic-bezier(0, 0.8, 0.55, 1)'
+        // } else {
+        //   el.style.transition =
+        //     'translate 0.39s cubic-bezier(0, 0.8, 0.55, 1), opacity 0.39s cubic-bezier(0, 0.8, 0.55, 1)'
+        // }
         el.style.opacity = '0'
         el.style.translate = '0 32px'
         observer.observe(el)

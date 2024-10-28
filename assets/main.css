@@ -5,6 +5,7 @@
 :root {
   --glass-border-radius: 1rem;
   --glass-highlight-angle: -30deg;
+  --nprogress-color: #51a8dd;
 }
 
 html {

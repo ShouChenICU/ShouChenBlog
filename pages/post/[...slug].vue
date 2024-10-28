@@ -18,10 +18,10 @@ const data = (await queryContent(docPath).findOne()) as unknown as Post
 
 <template>
   <main
-    class="frosted-glass-heavy rounded-3xl overflow-hidden glass-high-light p-4"
+    class="frosted-glass-heavy rounded-3xl overflow-hidden glass-high-light p-2"
     style="--glass-border-radius: 1.5rem; --glass-highlight-angle: -90deg"
   >
-    <div v-if="data.cover" class="relative aspect-[3/2] rounded-lg overflow-hidden">
+    <div v-if="data.cover" class="relative aspect-[3/2] rounded-2xl overflow-hidden">
       <img :src="data.cover" :alt="data.title" class="size-full object-cover object-center" />
       <div
         class="absolute left-0 bottom-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent"
@@ -35,7 +35,7 @@ const data = (await queryContent(docPath).findOne()) as unknown as Post
     <ContentRenderer
       :value="data"
       tag="article"
-      class="prose dark:prose-invert prose-neutral prose-a:no-underline p-4 mt-4 max-w-none"
+      class="prose dark:prose-invert prose-neutral prose-a:no-underline prose-img:rounded-lg p-4 mt-4 max-w-none"
     />
   </main>
 </template>
