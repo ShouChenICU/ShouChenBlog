@@ -40,6 +40,7 @@ body {
   @apply text-black dark:text-neutral-50;
   @apply overflow-y-auto overflow-x-hidden;
   scroll-behavior: smooth;
+  font-family: 'Noto Serif Simplified Chinese', sans-serif;
 }
 
 .text-shadow {
@@ -49,7 +50,11 @@ body {
 .frosted-glass {
   @apply bg-neutral-900/60 backdrop-blur-2xl shadow-lg shadow-black/30;
   transform: translateZ(0);
-  /* box-shadow: rgba(255, 255, 255, 0.25) 0 0 1px inset; */
+}
+
+.frosted-glass-heavy {
+  @apply bg-neutral-900/80 backdrop-blur-2xl shadow-lg shadow-black/30;
+  transform: translateZ(0);
 }
 
 .glass-high-light {

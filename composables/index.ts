@@ -1,5 +1,5 @@
 export function useNavHeight(height?: number) {
-  const navHeight = useState('navHeight', () => 90)
+  const navHeight = useState('navHeight', () => 80)
   if (height !== undefined) {
     navHeight.value = height
   }

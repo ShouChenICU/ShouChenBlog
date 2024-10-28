@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
+  ssr: false,
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/seo',
@@ -33,6 +34,16 @@ export default defineNuxtConfig({
 
   ogImage: {
     enabled: false
+  },
+
+  icon: {
+    provider: 'server',
+    customCollections: [
+      {
+        prefix: 'my-icon',
+        dir: './assets/icons'
+      }
+    ]
   },
 
   content: {

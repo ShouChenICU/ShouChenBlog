@@ -2,7 +2,7 @@
 const colorMode = useColorMode()
 const navHeight = useNavHeight()
 const footerHeight = useFooterHeight()
-const bodyHeight = ref(800)
+const bodyHeight = ref(0)
 
 onMounted(() => {
   colorMode.preference = 'dark'
@@ -15,7 +15,11 @@ onMounted(() => {
     <NuxtRouteAnnouncer />
     <Background />
     <NavBar />
-    <NuxtLayout :style="{ 'min-height': bodyHeight - navHeight - footerHeight + 'px' }">
+    <NuxtLayout
+      :style="{
+        'min-height': bodyHeight === 0 ? '100vh' : bodyHeight - navHeight - footerHeight + 'px'
+      }"
+    >
       <NuxtPage />
     </NuxtLayout>
     <FooterBar />

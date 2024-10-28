@@ -12,6 +12,15 @@ onMounted(() => {
     class="sticky top-0 z-50 flex flex-row items-center py-4 px-4 rounded-b-3xl md:mx-[8vw] frosted-glass glass-high-light"
     style="--glass-border-radius: 0 0 1.5rem 1.5rem; --glass-highlight-angle: 90deg"
   >
+    <NuxtLink
+      to="/"
+      class="text-neutral-100 text-lg font-bold text-shadow tracking-wider select-none"
+    >
+      ShouChen's Blog
+    </NuxtLink>
+
+    <div class="flex-1"></div>
+
     <div class="md:flex flex-row items-center gap-2 select-none hidden">
       <NuxtLink
         v-for="link in links"
@@ -26,12 +35,6 @@ onMounted(() => {
         <span class="font-bold">{{ link.name }}</span>
       </NuxtLink>
     </div>
-
-    <div class="flex-1"></div>
-
-    <span class="text-neutral-100 text-xl font-bold text-shadow tracking-wider select-none">
-      ShouChen's Blog
-    </span>
   </nav>
 </template>
 

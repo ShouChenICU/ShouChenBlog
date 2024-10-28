@@ -18,7 +18,7 @@ const data = (await queryContent(docPath).findOne()) as unknown as Post
 
 <template>
   <main
-    class="frosted-glass rounded-3xl overflow-hidden glass-high-light p-4"
+    class="frosted-glass-heavy rounded-3xl overflow-hidden glass-high-light p-4"
     style="--glass-border-radius: 1.5rem; --glass-highlight-angle: -90deg"
   >
     <div v-if="data.cover" class="relative aspect-[3/2] rounded-lg overflow-hidden">
@@ -29,13 +29,13 @@ const data = (await queryContent(docPath).findOne()) as unknown as Post
         <h1 class="text-3xl font-bold tracking-wide break-words">{{ data.title }}</h1>
       </div>
     </div>
-    <h1 v-else class="text-3xl font-bold tracking-wide break-words">
+    <h1 v-else class="text-3xl font-bold tracking-wide break-words text-center my-4">
       {{ data.title }}
     </h1>
     <ContentRenderer
       :value="data"
       tag="article"
-      class="prose dark:prose-invert prose-neutral prose-a:no-underline p-4 mt-4 brightness-105 max-w-none"
+      class="prose dark:prose-invert prose-neutral prose-a:no-underline p-4 mt-4 max-w-none"
     />
   </main>
 </template>
