@@ -12,7 +12,7 @@
         href="https://x.com/ShouChen_"
         target="_blank"
         aria-label="Twitter"
-        class="bg-neutral-100 rounded-full p-2 block"
+        class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
       >
         <Icon name="logos:x" class="size-5 block" />
       </a>
@@ -20,11 +20,11 @@
         href="https://github.com/ShouChenICU"
         target="_blank"
         aria-label="Github"
-        class="bg-neutral-100 rounded-full p-2 block"
+        class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
       >
         <Icon name="logos:github-icon" class="size-5 block" />
       </a>
-      <a class="bg-neutral-100 rounded-full p-2 block">
+      <a aria-label="QQ" class="bg-neutral-100 rounded-full p-2 block hover:brightness-110">
         <Icon name="my-icon:qq" class="size-5 block" />
       </a>
     </div>

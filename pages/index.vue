@@ -7,7 +7,7 @@ useSeoMeta({
 })
 
 const router = useRouter()
-const pageSize = 10
+const pageSize = 5
 const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
 const { data: posts } = await useAsyncData<Post[]>(
@@ -44,10 +44,23 @@ async function loadPosts(page: number) {
     <div style="display: none">
       <a v-for="post in posts" :key="post._path" :href="'/post' + post._path">{{ post.title }}</a>
     </div>
-    <div class="flex flex-row items-center">
-      <div class="flex-1"></div>
-      <p class="frosted-glass px-3 py-2 rounded-xl text-sm">{{ posts?.length }} Posts</p>
+    <!-- 搜索框 -->
+    <div
+      class="flex flex-row items-stretch frosted-glass p-1 pl-3 rounded-xl hover:brightness-110 transition-all ease"
+    >
+      <Icon name="solar:minimalistic-magnifer-linear" class="text-neutral-400 my-auto" />
+      <input
+        type="text"
+        class="flex-1 mr-2 rounded-xl overflow-hidden w-full bg-transparent outline-none border-none px-3 py-2 text-neutral-50 placeholder:text-neutral-400"
+        placeholder="Search"
+        v-model="search"
+        @keydown.enter="loadPosts(1)"
+      />
+      <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
+        {{ posts?.length }} Posts
+      </div>
     </div>
+    <!-- 文章列表 -->
     <div class="space-y-3 mt-4" v-auto-animate>
       <PostItem
         v-for="post in filteredPosts"
@@ -55,6 +68,7 @@ async function loadPosts(page: number) {
         :post-info="post as unknown as Post"
       />
     </div>
+    <!-- 分页器 -->
     <Paginator
       :size="pageSize"
       :total="posts?.length || 0"

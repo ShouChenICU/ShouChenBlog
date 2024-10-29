@@ -54,7 +54,7 @@ body {
 }
 
 .frosted-glass-heavy {
-  @apply bg-neutral-900/80 backdrop-blur-2xl shadow-lg shadow-black/30;
+  @apply bg-neutral-900/90 backdrop-blur-2xl shadow-lg shadow-black/30;
   transform: translateZ(0);
 }
 
@@ -81,6 +81,13 @@ body {
   );
   z-index: -10;
   transform: translateZ(0);
+}
+
+/* 输入框阴影 */
+.input-shadow {
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0 -1px 3px inset,
+    0 1px 3px rgba(255 255 255 / 0.25) !important;
 }
 
 /* Transition */

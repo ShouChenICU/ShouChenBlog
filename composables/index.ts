@@ -29,3 +29,11 @@ export function useBgUrl(imgUrl?: string) {
   }
   return bgImgUrl
 }
+
+export function useCategory(category?: string) {
+  const currentCategory = useState('currentCategory', () => 'tutorial')
+  if (category !== undefined) {
+    currentCategory.value = category
+  }
+  return currentCategory
+}
