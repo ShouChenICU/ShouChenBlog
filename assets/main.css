@@ -54,7 +54,7 @@ body {
 }
 
 .frosted-glass-heavy {
-  @apply bg-neutral-900/90 backdrop-blur-2xl shadow-lg shadow-black/30;
+  @apply bg-neutral-900/85 backdrop-blur-2xl shadow-lg shadow-black/30;
   transform: translateZ(0);
 }
 

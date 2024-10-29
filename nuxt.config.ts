@@ -50,7 +50,7 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    provider: 'server',
+    provider: 'iconify',
     customCollections: [
       {
         prefix: 'my-icon',

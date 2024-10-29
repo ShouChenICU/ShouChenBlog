@@ -23,7 +23,7 @@ watch(bgImgUrl, (newImgUrl) => {
 </script>
 
 <template>
-  <div class="fixed inset-0 -z-50 brightness-75">
+  <div class="fixed inset-0 -z-50 brightness-[60%]">
     <img
       ref="imgFrontElm"
       class="absolute size-full object-cover object-center img-transition opacity-0 z-10"

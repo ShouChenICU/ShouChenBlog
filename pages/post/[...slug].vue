@@ -17,7 +17,7 @@ onMounted(() => {
   if (data.cover) {
     useBgUrl(data.cover)
   }
-  useBgBlur(true)
+  // useBgBlur(true)
 })
 
 onUnmounted(() => {
@@ -45,7 +45,7 @@ onUnmounted(() => {
     </h1>
     <!-- 关键词、分类、创建时间 -->
     <div
-      class="flex flex-row items-center flex-wrap mt-6 px-2 text-neutral-300 border-b border-neutral-200/10 pb-3"
+      class="flex flex-row items-center flex-wrap mt-6 px-2 text-neutral-300 border-b-2 border-neutral-200/10 pb-3"
     >
       <Icon name="solar:hashtag-bold-duotone" class="mr-1" />
       <p class="min-w-0 break-words truncate mr-3">
