@@ -14,7 +14,7 @@ defineEmits<{
     <a
       v-for="p in pages"
       :key="p"
-      class="frosted-glass page-btn"
+      class="frosted-glass page-btn text-sm md:text-base"
       :class="{ 'pointer-events-none': p === curPage }"
       @click="$emit('update', p)"
     >
