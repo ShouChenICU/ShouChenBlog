@@ -6,5 +6,5 @@ export interface Post {
   keywords: string[]
   category: 'tech' | 'tutorial' | 'daily' | 'resource' | ''
   createAt: string
-  draft: boolean
+  draft?: boolean
 }

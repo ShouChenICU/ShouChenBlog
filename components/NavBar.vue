@@ -23,7 +23,7 @@ onMounted(() => {
 
     <div class="md:flex flex-row items-center gap-2 select-none hidden">
       <NuxtLink
-        v-for="link in links"
+        v-for="link in NavLinks"
         :to="link.path"
         class="flex flex-row items-center gap-2 rounded-lg px-2 py-1 border border-transparent active:scale-95 transition-transform"
         :class="{

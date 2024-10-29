@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@nuxtjs/color-mode',
     '@nuxt/fonts',
     '@nuxt/content',
-    '@formkit/auto-animate'
+    '@formkit/auto-animate',
+    '@nuxtjs/i18n'
   ],
 
   css: ['@/assets/main.css'],
@@ -30,6 +31,18 @@ export default defineNuxtConfig({
     url: 'http://localhost:3000',
     name: "ShouChen's Blog",
     description: "ShouChen's Blog"
+  },
+
+  i18n: {
+    vueI18n: './i18n.config.ts',
+    baseUrl: 'https://shouchen.blog',
+    locales: [{ code: 'zh', language: 'zh-CN' }],
+    defaultLocale: 'zh',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root'
+    }
   },
 
   ogImage: {
@@ -57,5 +70,17 @@ export default defineNuxtConfig({
     highlight: {
       theme: 'github-dark'
     }
+    // experimental: {
+    //   search: {
+    //     indexed: true,
+    //     filterQuery: {
+    //       draft: false
+    //     },
+    //     options: {
+    //       fields: ['title', 'description', 'keywords'],
+    //       storeFields: ['title', 'description', 'keywords']
+    //     }
+    //   }
+    // }
   }
 })

@@ -13,3 +13,19 @@ export function useFooterHeight(height?: number) {
   }
   return footerHeight
 }
+
+export function useBgBlur(blur?: boolean) {
+  const isBgBlur = useState('isBgBlur', () => false)
+  if (blur !== undefined) {
+    isBgBlur.value = blur
+  }
+  return isBgBlur
+}
+
+export function useBgUrl(imgUrl?: string) {
+  const bgImgUrl = useState('bgImgUrl', () => '/bg.webp')
+  if (imgUrl !== undefined) {
+    bgImgUrl.value = imgUrl
+  }
+  return bgImgUrl
+}
