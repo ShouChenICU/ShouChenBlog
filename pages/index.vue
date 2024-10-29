@@ -7,8 +7,8 @@ useSeoMeta({
 })
 
 const router = useRouter()
-const pageSize = 2
-const curPage = ref(Number(router.currentRoute.value.query?.page) || 1)
+const pageSize = 10
+const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
 const { data: posts } = await useAsyncData<Post[]>(
   () =>

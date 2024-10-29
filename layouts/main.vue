@@ -7,6 +7,7 @@ const navHeight = useNavHeight()
     <div class="flex-1">
       <div class="sticky" :style="{ top: `calc(${navHeight}px + 1rem)` }">
         <Profile />
+        <PostCategory />
       </div>
     </div>
     <NuxtPage class="md:w-[75%]" />

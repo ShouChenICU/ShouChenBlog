@@ -790,10 +790,10 @@
   resolved "https://registry.npmmirror.com/@formkit/auto-animate/-/auto-animate-0.8.2.tgz#24a56e816159fd5585405dcee6bb992f81c27585"
   integrity sha512-SwPWfeRa5veb1hOIBMdzI+73te5puUBHmqqaF1Bu7FjvxlYSz/kJcZKSa9Cg60zL0uRNeJL2SbRxV6Jp6Q1nFQ==
 
-"@iconify/collections@^1.0.474":
-  version "1.0.475"
-  resolved "https://registry.npmmirror.com/@iconify/collections/-/collections-1.0.475.tgz#36df9fd43fbe81ca9e6f5e84ccb0facbfb6eae35"
-  integrity sha512-jEFtOMwDGYv9KL0O/gPAvBjOetEcZ1WHFKnaxlv/6v49eCoWqi3paOwVcT9y+9qHFvuqolRO0TCCrONofYSO6g==
+"@iconify/collections@^1.0.476":
+  version "1.0.476"
+  resolved "https://registry.npmmirror.com/@iconify/collections/-/collections-1.0.476.tgz#07fbeac4332072d2ebfcc1050f2463ce266f3c73"
+  integrity sha512-CHErIMzMRq1zWnGsSeWFu3o1fwIRg/dLQwSVlmmUFr8k7pJEsD5HFQyW79u1YcEjUWa1m50/qzz0SCcAZUK6Tw==
   dependencies:
     "@iconify/types" "*"
 
@@ -1175,11 +1175,11 @@
     unstorage "^1.12.0"
 
 "@nuxt/icon@^1.5.8":
-  version "1.5.8"
-  resolved "https://registry.npmmirror.com/@nuxt/icon/-/icon-1.5.8.tgz#c029fb33bbb378fe24cb8c60a838e749dfb4c504"
-  integrity sha512-7FWyGjtm2DADbAB5kp+x4GuwlGSTAn0Ho4awLDuyIEJMwJDyKoeNjMxjXAmmBzr0ePgqeDOOhdDtfNuy3gpB/g==
+  version "1.6.1"
+  resolved "https://registry.npmmirror.com/@nuxt/icon/-/icon-1.6.1.tgz#1b67563bcced20047135c5a6c2d8ca5541f6b935"
+  integrity sha512-us+nGkMJPZfgj4cT/OAhQLrPt5553wUUBdroPqGvhR/Oyu22FPRlM5kS479skSCjQu+0SJNbpU+A09QL5DRtew==
   dependencies:
-    "@iconify/collections" "^1.0.474"
+    "@iconify/collections" "^1.0.476"
     "@iconify/types" "^2.0.0"
     "@iconify/utils" "^2.1.33"
     "@iconify/vue" "4.1.3-beta.1"
@@ -1191,7 +1191,7 @@
     ohash "^1.1.4"
     pathe "^1.1.2"
     std-env "^3.7.0"
-    tinyglobby "^0.2.9"
+    tinyglobby "^0.2.10"
 
 "@nuxt/kit@3.13.2", "@nuxt/kit@^3.13.0", "@nuxt/kit@^3.13.1", "@nuxt/kit@^3.13.2":
   version "3.13.2"
@@ -2370,15 +2370,15 @@ acorn@8.12.1:
   resolved "https://registry.npmmirror.com/acorn/-/acorn-8.12.1.tgz#71616bdccbe25e27a54439e0046e89ca76df2248"
   integrity sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==
 
-acorn@^8.12.1, acorn@^8.6.0, acorn@^8.8.2:
-  version "8.13.0"
-  resolved "https://registry.npmmirror.com/acorn/-/acorn-8.13.0.tgz#2a30d670818ad16ddd6a35d3842dacec9e5d7ca3"
-  integrity sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==
-
-acorn@^8.14.0, acorn@^8.5.0, acorn@^8.9.0:
+acorn@^8.12.1, acorn@^8.14.0, acorn@^8.5.0, acorn@^8.8.2, acorn@^8.9.0:
   version "8.14.0"
   resolved "https://registry.npmmirror.com/acorn/-/acorn-8.14.0.tgz#063e2c70cac5fb4f6467f0b11152e04c682795b0"
   integrity sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==
+
+acorn@^8.6.0:
+  version "8.13.0"
+  resolved "https://registry.npmmirror.com/acorn/-/acorn-8.13.0.tgz#2a30d670818ad16ddd6a35d3842dacec9e5d7ca3"
+  integrity sha512-8zSiw54Oxrdym50NlZ9sUusyO1Z1ZchgRLWRaK6c86XJFClyCgFKetdowBg5bKxyp/u+CDBJG4Mpp0m3HLZl9w==
 
 agent-base@6:
   version "6.0.2"
@@ -2713,10 +2713,15 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001646, caniuse-lite@^1.0.30001669:
+caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001646:
   version "1.0.30001671"
   resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001671.tgz#c660a8a0bf6bb8eedaac683d29074e455e84e3f1"
   integrity sha512-jocyVaSSfXg2faluE6hrWkMgDOiULBMca4QLtDT39hw1YxaIPHWc1CcTCKkPmHgGH6tKji6ZNbMSmUAvENf2/A==
+
+caniuse-lite@^1.0.30001669:
+  version "1.0.30001674"
+  resolved "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001674.tgz#eb200a716c3e796d33d30b9c8890517a72f862c8"
+  integrity sha512-jOsKlZVRnzfhLojb+Ykb+gyUSp9Xb57So+fAiFlLzzTKpqg8xxSav0e40c8/4F/v9N8QSvrRRaLeVzQbLqomYw==
 
 ccount@^2.0.0:
   version "2.0.1"
@@ -3412,9 +3417,9 @@ ee-first@1.1.1:
   integrity sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==
 
 electron-to-chromium@^1.5.41:
-  version "1.5.47"
-  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.47.tgz#ef0751bc19b28be8ee44cd8405309de3bf3b20c7"
-  integrity sha512-zS5Yer0MOYw4rtK2iq43cJagHZ8sXN0jDHDKzB+86gSBSAI4v07S97mcq+Gs2vclAxSh1j7vOAHxSVgduiiuVQ==
+  version "1.5.49"
+  resolved "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.5.49.tgz#9358f514ab6eeed809a8689f4b39ea5114ae729c"
+  integrity sha512-ZXfs1Of8fDb6z7WEYZjXpgIRF6MEu8JdeGA0A40aZq6OQbS+eJpnnV49epZRna2DU/YsEjSQuGtQPPtvt6J65A==
 
 emoji-regex@^10.2.1:
   version "10.4.0"
@@ -7512,7 +7517,7 @@ tinyglobby@0.2.6:
     fdir "^6.3.0"
     picomatch "^4.0.2"
 
-tinyglobby@^0.2.6, tinyglobby@^0.2.9:
+tinyglobby@^0.2.10, tinyglobby@^0.2.6, tinyglobby@^0.2.9:
   version "0.2.10"
   resolved "https://registry.npmmirror.com/tinyglobby/-/tinyglobby-0.2.10.tgz#e712cf2dc9b95a1f5c5bbd159720e15833977a0f"
   integrity sha512-Zc+8eJlFMvgatPZTl6A9L/yht8QqdmUNtURHaKZLmKBE12hNPSrqNkUp2cs3M/UKmNVVAMFQYSjYIVHDjW5zew==
@@ -7812,7 +7817,7 @@ unplugin-vue-router@^0.10.8:
     unplugin "^1.12.2"
     yaml "^2.5.0"
 
-unplugin@^1.1.0:
+unplugin@^1.1.0, unplugin@^1.14.1, unplugin@^1.3.1:
   version "1.15.0"
   resolved "https://registry.npmmirror.com/unplugin/-/unplugin-1.15.0.tgz#cd1e92e537ab14a03354d6f83f29d536fac2e5a9"
   integrity sha512-jTPIs63W+DUEDW207ztbaoO7cQ4p5aVaB823LSlxpsFEU3Mykwxf3ZGC/wzxFJeZlASZYgVrWeo7LgOrqJZ8RA==
@@ -7820,7 +7825,7 @@ unplugin@^1.1.0:
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
 
-unplugin@^1.10.0, unplugin@^1.10.1, unplugin@^1.12.2, unplugin@^1.14.1, unplugin@^1.3.1, unplugin@^1.8.3:
+unplugin@^1.10.0, unplugin@^1.10.1, unplugin@^1.12.2, unplugin@^1.8.3:
   version "1.14.1"
   resolved "https://registry.npmmirror.com/unplugin/-/unplugin-1.14.1.tgz#c76d6155a661e43e6a897bce6b767a1ecc344c1a"
   integrity sha512-lBlHbfSFPToDYp9pjXlUEFVxYLaue9f9T1HC+4OHlmj+HnMDdz9oZY+erXfoCe/5V/7gKUSY2jpXPb9S7f0f/w==
