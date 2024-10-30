@@ -61,16 +61,11 @@ onUnmounted(() => {
       </div>
     </div>
     <!-- 文章内容 -->
+    <!-- prose-code:bg-sky-900 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-code:px-1 prose-code:mx-1 prose-code:pt-[2px] -->
     <ContentRenderer
       :value="data"
       tag="article"
-      class="prose dark:prose-invert prose-neutral prose-a:no-underline prose-img:rounded-lg break-all p-2 md:p-6 mt-2 max-w-none"
+      class="prose dark:prose-invert prose-neutral prose-a:no-underline prose-img:rounded-lg prose-code:text-neutral-200 [&_a]:text-sky-500 [&_a:hover]:text-pink-500 [&_a:hover]:underline break-all p-2 md:p-6 mt-2 max-w-none"
     />
   </main>
 </template>
-
-<style>
-html {
-  scroll-margin-top: 3rem;
-}
-</style>

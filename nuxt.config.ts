@@ -50,18 +50,25 @@ export default defineNuxtConfig({
   },
 
   icon: {
-    provider: 'iconify',
+    provider: 'server',
+    serverBundle: {
+      collections: ['solar', 'ph', 'fluent', 'logos']
+    },
+    clientBundle: {
+      scan: true
+    },
     customCollections: [
       {
         prefix: 'my-icon',
         dir: './assets/icons'
       }
-    ]
+    ],
+    fetchTimeout: 3e4
   },
 
   content: {
     markdown: {
-      anchorLinks: true,
+      anchorLinks: false,
       toc: {
         depth: 3,
         searchDepth: 3
