@@ -65,7 +65,7 @@ onUnmounted(() => {
     <ContentRenderer
       :value="data"
       tag="article"
-      class="prose dark:prose-invert prose-neutral prose-a:no-underline prose-img:rounded-lg prose-code:text-neutral-200 [&_a]:text-sky-500 [&_a:hover]:text-pink-500 [&_a:hover]:underline break-all p-2 md:p-6 mt-2 max-w-none"
+      class="prose dark:prose-invert prose-neutral prose-a:no-underline prose-img:rounded-lg prose-code:text-neutral-200 [&_a]:text-sky-500 [&_a:hover]:text-pink-500 [&_a:hover]:underline prose-blockquote:text-neutral-400 break-all p-2 md:p-6 mt-2 max-w-none"
     />
   </main>
 </template>
