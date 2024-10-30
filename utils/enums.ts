@@ -10,5 +10,5 @@ export const CategoryMap = {
   tutorial: '教程',
   daily: '日常',
   resource: '资源',
-  '': '其他'
+  other: '其他'
 }

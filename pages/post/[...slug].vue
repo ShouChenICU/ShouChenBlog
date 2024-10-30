@@ -56,7 +56,7 @@ onUnmounted(() => {
       <div class="flex flex-row items-center">
         <Icon name="solar:clock-circle-linear" class="size-4" />
         <p class="text-sm ml-1">
-          {{ formatDate(new Date(data.createAt), 'YYYY-MM-DD HH:mm') }}
+          {{ formatDate(new Date(data.updateAt), 'YYYY-MM-DD HH:mm') }}
         </p>
       </div>
     </div>

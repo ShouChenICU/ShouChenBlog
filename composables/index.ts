@@ -31,7 +31,7 @@ export function useBgUrl(imgUrl?: string) {
 }
 
 export function useCategory(category?: string) {
-  const currentCategory = useState('currentCategory', () => 'tutorial')
+  const currentCategory = useState('currentCategory', () => '')
   if (category !== undefined) {
     currentCategory.value = category
   }

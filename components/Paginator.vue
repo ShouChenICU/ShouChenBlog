@@ -3,6 +3,7 @@ const curPage = defineModel<number>('page', { default: 1 })
 const props = defineProps<{ total: number; size: number }>()
 
 const pages = computed(() => {
+  if (props.total < 1) return [1]
   const lastPage = Math.ceil(props.total / props.size)
   const result = new Set<number>()
   // 添加第一页和最后一页

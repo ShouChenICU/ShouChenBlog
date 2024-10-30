@@ -7,7 +7,7 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
     cover: '',
     keywords: [],
     category: '',
-    createAt: '',
+    updateAt: '',
     draft: false
   })
 })
@@ -60,7 +60,7 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
       <div class="flex flex-row items-center text-neutral-200/70">
         <Icon name="solar:clock-circle-linear" class="size-4" />
         <p class="text-sm ml-1">
-          {{ formatDate(new Date(postInfo.createAt), 'YYYY-MM-DD HH:mm') }}
+          {{ formatDate(new Date(postInfo.updateAt), 'YYYY-MM-DD HH:mm') }}
         </p>
       </div>
     </div>

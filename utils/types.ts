@@ -4,7 +4,7 @@ export interface Post {
   description: string
   cover: string
   keywords: string[]
-  category: 'tech' | 'tutorial' | 'daily' | 'resource' | ''
-  createAt: string
+  category: 'tech' | 'tutorial' | 'daily' | 'resource' | 'other'
+  updateAt: string
   draft?: boolean
 }

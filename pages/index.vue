@@ -10,33 +10,43 @@ const router = useRouter()
 const pageSize = 5
 const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
+const curCategory = useCategory()
 const { data: posts } = await useAsyncData<Post[]>(
   () =>
     queryContent('/')
-      .only(['_path', 'title', 'cover', 'keywords', 'description', 'category', 'createAt', 'body'])
+      .only(['_path', 'title', 'cover', 'keywords', 'description', 'category', 'updateAt', 'body'])
       .where({
         draft: false
       })
       .sort({
-        createAt: -1
+        updateAt: -1
       })
       .find() as Promise<Post[]>
 )
 const filteredPosts = computed(() =>
-  posts.value?.slice(
+  posts.value?.filter((post) => post.category.includes(curCategory.value))
+)
+const pagePosts = computed(() =>
+  filteredPosts.value?.slice(
     Math.max(curPage.value - 1, 0) * pageSize,
-    Math.min(curPage.value * pageSize, posts.value?.length || 0)
+    Math.min(curPage.value * pageSize, filteredPosts.value?.length || 0)
   )
 )
 
 async function loadPosts(page: number) {
   curPage.value = page
-  if (curPage.value !== 1 || search.value !== '') {
-    router.replace({ query: { page: curPage.value, search: search.value } })
+  if (curPage.value !== 1 || search.value !== '' || curCategory.value !== '') {
+    router.replace({
+      query: { page: curPage.value, search: search.value, category: curCategory.value }
+    })
   } else {
     router.replace('/')
   }
 }
+
+watch(curCategory, () => {
+  loadPosts(1)
+})
 </script>
 
 <template>
@@ -57,21 +67,26 @@ async function loadPosts(page: number) {
         @keydown.enter="loadPosts(1)"
       />
       <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
-        {{ posts?.length }} Posts
+        {{ filteredPosts?.length }} Posts
+      </div>
+    </div>
+    <!-- Empty指示 -->
+    <div v-if="filteredPosts?.length === 0">
+      <div
+        class="frosted-glass py-8 rounded-xl mt-4 text-neutral-200 flex flex-col items-center gap-2"
+      >
+        <Icon name="fluent:border-none-24-regular" size="96" />
+        <p class="text-center">No posts found</p>
       </div>
     </div>
     <!-- 文章列表 -->
     <div class="space-y-3 mt-4" v-auto-animate>
-      <PostItem
-        v-for="post in filteredPosts"
-        :key="post._path"
-        :post-info="post as unknown as Post"
-      />
+      <PostItem v-for="post in pagePosts" :key="post._path" :post-info="post as unknown as Post" />
     </div>
     <!-- 分页器 -->
     <Paginator
       :size="pageSize"
-      :total="posts?.length || 0"
+      :total="filteredPosts?.length || 0"
       v-model:page="curPage"
       @update="loadPosts"
     />
