@@ -89,9 +89,9 @@ onUnmounted(() => {
         <div v-if="item.children">
           <p
             v-for="child in item.children"
-            class="p-1 mt-1 pl-4 rounded-md cursor-pointer hover:bg-neutral-500/35 hover:pl-5 hover:brightness-110 transition-all ease-out"
+            class="p-1 mt-1 pl-5 rounded-md cursor-pointer hover:bg-neutral-500/35 hover:pl-6 hover:brightness-110 transition-all ease-out"
             :class="{
-              'bg-neutral-200 text-black pl-5 pointer-events-none': curNavId === child.id,
+              'bg-neutral-200 text-black pl-6 pointer-events-none': curNavId === child.id,
               'text-neutral-200': curNavId !== child.id
             }"
             @click="manualNav(elmOffsetTopMap.get(child.id) as number)"

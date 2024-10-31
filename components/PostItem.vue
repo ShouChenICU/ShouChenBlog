@@ -83,9 +83,9 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
 <style scoped>
 .post-item-transition {
   transition:
-    transform 0.2s cubic-bezier(0.35, 0, 0.35, 1),
-    box-shadow 0.2s cubic-bezier(0.35, 0, 0.35, 1),
-    filter 0.2s cubic-bezier(0.35, 0, 0.35, 1),
+    transform 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.2, 0, 0.2, 1),
+    filter 0.2s cubic-bezier(0.2, 0, 0.2, 1),
     translate 0.3s cubic-bezier(0.35, 0, 0.35, 1),
     opacity 0.3s cubic-bezier(0.35, 0, 0.35, 1);
   will-change: transform, box-shadow, filter, translate, opacity;
