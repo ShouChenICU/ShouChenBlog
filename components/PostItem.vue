@@ -6,7 +6,7 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
     description: '',
     cover: '',
     keywords: [],
-    category: '',
+    category: 'other',
     updateAt: '',
     draft: false
   })
@@ -50,7 +50,7 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
           {{ postInfo.keywords.join(' / ') }}
         </p>
         <Icon name="solar:folder-with-files-line-duotone" class="mr-1" />
-        <p class="whitespace-nowrap" >{{ CategoryMap[postInfo.category] }}</p>
+        <p class="whitespace-nowrap">{{ CategoryMap[postInfo.category] }}</p>
       </div>
       <!-- 文章简介 -->
       <p class="line-clamp-2 break-words text-sm md:text-base text-neutral-100 px-1 md:px-0">

@@ -37,3 +37,11 @@ export function useCategory(category?: string) {
   }
   return currentCategory
 }
+
+export function useCurrentPost(post?: Post) {
+  const currentPost = useState<Post>('currentPost')
+  if (post !== undefined) {
+    currentPost.value = post
+  }
+  return currentPost
+}

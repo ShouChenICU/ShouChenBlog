@@ -6,7 +6,7 @@
     style="--glass-border-radius: 1.5rem; --glass-highlight-angle: 45deg"
   >
     <img src="/favicon.webp" alt="avatar" class="size-16 rounded-full mx-auto block" />
-    <h2 class="text-lg font-bold text-center tracking-widest mt-4">守晨</h2>
+    <p class="text-lg font-bold text-center tracking-widest mt-4">守晨</p>
     <div class="flex flex-row items-center justify-evenly mt-4">
       <a
         href="https://x.com/ShouChen_"

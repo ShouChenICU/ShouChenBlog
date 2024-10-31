@@ -10,7 +10,7 @@ const router = useRouter()
 const docPath = router.currentRoute.value.path.replace('/post', '') || '/'
 
 const data = (await queryContent(docPath).findOne()) as unknown as Post
-
+useCurrentPost(data)
 // console.log(data)
 
 onMounted(() => {
