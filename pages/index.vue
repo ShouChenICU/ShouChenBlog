@@ -10,7 +10,7 @@ const router = useRouter()
 const pageSize = 5
 const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
-const curCategory = useCategory()
+const curCategory = useCategory((router.currentRoute.value.query?.category || '') + '')
 const { data: posts } = await useAsyncData<Post[]>(
   () =>
     queryContent('/')
@@ -33,8 +33,10 @@ const pagePosts = computed(() =>
   )
 )
 
-async function loadPosts(page: number) {
+function updateQuery(page: number, category: string, searchStr: string) {
   curPage.value = page
+  curCategory.value = category
+  search.value = searchStr
   if (curPage.value !== 1 || search.value !== '' || curCategory.value !== '') {
     router.replace({
       query: { page: curPage.value, search: search.value, category: curCategory.value }
@@ -44,8 +46,10 @@ async function loadPosts(page: number) {
   }
 }
 
-watch(curCategory, () => {
-  loadPosts(1)
+updateQuery(1, curCategory.value, '')
+
+watch(curCategory, (newCategory) => {
+  updateQuery(1, newCategory, search.value)
 })
 </script>
 
@@ -64,31 +68,31 @@ watch(curCategory, () => {
         class="flex-1 mr-2 rounded-xl overflow-hidden w-full bg-transparent outline-none border-none px-3 py-2 text-neutral-50 placeholder:text-neutral-400"
         placeholder="Search"
         v-model="search"
-        @keydown.enter="loadPosts(1)"
+        @keydown.enter="updateQuery(1, curCategory, search)"
       />
       <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
         {{ filteredPosts?.length }} Posts
       </div>
     </div>
-    <!-- Empty指示 -->
-    <div v-if="filteredPosts?.length === 0">
-      <div
-        class="frosted-glass py-8 rounded-xl mt-4 text-neutral-200 flex flex-col items-center gap-2"
-      >
-        <Icon name="fluent:border-none-24-regular" size="96" />
-        <p class="text-center">No posts found</p>
-      </div>
-    </div>
     <!-- 文章列表 -->
     <div class="space-y-3 mt-4" v-auto-animate>
       <PostItem v-for="post in pagePosts" :key="post._path" :post-info="post as unknown as Post" />
+      <!-- Empty指示 -->
+      <div v-if="filteredPosts?.length === 0" key="empty">
+        <div
+          class="frosted-glass py-8 rounded-xl mt-4 text-neutral-200 flex flex-col items-center gap-2"
+        >
+          <Icon name="fluent:border-none-24-regular" size="96" />
+          <p class="text-center">No posts found</p>
+        </div>
+      </div>
     </div>
     <!-- 分页器 -->
     <Paginator
       :size="pageSize"
       :total="filteredPosts?.length || 0"
       v-model:page="curPage"
-      @update="loadPosts"
+      @update="(page) => updateQuery(page, curCategory, search)"
     />
   </div>
 </template>

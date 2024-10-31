@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const router = useRouter()
 const currentCategory = useCategory()
 const postsWithCategory = await queryContent()
   .only(['_path', 'category'])
@@ -7,6 +8,13 @@ const postsWithCategory = await queryContent()
 
 function calcCategoryPostCount(category: string) {
   return postsWithCategory.filter((post) => post.category === category).length
+}
+
+function navigateToCategory(category: string) {
+  currentCategory.value = category
+  if (router.currentRoute.value.path.includes('/post')) {
+    router.replace('/?category=' + category)
+  }
 }
 </script>
 
@@ -28,7 +36,7 @@ function calcCategoryPostCount(category: string) {
           'bg-neutral-200 text-black pl-2 pointer-events-none': currentCategory === '',
           'text-neutral-200': currentCategory !== ''
         }"
-        @click="currentCategory = ''"
+        @click="navigateToCategory('')"
       >
         <span>全部</span>
         <span
@@ -48,7 +56,7 @@ function calcCategoryPostCount(category: string) {
           'bg-neutral-200 text-black pl-2 pointer-events-none': currentCategory === key,
           'text-neutral-200': currentCategory !== key
         }"
-        @click="currentCategory = key"
+        @click="navigateToCategory(key)"
       >
         <span>{{ value }}</span>
         <span

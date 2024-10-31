@@ -17,7 +17,7 @@ onMounted(() => {
   if (data.cover) {
     useBgUrl(data.cover)
   }
-  // useBgBlur(true)
+  useCategory('unknown')
 })
 
 onUnmounted(() => {
