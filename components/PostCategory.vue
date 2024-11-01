@@ -12,7 +12,7 @@ function calcCategoryPostCount(category: string) {
 
 function navigateToCategory(category: string) {
   currentCategory.value = category
-  if (router.currentRoute.value.path.includes('/post')) {
+  if (router.currentRoute.value.path !== '/') {
     router.replace('/?category=' + category)
   }
 }

@@ -17,7 +17,7 @@ onMounted(() => {
   if (data.cover) {
     useBgUrl(data.cover)
   }
-  useCategory('unknown')
+  useCategory('unset')
 })
 
 onUnmounted(() => {

@@ -51,6 +51,10 @@ updateQuery(1, curCategory.value, '')
 watch(curCategory, (newCategory) => {
   updateQuery(1, newCategory, search.value)
 })
+
+onUnmounted(() => {
+  curCategory.value = 'unset'
+})
 </script>
 
 <template>
