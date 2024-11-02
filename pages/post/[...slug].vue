@@ -2,9 +2,6 @@
 definePageMeta({
   layout: 'main'
 })
-useSeoMeta({
-  title: 'post'
-})
 
 const router = useRouter()
 const docPath = router.currentRoute.value.path.replace('/post', '') || '/'
@@ -12,6 +9,10 @@ const docPath = router.currentRoute.value.path.replace('/post', '') || '/'
 const data = (await queryContent(docPath).findOne()) as unknown as Post
 useCurrentPost(data)
 // console.log(data)
+
+useSeoMeta({
+  title: data.title
+})
 
 onMounted(() => {
   if (data.cover) {
