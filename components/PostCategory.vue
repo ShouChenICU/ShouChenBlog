@@ -1,13 +1,10 @@
 <script setup lang="ts">
 const router = useRouter()
 const currentCategory = useCategory()
-const postsWithCategory = await queryContent()
-  .only(['_path', 'category'])
-  .where({ draft: false })
-  .find()
+const allPost = useAllPost()
 
 function calcCategoryPostCount(category: string) {
-  return postsWithCategory.filter((post) => post.category === category).length
+  return allPost.value.filter((post) => post.category === category).length
 }
 
 function navigateToCategory(category: string) {
@@ -45,7 +42,7 @@ function navigateToCategory(category: string) {
             'text-neutral-700': currentCategory === '',
             'text-neutral-400': currentCategory !== ''
           }"
-          >{{ postsWithCategory.length }}</span
+          >{{ allPost.length }}</span
         >
       </button>
       <button

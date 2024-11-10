@@ -45,3 +45,11 @@ export function useCurrentPost(post?: Post) {
   }
   return currentPost
 }
+
+export function useAllPost(posts?: Post[]) {
+  const allPost = useState<Post[]>('allPost', () => [])
+  if (posts != undefined) {
+    allPost.value = posts
+  }
+  return allPost
+}

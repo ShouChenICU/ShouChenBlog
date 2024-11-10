@@ -75,7 +75,7 @@ const porps = withDefaults(defineProps<{ postInfo: Post }>(), {
       />
     </div>
     <div v-else class="px-4 hidden md:flex flex-row items-center justify-center">
-      <Icon name="solar:alt-arrow-right-outline" class="size-8" />
+      <Icon name="solar:alt-arrow-right-outline" class="size-12" />
     </div>
   </NuxtLink>
 </template>

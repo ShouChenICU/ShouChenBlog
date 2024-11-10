@@ -2,10 +2,10 @@
 import { type ParsedContent } from '@nuxt/content'
 
 const curPost = useCurrentPost() as unknown as Ref<ParsedContent>
-const offsetTopList: number[] = []
-const elmIdList: string[] = []
 const curNavId = ref('')
 const elmOffsetTopMap = new Map<string, number>()
+let offsetTopList: number[] = []
+let elmIdList: string[] = []
 
 function positioningNav() {
   if (typeof window === 'undefined') return
@@ -41,21 +41,26 @@ function manualNav(offsetTop: number) {
   })
 }
 
-onMounted(() => {
+function updateTOC() {
   setTimeout(() => {
     const elmList = document.querySelectorAll('h2, h3') as NodeListOf<HTMLElement>
+    offsetTopList = []
+    elmIdList = []
     elmList.forEach((elm) => {
       offsetTopList.push(elm.offsetTop)
       elmIdList.push(elm.id)
       elmOffsetTopMap.set(elm.id, elm.offsetTop)
     })
-
-    // console.log(offsetTopList, elmIdList)
-
-    window.addEventListener('scroll', positioningNav)
     positioningNav()
   }, 1e3)
+}
+
+onMounted(() => {
+  updateTOC()
+  window.addEventListener('scroll', positioningNav)
 })
+
+onUpdated(() => updateTOC())
 
 onUnmounted(() => {
   window.removeEventListener('scroll', positioningNav)

@@ -11,18 +11,7 @@ const pageSize = 5
 const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
 const curCategory = useCategory((router.currentRoute.value.query?.category || '') + '')
-const { data: posts } = await useAsyncData<Post[]>(
-  () =>
-    queryContent('/')
-      .only(['_path', 'title', 'cover', 'keywords', 'description', 'category', 'updateAt', 'body'])
-      .where({
-        draft: false
-      })
-      .sort({
-        updateAt: -1
-      })
-      .find() as Promise<Post[]>
-)
+const posts = useAllPost()
 const filteredPosts = computed(() =>
   posts.value?.filter((post) => post.category.includes(curCategory.value))
 )
@@ -46,7 +35,7 @@ function updateQuery(page: number, category: string, searchStr: string) {
   }
 }
 
-updateQuery(1, curCategory.value, '')
+updateQuery(1, curCategory.value, search.value)
 
 watch(curCategory, (newCategory) => {
   updateQuery(1, newCategory, search.value)
