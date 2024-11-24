@@ -50,7 +50,7 @@ function navigateToCategory(category: string) {
         :key="key"
         class="pl-1 pr-2 py-2 w-full text-start rounded-md flex flex-row items-center justify-between hover:bg-neutral-500/35 hover:pl-2 hover:brightness-110 transition-all ease-out"
         :class="{
-          'bg-neutral-200 text-black pl-2 pointer-events-none': currentCategory === key,
+          'bg-neutral-100 text-neutral-950 pl-2 pointer-events-none': currentCategory === key,
           'text-neutral-200': currentCategory !== key
         }"
         @click="navigateToCategory(key)"
