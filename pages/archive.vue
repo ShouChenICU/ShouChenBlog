@@ -8,5 +8,5 @@ useSeoMeta({
 </script>
 
 <template>
-  <div>Archive</div>
+  <div>待建设</div>
 </template>

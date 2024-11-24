@@ -23,8 +23,8 @@ onMounted(() => {
     if (curPost.cover) {
       useBgUrl(curPost.cover)
     }
-    useCategory('unset')
   }, 2e3)
+  useCategory('unset')
 })
 
 onUnmounted(() => {
