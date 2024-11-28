@@ -3,7 +3,14 @@ definePageMeta({
   layout: 'main'
 })
 useSeoMeta({
-  title: '关于'
+  title: '关于',
+  ogImage: '/ogImg.webp',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '关于',
+  twitterDescription: '关于',
+  twitterImage: '/ogImg.webp',
+  twitterSite: 'https://shouchen.blog',
+  twitterCreator: 'ShouChen_'
 })
 </script>
 

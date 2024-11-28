@@ -9,7 +9,7 @@
     <p class="text-lg font-bold text-center tracking-widest mt-4">守晨</p>
     <div class="flex flex-row items-center justify-evenly mt-4">
       <a
-        href="https://x.com/ShouChen_"
+        href="https://x.com/shouchen_"
         target="_blank"
         aria-label="Twitter"
         class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
@@ -17,7 +17,7 @@
         <Icon name="logos:x" class="size-5 block" />
       </a>
       <a
-        href="https://github.com/ShouChenICU"
+        href="https://github.com/shouchenicu"
         target="_blank"
         aria-label="Github"
         class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"

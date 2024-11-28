@@ -3,7 +3,14 @@ definePageMeta({
   layout: 'main'
 })
 useSeoMeta({
-  title: '主页'
+  title: '主页',
+  ogImage: '/ogImg.webp',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '主页',
+  twitterDescription: '主页',
+  twitterImage: '/ogImg.webp',
+  twitterSite: 'https://shouchen.blog',
+  twitterCreator: 'ShouChen_'
 })
 
 const router = useRouter()

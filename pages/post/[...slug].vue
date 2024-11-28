@@ -15,7 +15,14 @@ useCurrentPost(curPost)
 // console.log(data)
 
 useSeoMeta({
-  title: curPost.title
+  title: curPost.title,
+  ogImage: curPost.cover,
+  twitterCard: 'summary_large_image',
+  twitterTitle: curPost.title,
+  twitterDescription: curPost.description,
+  twitterImage: curPost.cover,
+  twitterSite: 'https://shouchen.blog',
+  twitterCreator: 'ShouChen_'
 })
 
 onMounted(() => {

@@ -3,7 +3,14 @@ definePageMeta({
   layout: 'main'
 })
 useSeoMeta({
-  title: '归档'
+  title: '归档',
+  ogImage: '/ogImg.webp',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '归档',
+  twitterDescription: '归档',
+  twitterImage: '/ogImg.webp',
+  twitterSite: 'https://shouchen.blog',
+  twitterCreator: 'ShouChen_'
 })
 
 const postList = useAllPost()
