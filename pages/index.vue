@@ -2,13 +2,14 @@
 definePageMeta({
   layout: 'main'
 })
+const siteUrl = useSiteConfig().url
 useSeoMeta({
   title: '主页',
-  ogImage: '/ogImg.webp',
+  ogImage: siteUrl + '/ogImg.webp',
   twitterCard: 'summary_large_image',
   twitterTitle: '主页',
   twitterDescription: '主页',
-  twitterImage: '/ogImg.webp',
+  twitterImage: siteUrl + '/ogImg.webp',
   twitterSite: 'https://shouchen.blog',
   twitterCreator: 'ShouChen_'
 })

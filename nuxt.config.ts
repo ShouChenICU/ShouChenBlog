@@ -28,7 +28,7 @@ export default defineNuxtConfig({
   },
 
   site: {
-    url: 'http://localhost:3000',
+    url: 'https://shouchen.blog',
     name: "ShouChen's Blog",
     description: "ShouChen's Blog"
   },

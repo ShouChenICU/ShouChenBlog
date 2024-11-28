@@ -3,6 +3,7 @@ definePageMeta({
   layout: 'main'
 })
 
+const siteUrl = useSiteConfig().url
 const router = useRouter()
 const docPath = router.currentRoute.value.path.replace('/post', '') || '/'
 
@@ -16,11 +17,11 @@ useCurrentPost(curPost)
 
 useSeoMeta({
   title: curPost.title,
-  ogImage: curPost.cover,
+  ogImage: siteUrl + curPost.cover,
   twitterCard: 'summary_large_image',
   twitterTitle: curPost.title,
   twitterDescription: curPost.description,
-  twitterImage: curPost.cover,
+  twitterImage: siteUrl + curPost.cover,
   twitterSite: 'https://shouchen.blog',
   twitterCreator: 'ShouChen_'
 })
