@@ -143,7 +143,8 @@ years.sort((a, b) => b - a)
 }
 
 .timeline-item:hover {
-  background-color: #58b2dc50;
+  background: linear-gradient(220.55deg, #7cf7ff80 0%, #4b73ff80 100%);
+  /* background: linear-gradient(220.55deg, #8a88fb99 0%, #d079ee99 100%); */
 }
 
 .timeline-item > :nth-child(1) {
@@ -170,24 +171,26 @@ years.sort((a, b) => b - a)
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 4px;
-  height: 4px;
-  background-color: #eee;
+  width: 8px;
+  height: 8px;
+  background-color: #58b2dc;
   /* border: 2px #58b2dc solid; */
-  outline: 2px #58b2dc solid;
+  /* outline: 2px #58b2dc solid; */
   border-radius: 100px;
   z-index: 100;
-  will-change: height, outline, background-color;
+  will-change: height;
   transition:
     height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-    outline 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
-    background-color 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+    filter 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
 .timeline-item:hover > :nth-child(2) > div {
+  width: 4px;
   height: 16px;
   outline: none;
   background-color: #58b2dc;
+  filter: brightness(1.05);
 }
 
 .timeline-item > :nth-child(3) {
