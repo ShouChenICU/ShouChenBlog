@@ -40,6 +40,10 @@ for (let p of postList.value) {
   }
 }
 years.sort((a, b) => b - a)
+
+onMounted(() => {
+  useBgUrl('/bg.webp')
+})
 </script>
 
 <template>

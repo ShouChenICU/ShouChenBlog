@@ -49,6 +49,10 @@ watch(curCategory, (newCategory) => {
   updateQuery(1, newCategory, search.value)
 })
 
+onMounted(() => {
+  useBgUrl('/bg.webp')
+})
+
 onUnmounted(() => {
   curCategory.value = 'unset'
 })

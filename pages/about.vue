@@ -13,6 +13,10 @@ useSeoMeta({
   twitterSite: 'https://shouchen.blog',
   twitterCreator: 'ShouChen_'
 })
+
+onMounted(() => {
+  useBgUrl('/bg.webp')
+})
 </script>
 
 <template>
