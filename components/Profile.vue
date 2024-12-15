@@ -24,7 +24,12 @@
       >
         <Icon name="logos:github-icon" class="size-5 block" />
       </a>
-      <a aria-label="QQ" class="bg-neutral-100 rounded-full p-2 block hover:brightness-110">
+      <a
+        href="https://qm.qq.com/q/zSSm9ew4c8"
+        target="_blank"
+        aria-label="QQ"
+        class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
+      >
         <Icon name="my-icon:qq" class="size-5 block" />
       </a>
     </div>
