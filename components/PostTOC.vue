@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { type ParsedContent } from '@nuxt/content'
+// import { type ParsedContent } from '@nuxt/content'
 
-const curPost = useCurrentPost() as unknown as Ref<ParsedContent>
+const curPost = useCurrentPost() as any
 const curNavId = ref('')
 const elmOffsetTopMap = new Map<string, number>()
 let offsetTopList: number[] = []

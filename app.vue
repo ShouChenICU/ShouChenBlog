@@ -4,18 +4,17 @@ const navHeight = useNavHeight()
 const footerHeight = useFooterHeight()
 const bodyHeight = ref(0)
 
-const { data: allPost } = await useAsyncData<Post[]>(
-  () =>
-    queryContent('/')
-      .where({
-        draft: false
-      })
-      .sort({
-        updateAt: -1
-      })
-      .find() as unknown as Promise<Post[]>
+const { data: allPost } = await useAsyncData(() =>
+  queryContent('/')
+    .where({
+      draft: false
+    })
+    .sort({
+      updateAt: -1
+    })
+    .find()
 )
-useAllPost(allPost.value ?? [])
+useAllPost((allPost.value as unknown as Post[]) ?? [])
 
 onMounted(() => {
   colorMode.preference = 'dark'
