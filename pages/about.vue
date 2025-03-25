@@ -69,13 +69,8 @@ onMounted(() => {
         免登录即可使用的免费AI工具站，由Cloudflare的Workers AI驱动
       </p>
       <p>
-        <NuxtLink
-          class="text-[#51a8dd] hover:text-rose-500"
-          href="https://miaobox.cc"
-          target="_blank"
-          >miaobox.cc</NuxtLink
-        >
-        一个本地优先的实用工具箱
+        <NuxtLink class="text-[#51a8dd] hover:text-rose-500" target="_blank">miaobox.cc</NuxtLink>
+        一个本地优先的实用工具箱（域名已过期）
       </p>
       <p>
         <NuxtLink

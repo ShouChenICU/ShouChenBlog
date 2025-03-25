@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { ParsedContent } from '@nuxt/content'
+
 definePageMeta({
   layout: 'main'
 })
@@ -18,11 +20,17 @@ const router = useRouter()
 const pageSize = 5
 const curPage = ref(Math.max(Number(router.currentRoute.value.query?.page), 1) || 1)
 const search = ref((router.currentRoute.value.query?.search || '') + '')
+const curSearch = ref(search.value)
 const curCategory = useCategory((router.currentRoute.value.query?.category || '') + '')
 const posts = useAllPost()
 const filteredPosts = computed(() =>
-  posts.value?.filter((post) => post.category.includes(curCategory.value))
+  posts.value
+    ?.filter((post) => post.category.includes(curCategory.value))
+    ?.filter((post) =>
+      ((post as any).flatContent as string).includes(search.value.trim().toLowerCase())
+    )
 )
+
 const pagePosts = computed(() =>
   filteredPosts.value?.slice(
     Math.max(curPage.value - 1, 0) * pageSize,
@@ -72,8 +80,8 @@ onUnmounted(() => {
         type="text"
         class="flex-1 mr-2 rounded-xl overflow-hidden w-full bg-transparent outline-none border-none px-3 py-2 text-neutral-50 placeholder:text-neutral-400"
         placeholder="Search"
-        v-model="search"
-        @keydown.enter="updateQuery(1, curCategory, search)"
+        v-model="curSearch"
+        @keydown.enter="updateQuery(1, curCategory, curSearch)"
       />
       <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
         {{ filteredPosts?.length }} Posts

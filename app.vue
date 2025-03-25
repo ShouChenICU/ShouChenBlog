@@ -14,6 +14,18 @@ const { data: allPost } = await useAsyncData(() =>
     })
     .find()
 )
+if (allPost.value) {
+  allPost.value.forEach(
+    (post) =>
+      (post.flatContent = (
+        flatContent(post.body as any) +
+        post.title +
+        (post as unknown as Post).keywords.join()
+      ).toLowerCase())
+  )
+}
+// console.log(allPost.value)
+
 useAllPost((allPost.value as unknown as Post[]) ?? [])
 
 onMounted(() => {
