@@ -17,13 +17,16 @@ useCurrentPost(curPost)
 
 useSeoMeta({
   title: curPost.title,
+  ogTitle: curPost.title,
+  ogType: 'website',
   ogImage: siteUrl + curPost.cover,
+  ogUrl: siteUrl,
   twitterCard: 'summary_large_image',
   twitterTitle: curPost.title,
   twitterDescription: curPost.description,
-  twitterImage: siteUrl + curPost.cover,
-  twitterSite: 'https://shouchen.blog',
-  twitterCreator: 'ShouChen_'
+  twitterSite: '@ShouChen_',
+  twitterCreator: '@ShouChen_',
+  twitterImage: siteUrl + curPost.cover
 })
 
 onMounted(() => {
