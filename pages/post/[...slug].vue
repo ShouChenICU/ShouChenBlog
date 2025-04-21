@@ -18,6 +18,7 @@ useCurrentPost(curPost)
 useSeoMeta({
   title: curPost.title,
   ogTitle: curPost.title,
+  ogDescription: curPost.description,
   ogType: 'website',
   ogImage: siteUrl + curPost.cover,
   ogUrl: siteUrl,
