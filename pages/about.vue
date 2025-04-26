@@ -17,6 +17,50 @@ useSeoMeta({
 onMounted(() => {
   useBgUrl('/bg.webp')
 })
+
+// 自我介绍数据
+const introItems = [
+  { icon: '💻', text: '我是一名全栈工程师，在从事AI相关的创业活动🤖' },
+  { icon: '🍥', text: 'Debian忠实粉，日用系统和服务器都选择它🖥️' },
+  { icon: '🎧', text: '音乐发烧友，喜欢收集高品质音乐和各类耳机' },
+  { icon: '🎯', text: '喜欢折腾电子产品，喜欢搞机📱，喜欢玩MC🎮' },
+  { icon: '🐱', text: '想养猫 (猫娘也行)，想学摄影📷，最想去的国家是日本⛩️' },
+  { icon: '🍀', text: '梦想是自由自在的做自己喜欢的事情' }
+]
+
+// 项目列表数据
+const projects = [
+  {
+    title: 'uurrll.cc',
+    description: '支持自定义社媒卡片的短链平台',
+    url: 'https://uurrll.cc',
+    status: 'active'
+  },
+  {
+    title: 'fastsend.ing',
+    description: '浏览器点对点加密文件传输',
+    url: 'https://fastsend.ing',
+    status: 'active'
+  },
+  {
+    title: 'aifreee.cc',
+    description: '免登录即可使用的免费AI工具站，由Cloudflare的Workers AI驱动',
+    url: null,
+    status: 'paused'
+  },
+  {
+    title: 'awesome-code.top',
+    description: '一个收录分享各种Awesome代码(片段)的网站',
+    url: null,
+    status: 'paused'
+  },
+  {
+    title: 'miaobox.cc',
+    description: '一个本地优先的实用工具箱',
+    url: null,
+    status: 'paused'
+  }
+]
 </script>
 
 <template>
@@ -41,46 +85,76 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="p-4 flex flex-col items-center gap-2 text-neutral-300">
-      <p class="text-2xl text-neutral-200">Hi 欢迎访问我的博客</p>
-      <p>我是一名全栈工程师💻，在从事AI相关的创业活动🤖</p>
-      <p>同时也是Debian忠实粉🍥，日用系统和服务器都选择它🖥️</p>
-      <p>我还是音乐发烧友，喜欢收集高品质音乐和各类耳机🎧</p>
-      <p>我喜欢折腾电子产品🎯，喜欢搞机📱，喜欢玩MC🎮</p>
-      <p>我还想养猫 (猫娘也行)🐱，想学摄影📷，最想去的国家是日本⛩️</p>
-      <p>我的梦想是自由自在的做自己喜欢的事情🍀</p>
-      <p class="text-lg text-neutral-200 mt-2">🗃️ 我的一些作品</p>
-      <p>
-        <NuxtLink
-          class="text-[#51a8dd] hover:text-rose-500"
-          to="https://fastsend.ing"
-          target="_blank"
-          >fastsend.ing</NuxtLink
+    <div class="p-6 flex flex-col gap-8 text-neutral-300">
+      <!-- 自我介绍部分 -->
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-neutral-200 mb-6 relative inline-block">
+          Hi 欢迎访问我的博客
+          <span
+            class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-emerald-400 to-transparent"
+          ></span>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 max-w-3xl mx-auto">
+          <div
+            v-for="(item, index) in introItems"
+            :key="index"
+            class="p-4 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 flex items-center gap-3"
+          >
+            <div class="text-2xl">{{ item.icon }}</div>
+            <p>{{ item.text }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目展示部分 -->
+      <div class="mt-6">
+        <h3
+          class="text-lg font-semibold text-neutral-200 mb-5 flex items-center justify-center gap-2"
         >
-        浏览器点对点加密文件传输
-      </p>
-      <p>
-        <NuxtLink
-          class="text-[#51a8dd] hover:text-rose-500"
-          href="https://aifreee.cc"
-          target="_blank"
-          >aifreee.cc</NuxtLink
-        >
-        免登录即可使用的免费AI工具站，由Cloudflare的Workers AI驱动
-      </p>
-      <p>
-        <NuxtLink class="text-[#51a8dd] hover:text-rose-500" target="_blank">miaobox.cc</NuxtLink>
-        一个本地优先的实用工具箱（域名已过期）
-      </p>
-      <p>
-        <NuxtLink
-          class="text-[#51a8dd] hover:text-rose-500"
-          href="https://awesome-code.top"
-          target="_blank"
-          >awesome-code.top</NuxtLink
-        >
-        一个收录分享各种Awesome代码(片段)的网站
-      </p>
+          <span class="text-xl">🗃️</span>
+          <span>我设计并开发的一些产品</span>
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- 项目卡片 -->
+          <template v-for="(project, index) in projects" :key="index">
+            <!-- 活跃项目 -->
+            <a
+              v-if="project.status === 'active'"
+              :href="project.url ?? ''"
+              target="_blank"
+              class="group"
+            >
+              <div
+                class="p-5 rounded-xl bg-white/5 backdrop-blur-sm hover:bg-white/10 border border-white/10 transition-all duration-300 h-full flex flex-col"
+              >
+                <h4
+                  class="text-[#51a8dd] group-hover:text-rose-500 text-lg font-medium mb-2 transition-colors"
+                >
+                  {{ project.title }}
+                </h4>
+                <p class="text-neutral-300">{{ project.description }}</p>
+                <div
+                  class="mt-auto pt-3 text-neutral-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  访问网站 →
+                </div>
+              </div>
+            </a>
+
+            <!-- 暂停服务项目 -->
+            <div
+              v-else
+              class="p-5 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 h-full flex flex-col"
+            >
+              <h4 class="text-[#51a8dd] text-lg font-medium mb-2">{{ project.title }}</h4>
+              <p class="text-neutral-300">{{ project.description }}</p>
+              <div class="mt-auto pt-3 text-neutral-400 text-sm">（已暂停服务）</div>
+            </div>
+          </template>
+        </div>
+      </div>
     </div>
   </div>
 </template>
