@@ -1,0 +1,50 @@
+:root {
+  --glass-border-radius: 1rem;
+  --nprogress-color: #51a8dd;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-margin-top: 3rem;
+}
+
+*::selection {
+  /* @apply bg-teal-900/90; */
+}
+
+body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: 'Noto Serif Simplified Chinese', sans-serif;
+  margin: 0;
+}
+
+.text-shadow {
+  text-shadow: 0 1px 3px rgba(0 0 0 / 0.3);
+}
+
+/* Transition */
+
+.inout-leave-active,
+.inout-enter-active {
+  transition:
+    translate 0.25s cubic-bezier(0.3, 1, 0.35, 1),
+    opacity 0.25s cubic-bezier(0, 0.8, 0.55, 1);
+}
+
+.inout-enter-active {
+  transition-delay: 0.3s;
+}
+
+.inout-enter-from,
+.inout-leave-to {
+  opacity: 0;
+  translate: 0 2rem;
+}
+
+.inout-enter-to,
+.inout-leave-from {
+  opacity: 1;
+  translate: 0;
+}

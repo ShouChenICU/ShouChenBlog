@@ -7,3 +7,7 @@ abc: ccc
 # ABC
 
 Here is some content.
+
+```js
+const abc = '123'
+```
