@@ -13,8 +13,9 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/seo',
-    'vuetify-nuxt-module',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@formkit/auto-animate',
+    '@nuxtjs/tailwindcss'
   ],
 
   css: ['@/assets/main.css'],
@@ -62,34 +63,15 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         toc: {
-          depth: 3
+          depth: 3,
+          searchDepth: 3
         },
-        // Object syntax can be used to override default options
-        remarkPlugins: {
-          // Override remark-emoji options
-          'remark-emoji': {
-            options: {
-              emoticon: true
-            }
-          }
-          // Disable remark-gfm
-          // 'remark-gfm': false
-          // Add remark-oembed
-          // 'remark-oembed': {
-          // Options
-          // }
-        },
-        // Object syntax can be used to override default options
-        // rehypePlugins: {
-        // 'rehype-figure': {}
-        // },
         highlight: {
-          theme: {
-            // Default theme (same as single string)
-            default: 'github-light',
-            // Theme used if `html.dark`
-            dark: 'github-dark'
-          }
+          theme: 'github-dark'
+          // theme: {
+          //   default: 'github-light',
+          //   dark: 'github-dark'
+          // }
         }
       }
     }

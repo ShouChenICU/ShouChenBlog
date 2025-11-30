@@ -1,71 +1,82 @@
-<script lang="ts" setup>
-definePageMeta({ layout: 'main' })
+<script setup lang="ts">
+// import type { ParsedContent } from '@nuxt/content'
 
+definePageMeta({
+  layout: 'main'
+})
+const siteUrl = useSiteConfig().url
+useSeoMeta({
+  title: '主页',
+  ogImage: siteUrl + '/ogImg.webp',
+  twitterCard: 'summary_large_image',
+  twitterTitle: '主页',
+  twitterDescription: '主页',
+  twitterImage: siteUrl + '/ogImg.webp',
+  twitterSite: 'https://shouchen.blog',
+  twitterCreator: 'ShouChen_'
+})
+
+const sysSetting = useSystemSetting()
 const postStore = usePostStore()
-await postStore.loadAll()
+
+const router = useRouter()
+const pageSize = 5
+postStore.page = Math.max(Number(router.currentRoute.value.query?.page), 1) || 1
+postStore.search = (router.currentRoute.value.query?.search || '') + ''
+postStore.category = (router.currentRoute.value.query?.category || '') + ''
+await postStore.loadPosts()
+
+onMounted(() => {
+  sysSetting.setBgUrl('/bg.webp')
+})
+
+onUnmounted(() => {
+  postStore.category = ''
+})
 </script>
 
 <template>
-  <v-container>
-    <v-row class="flex-md-row align-md-start">
-      <v-col cols="12" md="4" style="position: sticky; top: 0">
-        <v-card rounded="xl" style="position: sticky; top: 0">
-          <v-card-text class="d-flex flex-column align-center justify-center">
-            <div style="height: 1rem"></div>
-            <v-avatar image="/favicon.webp" size="96" class="elevation-2" />
-            <p class="text-subtitle-1 font-weight-bold mt-2">ShouChen</p>
-          </v-card-text>
-
-          <v-divider />
-
-          <v-card-text class="d-flex flex-row justify-space-evenly align-center">
-            <v-btn icon href="https://x.com/shouchen_" target="_blank" theme="light">
-              <v-icon>
-                <Icon name="logos:x" />
-              </v-icon>
-            </v-btn>
-            <v-btn icon href="https://github.com/shouchenicu" target="_blank" theme="light">
-              <v-icon>
-                <Icon name="logos:github-icon" />
-              </v-icon>
-            </v-btn>
-            <v-btn icon href="https://qm.qq.com/q/zSSm9ew4c8" target="_blank" theme="light">
-              <v-icon>
-                <Icon name="my-icon:qq" />
-              </v-icon>
-            </v-btn>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="8">
-        <v-sheet style="height: 1000px" class="rounded-xl pa-4">ababab</v-sheet>
-      </v-col>
-    </v-row>
-
-    <v-divider class="my-8">Posts</v-divider>
-
-    <v-card rounded="lg" class="mt-4">
-      <v-card-item>
-        <v-card-title>Card</v-card-title>
-      </v-card-item>
-
-      <v-card-text> abab </v-card-text>
-    </v-card>
-
-    <v-card rounded="lg" class="mt-4">
-      <v-card-item>
-        <v-card-title>Card</v-card-title>
-      </v-card-item>
-
-      <v-card-text> abab </v-card-text>
-    </v-card>
-
-    {{ postStore.postCount }}
-    <!-- {{ postList }} -->
-    <NuxtLink v-for="(item, idx) in postStore.posts" :key="idx" :to="`/post${item.path}`">{{
-      item.path
-    }}</NuxtLink>
-    <PageFooter />
-  </v-container>
+  <div>
+    <!-- <div style="display: none">
+      <a v-for="post in postStore.posts" :key="post.path" :href="'/post' + post.path">{{
+        post.title
+      }}</a>
+    </div> -->
+    <!-- 搜索框 -->
+    <div
+      class="flex flex-row items-stretch frosted-glass p-1 pl-3 rounded-xl hover:brightness-110 transition-all ease"
+    >
+      <Icon name="solar:minimalistic-magnifer-linear" class="text-neutral-400 my-auto" />
+      <input
+        type="text"
+        class="flex-1 mr-2 rounded-xl overflow-hidden w-full bg-transparent outline-none border-none px-3 py-2 text-neutral-50 placeholder:text-neutral-400"
+        placeholder="Search"
+        v-model="postStore.search"
+        @keydown.enter="postStore.loadPosts(1)"
+      />
+      <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
+        {{ postStore.filteredPosts.length }} Posts
+      </div>
+    </div>
+    <!-- 文章列表 -->
+    <div class="space-y-3 mt-4" v-auto-animate>
+      <PostItem v-for="post in postStore.pagedPosts" :key="post.path" :post-info="post as any" />
+      <!-- Empty指示 -->
+      <div v-if="postStore.filteredPosts.length === 0" key="empty">
+        <div
+          class="frosted-glass py-8 rounded-xl mt-4 text-neutral-200 flex flex-col items-center gap-2"
+        >
+          <Icon name="fluent:border-none-24-regular" size="96" />
+          <p class="text-center">No posts found</p>
+        </div>
+      </div>
+    </div>
+    <!-- 分页器 -->
+    <Paginator
+      :size="pageSize"
+      :total="postStore.filteredPosts.length"
+      v-model:page="postStore.page"
+      @update="(page) => postStore.loadPosts(page)"
+    />
+  </div>
 </template>

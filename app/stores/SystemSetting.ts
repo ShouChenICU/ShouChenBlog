@@ -2,7 +2,11 @@ import { defineStore } from 'pinia'
 
 export const useSystemSetting = defineStore('useSystemSetting', {
   state: () => ({
-    isDark: false
+    isDark: false,
+    navHeight: 0,
+    footerHeight: 0,
+    bgUrl: '/bg.webp',
+    bgBlur: false
   }),
 
   getters: {
@@ -22,10 +26,16 @@ export const useSystemSetting = defineStore('useSystemSetting', {
       }
     },
 
-    switchTheme() {
-      this.isDark = !this.isDark
+    switchTheme(dark?: boolean) {
+      this.isDark = dark ? dark : !this.isDark
       if (typeof window !== 'undefined') {
         localStorage.setItem('theme', this.isDark ? 'dark' : 'light')
+      }
+    },
+
+    setBgUrl(url?: string) {
+      if (url) {
+        this.bgUrl = url
       }
     }
   }

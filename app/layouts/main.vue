@@ -1,29 +1,31 @@
-<script lang="ts" setup>
-const systemSetting = useSystemSetting()
+<script setup lang="ts">
+const sysSetting = useSystemSetting()
 </script>
 
 <template>
-  <div>
-    <v-responsive>
-      <v-app :theme="systemSetting.curTheme">
-        <v-app-bar>
-          <template v-slot:prepend>
-            <v-avatar image="/favicon.webp" class="ml-4"></v-avatar>
-          </template>
-
-          <v-app-bar-title>ShouChen's Blog</v-app-bar-title>
-
-          <v-btn icon @click="systemSetting.switchTheme">
-            <v-icon :color="systemSetting.isDark ? 'yellow-darken-2' : undefined"
-              ><Icon :name="systemSetting.isDark ? 'solar:moon-sleep-bold' : 'solar:sun-bold'"
-            /></v-icon>
-          </v-btn>
-        </v-app-bar>
-
-        <v-main :style="systemSetting.isDark ? '' : 'background-color: #eeeeee'">
-          <NuxtPage />
-        </v-main>
-      </v-app>
-    </v-responsive>
+  <div class="flex flex-col-reverse md:flex-row gap-4 px-2 md:px-[10vw] py-4">
+    <aside class="flex-1 min-w-0">
+      <div
+        :style="
+          $route.path.includes('/post')
+            ? 'height:100%'
+            : `position:sticky;top:calc(${sysSetting.navHeight}px + 1rem)`
+        "
+      >
+        <Profile :key="1" />
+        <div
+          :style="
+            $route.path.startsWith('/post')
+              ? `position:sticky;top:calc(${sysSetting.navHeight}px + 1rem)`
+              : ''
+          "
+          v-auto-animate
+        >
+          <PostTOC :key="2" v-if="$route.path.startsWith('/post')" />
+          <PostCategory :key="3" />
+        </div>
+      </div>
+    </aside>
+    <NuxtPage class="md:w-[75%]" />
   </div>
 </template>

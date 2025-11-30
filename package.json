@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@iconify/json": "^2.2.412",
     "@nuxt/content": "3.8.2",
     "@nuxt/fonts": "0.12.1",
     "@nuxt/icon": "2.1.0",
@@ -24,10 +25,12 @@
   },
   "packageManager": "yarn@4.11.0+sha512.4e54aeace9141df2f0177c266b05ec50dc044638157dae128c471ba65994ac802122d7ab35bcd9e81641228b7dcf24867d28e750e0bcae8a05277d600008ad54",
   "devDependencies": {
+    "@formkit/auto-animate": "^0.9.0",
     "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^0.11.3",
+    "@tailwindcss/typography": "^0.5.19",
     "@types/nprogress": "^0",
-    "@vueuse/nuxt": "^14.1.0",
-    "vuetify-nuxt-module": "^0.18.8"
+    "@vueuse/nuxt": "^14.1.0"
   }
 }
