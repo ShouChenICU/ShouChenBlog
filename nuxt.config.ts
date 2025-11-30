@@ -83,6 +83,12 @@ export default defineNuxtConfig({
     }
   },
 
+  router: {
+    options: {
+      sensitive: false
+    }
+  },
+
   ogImage: {
     enabled: false
   }

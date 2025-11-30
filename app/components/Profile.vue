@@ -11,7 +11,7 @@
       class="flex flex-row items-center justify-evenly mt-4 py-3 bg-neutral-950/30 rounded-xl border border-neutral-500/40"
     >
       <a
-        href="https://x.com/shouchen_"
+        href="https://x.com/ShouChen_"
         target="_blank"
         aria-label="Twitter"
         class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
@@ -19,7 +19,7 @@
         <Icon name="logos:x" class="size-5 block" />
       </a>
       <a
-        href="https://github.com/shouchenicu"
+        href="https://github.com/ShouChenICU"
         target="_blank"
         aria-label="Github"
         class="bg-neutral-100 rounded-full p-2 block hover:brightness-110"
