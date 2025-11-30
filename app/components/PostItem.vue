@@ -40,7 +40,7 @@ const porps = defineProps<{ postInfo: ContentCollectionItem }>()
           {{ ((postInfo.meta.keywords as string[]) || []).join(' / ') }}
         </p>
         <Icon name="solar:folder-with-files-line-duotone" class="mr-1" />
-        <p class="whitespace-nowrap">{{ CategoryMap[postInfo.meta.category] }}</p>
+        <p class="whitespace-nowrap">{{ $t(`category.${postInfo.meta.category || 'all'}`) }}</p>
       </div>
       <!-- 文章简介 -->
       <p class="line-clamp-2 break-words text-sm md:text-base text-neutral-100 px-1 md:px-0">

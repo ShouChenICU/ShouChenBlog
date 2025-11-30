@@ -1,0 +1,10 @@
+{
+  "category": {
+    "all": "全部",
+    "tech": "技术",
+    "tutorial": "教程",
+    "daily": "日常",
+    "resource": "资源",
+    "other": "其他"
+  }
+}

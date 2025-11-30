@@ -13,17 +13,6 @@ if (!postStore.current) {
 }
 const curPost = postStore.current
 
-const router = useRouter()
-// const docPath = router.currentRoute.value.path.replace('/post', '') || '/'
-
-// const allPost = useAllPost()
-// const curPostIdx = allPost.value.findIndex((p) => p._path === docPath)
-// const privPost = curPostIdx === 0 ? undefined : allPost.value[curPostIdx - 1]
-// const curPost = allPost.value[curPostIdx]
-// const nextPost = curPostIdx === allPost.value.length - 1 ? undefined : allPost.value[curPostIdx + 1]
-// useCurrentPost(curPost)
-// console.log(data)
-
 useSeoMeta({
   title: curPost.title,
   description: curPost.description,
@@ -46,7 +35,7 @@ onMounted(() => {
       sysSetting.setBgUrl(curPost.meta.cover as string)
     }
   }, 2e3)
-  postStore.category = ''
+  postStore.category = 'unset'
 })
 
 onUnmounted(() => {
@@ -86,11 +75,13 @@ onUnmounted(() => {
           {{ (curPost!.meta.keywords as string[]).join(' / ') }}
         </p>
         <Icon name="solar:folder-with-files-line-duotone" class="mr-1" />
-        <p class="whitespace-nowrap flex-1">{{ CategoryMap[curPost.meta?.category] }}</p>
+        <p class="whitespace-nowrap flex-1">
+          {{ $t(`category.${curPost.meta.category || 'all'}`) }}
+        </p>
         <div class="flex flex-row items-center">
           <Icon name="solar:clock-circle-linear" class="size-4" />
           <p class="text-sm ml-1">
-            {{ formatDate(new Date(curPost.meta?.updateAt), 'YYYY-MM-DD HH:mm') }}
+            {{ formatDate(new Date(curPost.meta.updateAt + ''), 'YYYY-MM-DD HH:mm') }}
           </p>
         </div>
       </div>

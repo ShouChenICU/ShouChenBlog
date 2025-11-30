@@ -55,7 +55,7 @@ export default defineNuxtConfig({
 
   i18n: {
     baseUrl: 'https://shouchen.blog',
-    locales: [{ code: 'zh', language: 'zh-CN' }],
+    locales: [{ code: 'zh', language: 'zh-CN', file: 'zh-CN.json' }],
     defaultLocale: 'zh'
   },
 

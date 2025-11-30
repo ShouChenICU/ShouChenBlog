@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const router = useRouter()
 const postStore = usePostStore()
 
 function calcCategoryPostCount(category: string) {

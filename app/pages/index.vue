@@ -31,7 +31,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  postStore.category = ''
+  postStore.category = 'unset'
 })
 </script>
 

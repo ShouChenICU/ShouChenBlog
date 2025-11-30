@@ -46,12 +46,11 @@ export const usePostStore = defineStore('usePostStore', {
       }
       if (this.page !== 1 || this.search !== '' || this.category !== '') {
         useRouter().replace({
+          path: '/',
           query: { page: this.page, search: this.search, category: this.category }
         })
       } else {
-        useRouter().replace({
-          query: {}
-        })
+        useRouter().replace({ path: '/', query: {} })
       }
 
       this.filteredPosts = (await queryCollection('content')
