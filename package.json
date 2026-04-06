@@ -10,27 +10,28 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@iconify/json": "^2.2.418",
-    "@nuxt/content": "3.9.0",
-    "@nuxt/fonts": "0.12.1",
-    "@nuxt/icon": "2.1.1",
-    "@nuxtjs/seo": "3.3.0",
-    "better-sqlite3": "^12.5.0",
+    "@iconify/json": "^2.2.459",
+    "@nuxt/content": "3.12.0",
+    "@nuxt/fonts": "0.14.0",
+    "@nuxt/icon": "2.2.1",
+    "@nuxtjs/seo": "5.1.0",
+    "better-sqlite3": "^12.8.0",
     "nprogress": "^0.2.0",
-    "nuxt": "^4.2.2",
+    "nuxt": "^4.4.2",
     "pinia": "^3.0.4",
-    "vue": "^3.5.25",
-    "vue-router": "^4.6.4",
-    "zod": "^4.1.13"
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@formkit/auto-animate": "^0.9.0",
-    "@nuxtjs/i18n": "^10.2.1",
+    "@nuxtjs/i18n": "^10.2.4",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^0.11.3",
     "@tailwindcss/typography": "^0.5.19",
     "@types/nprogress": "^0.2.3",
-    "@vueuse/nuxt": "^14.1.0"
+    "@vueuse/nuxt": "^14.2.1",
+    "tailwindcss": "^3.4.17"
   },
-  "packageManager": "yarn@4.12.0"
+  "packageManager": "yarn@4.13.0+sha512.5c20ba010c99815433e5c8453112165e673f1c7948d8d2b267f4b5e52097538658388ebc9f9580656d9b75c5cc996f990f611f99304a2197d4c56d21eea370e7"
 }
