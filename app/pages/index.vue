@@ -24,7 +24,7 @@ const pageSize = 5
 postStore.page = Math.max(Number(router.currentRoute.value.query?.page), 1) || 1
 postStore.search = (router.currentRoute.value.query?.search || '') + ''
 postStore.category = (router.currentRoute.value.query?.category || '') + ''
-await postStore.loadPosts()
+await postStore.loadPosts(undefined, router)
 
 onMounted(() => {
   sysSetting.setBgUrl('/bg.webp')
@@ -52,7 +52,7 @@ onUnmounted(() => {
         class="flex-1 mr-2 rounded-xl overflow-hidden w-full bg-transparent outline-none border-none px-3 py-2 text-neutral-50 placeholder:text-neutral-400"
         placeholder="Search"
         v-model="postStore.search"
-        @keydown.enter="postStore.loadPosts(1)"
+        @keydown.enter="postStore.loadPosts(1, router)"
       />
       <div class="frosted-glass px-3 rounded-lg text-sm flex flex-row items-center justify-center">
         {{ postStore.filteredPosts.length }} Posts
@@ -76,7 +76,7 @@ onUnmounted(() => {
       :size="pageSize"
       :total="postStore.filteredPosts.length"
       v-model:page="postStore.page"
-      @update="(page) => postStore.loadPosts(page)"
+      @update="(page) => postStore.loadPosts(page, router)"
     />
   </div>
 </template>

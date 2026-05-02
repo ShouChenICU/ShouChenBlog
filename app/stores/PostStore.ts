@@ -1,5 +1,12 @@
 import type { ContentCollectionItem } from '@nuxt/content'
 import { defineStore } from 'pinia'
+import type { Router } from 'vue-router'
+
+const POSTS_PER_PAGE = 5
+
+function normalizeCategory(category: string) {
+  return category === 'unset' ? '' : category
+}
 
 export const usePostStore = defineStore('usePostStore', {
   state: () => ({
@@ -32,7 +39,8 @@ export const usePostStore = defineStore('usePostStore', {
       return null
     },
 
-    pagedPosts: (state) => state.filteredPosts.slice(5 * (state.page - 1), 5 * state.page)
+    pagedPosts: (state) =>
+      state.filteredPosts.slice(POSTS_PER_PAGE * (state.page - 1), POSTS_PER_PAGE * state.page)
   },
 
   actions: {
@@ -40,18 +48,12 @@ export const usePostStore = defineStore('usePostStore', {
       this.current = (await queryCollection('content').where('path', '=', `/${id}`).first()) as any
     },
 
-    async loadPosts(page?: number) {
-      if (page) {
+    async loadPosts(page?: number, router?: Router) {
+      if (page !== undefined) {
         this.page = page
       }
-      if (this.page !== 1 || this.search !== '' || this.category !== '') {
-        useRouter().replace({
-          path: '/',
-          query: { page: this.page, search: this.search, category: this.category }
-        })
-      } else {
-        useRouter().replace({ path: '/', query: {} })
-      }
+
+      this.category = normalizeCategory(this.category)
 
       this.filteredPosts = (await queryCollection('content')
         .select('title', 'description', 'meta', 'path')
@@ -60,11 +62,17 @@ export const usePostStore = defineStore('usePostStore', {
           posts
             .filter((p) => !Boolean(p.meta?.draft))
             .filter((p) => {
+              const searchableText = [
+                p.title ?? '',
+                p.description ?? '',
+                ...(Array.isArray(p.meta?.keywords) ? p.meta.keywords : [])
+              ]
+                .join(' ')
+                .toLocaleLowerCase()
+
               return (
                 (!this.category || p.meta?.category === this.category) &&
-                (p.title + p.description)
-                  .toLocaleLowerCase()
-                  .includes(this.search.toLocaleLowerCase())
+                searchableText.includes(this.search.toLocaleLowerCase())
               )
             })
         )
@@ -75,6 +83,22 @@ export const usePostStore = defineStore('usePostStore', {
             return btime.getTime() - atime.getTime()
           })
         )) as any
+
+      const lastPage = Math.max(1, Math.ceil(this.filteredPosts.length / POSTS_PER_PAGE))
+      this.page = Math.min(Math.max(this.page, 1), lastPage)
+
+      if (!router) {
+        return
+      }
+
+      if (this.page !== 1 || this.search !== '' || this.category !== '') {
+        router.replace({
+          path: '/',
+          query: { page: this.page, search: this.search, category: this.category }
+        })
+      } else {
+        router.replace({ path: '/', query: {} })
+      }
     },
 
     async loadAll() {

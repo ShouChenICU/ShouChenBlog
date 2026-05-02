@@ -23,6 +23,7 @@ const sysSetting = useSystemSetting()
         >
           <PostTOC :key="2" v-if="$route.path.startsWith('/post')" />
           <PostCategory :key="3" />
+          <PostTag :key="4" />
         </div>
       </div>
     </aside>

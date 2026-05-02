@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const postStore = usePostStore()
+const router = useRouter()
 
 function calcCategoryPostCount(category: string) {
   return (postStore.allPosts as any).filter((post: any) => post.meta.category === category).length
@@ -7,7 +8,7 @@ function calcCategoryPostCount(category: string) {
 
 function navigateToCategory(category: string) {
   postStore.category = category
-  postStore.loadPosts(1)
+  postStore.loadPosts(1, router)
 }
 </script>
 
