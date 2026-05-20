@@ -3,6 +3,13 @@ const systemSetting = useSystemSetting()
 const postStore = usePostStore()
 await postStore.loadAll()
 
+useHead({
+  htmlAttrs: {
+    class: 'dark'
+  },
+  meta: [{ name: 'color-scheme', content: 'dark' }]
+})
+
 const bodyHeight = ref(0)
 
 // const { data: allPost } = await useAsyncData(() =>

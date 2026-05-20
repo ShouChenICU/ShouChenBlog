@@ -11,6 +11,8 @@
 html {
   scroll-behavior: smooth;
   scroll-margin-top: 3rem;
+  color-scheme: dark;
+  overscroll-behavior-y: none;
 }
 
 *::selection {
@@ -38,10 +40,10 @@ html {
 }
 
 body {
-  @apply bg-neutral-50 dark:bg-black;
-  @apply text-black dark:text-neutral-50;
+  @apply bg-black text-neutral-50;
   @apply overflow-y-auto overflow-x-hidden;
   scroll-behavior: smooth;
+  overscroll-behavior-y: none;
   font-family: 'Noto Serif Simplified Chinese', sans-serif;
 }
 

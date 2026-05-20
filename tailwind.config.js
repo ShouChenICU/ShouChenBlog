@@ -3,6 +3,7 @@ const require = createRequire(import.meta.url)
 
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     'app/components/**/*.{vue,js,ts}',
     'app/pages/**/*.{vue,js,ts}',
