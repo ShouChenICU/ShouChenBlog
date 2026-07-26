@@ -52,26 +52,30 @@ onMounted(() => {
     class="relative p-4 rounded-3xl frosted-glass-heavy glass-high-light"
     style="--glass-border-radius: 1.5rem; --glass-highlight-angle: -90deg"
   >
-    <div :class="$style['timeline-year']" v-for="(year, idx) in years" :key="idx">
-      <div>
-        <span>{{ year }}</span>
-        <div><div></div></div>
-        <div>
+    <div :class="$style['timeline-year']" v-for="year in years" :key="year">
+      <div :class="$style['timeline-header']">
+        <span :class="$style['timeline-year-label']">{{ year }}</span>
+        <div :class="$style['timeline-year-marker']"><div></div></div>
+        <div :class="$style['timeline-year-count']">
           <span>{{ postMap[year].length }} Posts</span>
         </div>
       </div>
       <NuxtLink
         :class="$style['timeline-item']"
-        v-for="(post, idx2) in postMap[year]"
-        :key="idx2"
+        v-for="post in postMap[year]"
+        :key="post.path"
         :href="'/post' + post.path"
       >
-        <span>{{ formatDate(new Date(post.meta.updateAt || ''), 'MM-DD') }}</span>
+        <span :class="$style['timeline-date']">{{
+          formatDate(new Date(post.meta.updateAt || ''), 'MM-DD')
+        }}</span>
         <div :class="$style['timeline-line-wrap']"><div></div></div>
-        <div>{{ post.title }}</div>
-        <div :class="$style['post-info']">
-          <Icon name="solar:hashtag-bold-duotone" class="mr-1" />
-          <span style="margin-left: 2px">{{ (post.meta.keywords || []).join(' / ') }}</span>
+        <div :class="$style['timeline-title']">{{ post.title }}</div>
+        <div :class="$style['post-info']" :title="(post.meta.keywords || []).join(' / ')">
+          <Icon name="solar:hashtag-bold-duotone" :class="$style['post-info-icon']" />
+          <span :class="$style['post-info-text']">{{
+            (post.meta.keywords || []).join(' / ')
+          }}</span>
         </div>
       </NuxtLink>
     </div>
@@ -80,35 +84,44 @@ onMounted(() => {
 
 <style module>
 .timeline-year {
+  --timeline-date-column: clamp(4.5rem, 10%, 7rem);
+  --timeline-line-column: 4rem;
   position: relative;
 }
 
-.timeline-year > :first-child {
-  display: flex;
-  flex-direction: row;
+.timeline-header,
+.timeline-item {
+  display: grid;
+  grid-template-columns:
+    var(--timeline-date-column)
+    var(--timeline-line-column)
+    minmax(0, 1fr)
+    minmax(0, 34%);
   align-items: center;
+  min-width: 0;
+}
+
+.timeline-header {
   padding-right: 1rem;
 }
 
-.timeline-year > :first-child > :nth-child(1) {
+.timeline-year-label {
   font-size: 1.5em;
   text-align: end;
-  width: 10%;
 }
 
 .timeline-line-wrap {
   position: relative;
-  padding: 1.5rem 2rem;
-  /* width: 10%; */
+  align-self: stretch;
+  min-width: 0;
 }
 
-.timeline-year > :first-child > :nth-child(2) {
+.timeline-year-marker {
   position: relative;
-  padding: 2rem;
-  /* width: 10%; */
+  height: 4rem;
 }
 
-.timeline-year > :first-child > :nth-child(2) > div {
+.timeline-year-marker > div {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -121,15 +134,15 @@ onMounted(() => {
   z-index: 100;
 }
 
-.timeline-year > :first-child > :nth-child(3) {
-  flex: 1 0 0;
+.timeline-year-count {
+  grid-column: 3 / -1;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.timeline-year > :first-child > :nth-child(3) > span {
+.timeline-year-count > span {
   font-size: 0.8em;
   padding: 4px 8px;
   border-radius: 6px;
@@ -138,29 +151,33 @@ onMounted(() => {
 
 .timeline-item {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  min-height: 3rem;
   border-radius: 0.5rem;
   padding-right: 1rem;
   cursor: pointer;
-  transition: background-color 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition:
+    background-color 0.25s cubic-bezier(0.215, 0.61, 0.355, 1),
+    box-shadow 0.25s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.timeline-item:hover {
+.timeline-item:hover,
+.timeline-item:focus-visible {
   background: linear-gradient(220.55deg, #7cf7ff80 0%, #4b73ff80 100%);
-  /* background: linear-gradient(220.55deg, #8a88fb99 0%, #d079ee99 100%); */
 }
 
-.timeline-item > :nth-child(1) {
+.timeline-item:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px rgb(88 178 220 / 70%);
+}
+
+.timeline-date {
   text-align: end;
-  width: 10%;
   font-size: 0.9em;
   color: white;
   white-space: nowrap;
 }
 
-.timeline-item > :nth-child(2)::before {
+.timeline-line-wrap::before {
   content: '';
   position: absolute;
   left: 50%;
@@ -171,7 +188,7 @@ onMounted(() => {
   transform: translateX(-50%);
 }
 
-.timeline-item > :nth-child(2) > div {
+.timeline-line-wrap > div {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -179,18 +196,16 @@ onMounted(() => {
   width: 8px;
   height: 8px;
   background-color: #58b2dc;
-  /* border: 2px #58b2dc solid; */
-  /* outline: 2px #58b2dc solid; */
   border-radius: 100px;
   z-index: 100;
-  will-change: height;
   transition:
     height 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
     width 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
     filter 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.timeline-item:hover > :nth-child(2) > div {
+.timeline-item:hover .timeline-line-wrap > div,
+.timeline-item:focus-visible .timeline-line-wrap > div {
   width: 4px;
   height: 16px;
   outline: none;
@@ -198,51 +213,58 @@ onMounted(() => {
   filter: brightness(1.05);
 }
 
-.timeline-item > :nth-child(3) {
+.timeline-title {
   font-weight: bold;
-  flex: 1 0 0;
   min-width: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  will-change: padding-left;
-  transition: padding-left 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.timeline-item:hover > :nth-child(3) {
-  padding-left: 0.25rem;
+.timeline-item:hover .timeline-title,
+.timeline-item:focus-visible .timeline-title {
+  transform: translateX(0.25rem);
 }
 
 .post-info {
-  grid-area: d;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  min-width: 0;
+  padding-left: 0.75rem;
   font-size: 0.85em;
   opacity: 0.8;
   white-space: nowrap;
+}
+
+.post-info-icon {
+  flex: 0 0 auto;
+  margin-right: 0.375rem;
+}
+
+.post-info-text {
+  display: block;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 768px) {
-  .timeline-year > :first-child > :nth-child(1) {
-    width: 15%;
+  .timeline-year {
+    --timeline-date-column: clamp(3.5rem, 15%, 5rem);
+    --timeline-line-column: 3rem;
   }
 
-  .timeline-year > :first-child > :nth-child(2) {
-    padding: 1.75rem 1.5rem;
-    /* width: 8%; */
+  .timeline-header,
+  .timeline-item {
+    grid-template-columns:
+      var(--timeline-date-column)
+      var(--timeline-line-column)
+      minmax(0, 1fr);
   }
 
-  .timeline-line-wrap {
-    position: relative;
-    padding: 1.5rem;
-    /* width: 8%; */
-  }
-
-  .timeline-item > :nth-child(1) {
-    width: 15%;
+  .timeline-year-count {
+    grid-column: 3;
   }
 
   .post-info {
